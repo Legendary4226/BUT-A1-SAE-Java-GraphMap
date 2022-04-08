@@ -18,7 +18,7 @@ public class LoadGraphFromCSV {
             ArrayList<String> lines;
             String lectureEnCours = "";
             while (lectureEnCours != null) {
-                lines.add();
+                //lines.add();
             }
 
             /*

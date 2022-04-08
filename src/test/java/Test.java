@@ -1,6 +1,9 @@
 import com.risa.functionality.generate.matrix.GenAdjacencyMatrix;
 import com.risa.graph.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Test {
     public static void main(String[] args) {
         /*
@@ -30,7 +33,10 @@ public class Test {
         t.ajouterNoeud("Test2", TypeLieu.VILLE);
         t.ajouterNoeud("Test3", TypeLieu.RESTAURANT);
         t.ajouterArete("Test", TypeRoute.AUTOROUTE, 66, "Test2");
+        t.ajouterArete("Test2", TypeRoute.AUTOROUTE, 66, "Test");
+        t.ajouterArete("Test2", TypeRoute.DEPARTEMENTALE, 55, "Test3");
         //t.ajouterArete("Test", TypeRoute.AUTOROUTE, 66, "Test2");
-        g.genAdjacencyMatrix(t);
+        HashMap<String, HashMap<String, Float>> matrix = g.genAdjacencyMatrix(t);
+        g.dispMatrix(matrix);
     }
 }

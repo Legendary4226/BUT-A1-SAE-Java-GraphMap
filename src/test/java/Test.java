@@ -1,7 +1,9 @@
+import com.risa.functionality.generate.matrix.GenAdjacencyMatrix;
 import com.risa.graph.*;
 
 public class Test {
     public static void main(String[] args) {
+        /*
         Graph G = new Graph();
 
         G.ajouterNoeud("Lyon", TypeLieu.VILLE);
@@ -19,5 +21,16 @@ public class Test {
         G.ajouterArete("Paris", TypeRoute.AUTOROUTE, (float) 169, "Lyon");
 
         System.out.println(G.getNoeuds());
+         */
+
+        GenAdjacencyMatrix g = new GenAdjacencyMatrix();
+
+        Graph t = new Graph();
+        t.ajouterNoeud("Test", TypeLieu.CENTRE_LOISIR);
+        t.ajouterNoeud("Test2", TypeLieu.VILLE);
+        t.ajouterNoeud("Test3", TypeLieu.RESTAURANT);
+        t.ajouterArete("Test", TypeRoute.AUTOROUTE, 66, "Test2");
+        //t.ajouterArete("Test", TypeRoute.AUTOROUTE, 66, "Test2");
+        g.genAdjacencyMatrix(t);
     }
 }

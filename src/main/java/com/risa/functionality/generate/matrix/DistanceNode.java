@@ -27,6 +27,6 @@ public class DistanceNode {
 
     @Override
     public String toString() {
-        return "{" + distance + " from " + node + "}";
+        return "{" + distance + " " + node + "}";
     }
 }

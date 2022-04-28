@@ -27,18 +27,23 @@ public class Test {
 
         Graph t = new Graph();
 
-        t.ajouterNoeud("Test", TypeLieu.CENTRE_LOISIR);
-        t.ajouterNoeud("Test2", TypeLieu.VILLE);
-        t.ajouterNoeud("Test3", TypeLieu.RESTAURANT);
-        t.ajouterNoeud("Test4", TypeLieu.CENTRE_LOISIR);
-        t.ajouterArete("Test", TypeRoute.AUTOROUTE, 66, "Test2");
-        t.ajouterArete("Test2", TypeRoute.AUTOROUTE, 66, "Test");
-        t.ajouterArete("Test2", TypeRoute.DEPARTEMENTALE, 55, "Test3");
-        t.ajouterArete("Test4", TypeRoute.AUTOROUTE, 12, "Test");
-        //t.ajouterArete("Test", TypeRoute.AUTOROUTE, 66, "Test2");
+        t.ajouterNoeud("a", null);
+        t.ajouterNoeud("b", null);
+        t.ajouterNoeud("c", null);
+        t.ajouterNoeud("d", null);
+        t.ajouterNoeud("e", null);
+
+        t.ajouterArete("a", null, 3, "b");
+        t.ajouterArete("a", null, -4, "e");
+        t.ajouterArete("b", null, 1, "d");
+        t.ajouterArete("b", null, 7, "e");
+        t.ajouterArete("c", null, 4, "b");
+        t.ajouterArete("d", null, 2, "a");
+        t.ajouterArete("d", null, -5, "c");
+        t.ajouterArete("e", null, 6, "d");
 
         WkMatrix matrix = new WkMatrix(t);
+        matrix.calculateAllShortestWays();
         System.out.println(matrix.toString());
-        System.out.println(matrix.getWkMatrix());
     }
 }

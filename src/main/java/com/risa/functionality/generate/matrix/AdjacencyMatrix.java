@@ -26,11 +26,23 @@ public class AdjacencyMatrix {
         return keys;
     }
 
-    public Float getValue(int x, int y) {
+    /**
+     * Get a value of the matrix by Integers values.
+     * @param x Integer
+     * @param y Integer
+     * @return the value associated to matrix[x][y].
+     */
+    public Float getMatrixValue(int x, int y) {
         return matrix.get(keys.get(x)).get(keys.get(y));
     }
 
-    public Float getValue(String x, String y) {
+    /**
+     * Get a value of the matrix by String names.
+     * @param x String
+     * @param y String
+     * @return the value associated to matrix[x][y].
+     */
+    public Float getMatrixValue(String x, String y) {
         return matrix.get(x).get(y);
     }
 

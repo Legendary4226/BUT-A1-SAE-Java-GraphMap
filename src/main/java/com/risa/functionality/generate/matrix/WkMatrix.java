@@ -13,17 +13,18 @@ public class WkMatrix extends AdjacencyMatrix {
 
         replaceDiagonalByZeros();
         convertFloatToDistanceNode();
+        calculateAllShortestWays();
     }
 
     public HashMap<String, HashMap<String, DistanceNode>> getWkMatrix() {
         return wkMatrix;
     }
 
-    public Float getValue(int x, int y) {
+    public Float getMatrixValue(int x, int y) {
         return wkMatrix.get(getKeys().get(x)).get(getKeys().get(y)).getDistance();
     }
 
-    public Float getValue(String x, String y) {
+    public Float getMatrixValue(String x, String y) {
         return wkMatrix.get(x).get(y).getDistance();
     }
 
@@ -54,7 +55,7 @@ public class WkMatrix extends AdjacencyMatrix {
         }
     }
 
-    public void calculateAllShortestWays() {
+    private void calculateAllShortestWays() {
         for (int i = 0; i < wkMatrix.size(); i++) {
             calculateWkPlusOne(i);
         }
@@ -69,9 +70,9 @@ public class WkMatrix extends AdjacencyMatrix {
     }
 
     private void updateValueOfwkToCheck(int colomnRowNumber, int row, int column) {
-        Float wkColumn = getValue(row, colomnRowNumber);
-        Float wkRow = getValue(colomnRowNumber, column);
-        Float wkToCheck = getValue(row, column);
+        Float wkColumn = getMatrixValue(row, colomnRowNumber);
+        Float wkRow = getMatrixValue(colomnRowNumber, column);
+        Float wkToCheck = getMatrixValue(row, column);
         DistanceNode wkToCheckDN = getDistanceNode(row, column);
 
         if (wkColumn + wkRow < wkToCheck) {

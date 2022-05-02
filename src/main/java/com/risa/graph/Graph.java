@@ -17,11 +17,25 @@ public class Graph {
         return noeuds.get(name);
     }
 
+    /**
+     * Permet d'ajouter un noeud au graphe.
+     * @param nom le nom du noeud
+     * @param typeLieu le lieu
+     * @return le noeud qui était à la place de celui que l'on a ajouté
+     */
     public Noeud ajouterNoeud(String nom, TypeLieu typeLieu) {
         Noeud noeud = new Noeud(nom, typeLieu);
         return noeuds.put(nom, noeud);
     }
 
+    /**
+     * Permet d'ajouter une arête à une noeud du graphe identifié par son nom
+     * @param noeudSource le noeud qui recevra l'arête
+     * @param typeRoute la type de route
+     * @param distance la distance
+     * @param noeudDestination le noeud vers lequel l'arête pointera
+     * @return une confirmation si l'ajout a réussi
+     */
     public boolean ajouterArete(String noeudSource, TypeRoute typeRoute, float distance, String noeudDestination) {
         boolean success = false;
 
@@ -37,6 +51,14 @@ public class Graph {
         return success;
     }
 
+    /**
+     * Permet d'ajouter une arête à une noeud du graphe identifié par son objet directement
+     * @param noeudSource le noeud qui recevra l'arête
+     * @param typeRoute la type de route
+     * @param distance la distance
+     * @param noeudDestination le noeud vers lequel l'arête pointera
+     * @return une confirmation si l'ajout a réussi
+     */
     public boolean ajouterArete(Noeud noeudSource, TypeRoute typeRoute, float distance, Noeud noeudDestination) {
         boolean success = false;
 
@@ -49,24 +71,4 @@ public class Graph {
 
         return success;
     }
-
-    /*
-    public boolean plusCourteDistance(Noeud start, Noeud finish) {
-
-    }
-    */
-
-    /*
-    @Override
-    public String toString() {
-        String graphe = "";
-        for (Noeud noeud : noeuds.values()) {
-            graphe += noeud.getNom() + "&" + noeud.getTypeLieu().toString() + ";;";
-            for (Arete arete : noeud.getAretes()) {
-                graphe += arete;
-            }
-        }
-        return graphe;
-    }
-    */
 }

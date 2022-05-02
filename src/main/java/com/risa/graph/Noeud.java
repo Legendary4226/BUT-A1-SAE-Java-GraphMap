@@ -28,7 +28,13 @@ public class Noeud {
     }
 
 
-
+    /**
+     * Permet d'ajouter une arête au noeud
+     * @param typeRoute la route
+     * @param distance la distance
+     * @param destination la destination differente de null
+     * @return une confirmation d'ajout
+     */
     public boolean ajouterArete(TypeRoute typeRoute, float distance, Noeud destination) {
         boolean success = false;
 

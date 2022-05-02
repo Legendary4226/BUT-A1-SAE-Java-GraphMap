@@ -1,6 +1,12 @@
 import com.risa.functionality.generate.matrix.AdjacencyMatrix;
 import com.risa.functionality.generate.matrix.WkMatrix;
+import com.risa.functionality.way.intermediary.FindWayWithIntermediaries;
+import com.risa.functionality.way.shortest.FindShortestWay;
 import com.risa.graph.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
@@ -31,19 +37,23 @@ public class Test {
         t.ajouterNoeud("b", null);
         t.ajouterNoeud("c", null);
         t.ajouterNoeud("d", null);
-        t.ajouterNoeud("e", null);
 
-        t.ajouterArete("a", null, 3, "b");
-        t.ajouterArete("a", null, -4, "e");
-        t.ajouterArete("b", null, 1, "d");
-        t.ajouterArete("b", null, 7, "e");
-        t.ajouterArete("c", null, 4, "b");
-        t.ajouterArete("d", null, 2, "a");
-        t.ajouterArete("d", null, -5, "c");
-        t.ajouterArete("e", null, 6, "d");
+        t.ajouterArete("a", null, 6, "b");
+        t.ajouterArete("a", null, 10, "c");
+        t.ajouterArete("b", null, -3, "a");
+        t.ajouterArete("b", null, 8, "c");
+        t.ajouterArete("b", null, 3, "d");
+        t.ajouterArete("c", null, -3, "d");
+        t.ajouterArete("d", null, -2, "b");
 
         WkMatrix matrix = new WkMatrix(t);
-        matrix.calculateAllShortestWays();
-        System.out.println(matrix.toString());
+
+        FindShortestWay fsw = new FindShortestWay();
+        FindWayWithIntermediaries fwwi = new FindWayWithIntermediaries();
+        System.out.println(matrix);
+        System.out.println("Shortest way : " + fsw.findShortestWay(matrix, "a", "d"));
+        System.out.println("Way With Intermediaries : " + fwwi.findWayWithIntermediaries(matrix, "a", "d",
+                new ArrayList<>(List.of("c", "b"))
+        ));
     }
 }

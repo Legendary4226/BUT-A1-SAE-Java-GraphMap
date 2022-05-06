@@ -30,7 +30,6 @@ public class FindWayWithIntermediaries {
                 position = way.remove(way.size() - 1);
             }
         }
-        System.out.println("Before last : " + way);
         way.addAll(findShortestWay.findShortestWay(matrix, position, to));
 
         return way;

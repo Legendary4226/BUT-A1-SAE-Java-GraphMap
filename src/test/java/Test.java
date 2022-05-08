@@ -45,6 +45,9 @@ public class Test {
         */
 
         SitesComparisons sc = new SitesComparisons();
-        System.out.println(sc);
+        System.out.println(sc.cityCompare("a", "b", matrix, graph));
+        System.out.println(sc.cityCompare("a", "c", matrix, graph));
+        System.out.println(sc.cityCompare("c", "a", matrix, graph));
+        System.out.println(sc.cityCompare("a", "a", matrix, graph));
     }
 }

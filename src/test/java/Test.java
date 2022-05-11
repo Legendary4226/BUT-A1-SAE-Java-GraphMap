@@ -15,22 +15,26 @@ public class Test {
         graph.ajouterNoeud("d", TypeLieu.VILLE);
         graph.ajouterNoeud("e", TypeLieu.CENTRE_LOISIR);
 
-        graph.ajouterArete("a", null, 10, "b");
-        graph.ajouterArete("a", null, 5, "e");
-        graph.ajouterArete("b", null, 1, "c");
-        graph.ajouterArete("b", null, 2, "e");
-        graph.ajouterArete("c", null, 4, "d");
-        graph.ajouterArete("d", null, 6, "c");
-        graph.ajouterArete("d", null, 7, "a");
-        graph.ajouterArete("e", null, 9, "c");
-        graph.ajouterArete("e", null, 2, "d");
-        graph.ajouterArete("e", null, 3, "b");
+        graph.ajouterArete("a", TypeRoute.DEPARTEMENTALE, 10, "b");
+        graph.ajouterArete("a", TypeRoute.AUTOROUTE, 15, "b");
+        graph.ajouterArete("a", TypeRoute.AUTOROUTE, 5, "e");
+        graph.ajouterArete("b", TypeRoute.DEPARTEMENTALE, 1, "c");
+        graph.ajouterArete("b", TypeRoute.NATIONALE, 2, "e");
+        graph.ajouterArete("c", TypeRoute.AUTOROUTE, 4, "d");
+        graph.ajouterArete("d", TypeRoute.DEPARTEMENTALE, 6, "c");
+        graph.ajouterArete("d", TypeRoute.AUTOROUTE, 7, "a");
+        graph.ajouterArete("e", TypeRoute.AUTOROUTE, 9, "c");
+        graph.ajouterArete("e", TypeRoute.NATIONALE, 2, "d");
+        graph.ajouterArete("e", TypeRoute.NATIONALE, 3, "b");
 
+        System.out.println(graph.toString());
+
+        /*
         WkMatrix matrix = new WkMatrix(graph);
 
         FindShortestWay fsw = new FindShortestWay();
         FindWayWithIntermediaries fwwi = new FindWayWithIntermediaries();
-        /*
+
         System.out.println(matrix);
 
         System.out.println("Shortest way : " + fsw.findShortestWay(matrix, "a", "d"));
@@ -42,12 +46,13 @@ public class Test {
         System.out.println(xds.oneDistanceSite(graph.getNoeud("e")));
         System.out.println(xds.twoDistanceSite(graph.getNoeud("a")));
         System.out.println(xds.nDistanceSite(graph, graph.getNoeud("c"), 3));
-        */
+
 
         SitesComparisons sc = new SitesComparisons();
         System.out.println(sc.cityCompare("a", "b", matrix, graph));
         System.out.println(sc.cityCompare("a", "c", matrix, graph));
         System.out.println(sc.cityCompare("c", "a", matrix, graph));
         System.out.println(sc.cityCompare("a", "a", matrix, graph));
+        */
     }
 }

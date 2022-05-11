@@ -25,6 +25,6 @@ public class Arete {
 
     @Override
     public String toString() {
-        return distance + "&" + typeRoute;
+        return typeRoute.toString() + "&" + distance;
     }
 }

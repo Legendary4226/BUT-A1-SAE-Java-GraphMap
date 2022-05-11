@@ -47,6 +47,6 @@ public class Noeud {
 
     @Override
     public String toString() {
-        return nom + "&" + typeLieu;
+        return nom + "&" + typeLieu.toString();
     }
 }

@@ -71,4 +71,50 @@ public class Graph {
 
         return success;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder toCSV = new StringBuilder();
+
+        for (Noeud noeud : getNoeuds().values()) {
+            toCSV.append(noeud.toString());
+            toCSV.append(";;");
+
+            toCSV.append(toStringLien(noeud));
+            toCSV.append("\n");
+        }
+
+        return toCSV.toString();
+    }
+
+    private String toStringLien(Noeud noeud) {
+        StringBuilder liens = new StringBuilder();
+        HashMap<String, String> liensParNoeuds = new HashMap<>();
+
+        for (Arete arete : noeud.getAretes()) {
+            if (!liensParNoeuds.containsKey(arete.getDestination().getNom())) {
+                liensParNoeuds.put(
+                        arete.getDestination().getNom(),
+                        arete.getDestination().getNom() + ":" + arete
+                );
+            }
+            else {
+                liensParNoeuds.put(
+                        arete.getDestination().getNom(),
+                        liensParNoeuds.get(arete.getDestination().getNom()) + "," + arete
+                );
+            }
+        }
+
+        //System.out.println(liensParNoeuds);
+
+        for (String nomNoeud : liensParNoeuds.keySet()) {
+            liens.append(liensParNoeuds.get(nomNoeud));
+            liens.append(";");
+        }
+
+        liens.deleteCharAt(liens.length() - 1);
+
+        return liens.toString();
+    }
 }

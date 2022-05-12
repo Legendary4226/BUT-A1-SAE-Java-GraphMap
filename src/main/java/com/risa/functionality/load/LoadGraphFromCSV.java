@@ -2,45 +2,42 @@ package com.risa.functionality.load;
 
 import com.risa.graph.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class LoadGraphFromCSV {
+    // path = chemin
+     public Graph load(String path)  {
+         File file = new File(path);
+         BufferedReader bufferedReader = null;
+         try {
+             FileReader filereader = new FileReader(file);
+             bufferedReader =  new BufferedReader(filereader);
+             String line = bufferedReader.readLine();
+           while((line = bufferedReader.readLine()) != null){
+               System.out.println(line);
+           }
 
-    public Graph load(String path) { // path = chemin
-
-        try {
-            FileReader fr = new FileReader(path);
-            BufferedReader br = new BufferedReader(fr);
-
-            ArrayList<String> lines;
-            String lectureEnCours = "";
-            while (lectureEnCours != null) {
-                //lines.add();
-            }
-
-            /*
-            String[] nextRecord;
-            while ((nextRecord = br.readLine()) != null) {
-                for (String ligne : nextRecord) {
-                    System.out.print(ligne + "\t");
-                }
-                System.out.println();
-            }
-             */
+         } catch (FileNotFoundException e) {
+             System.err.printf("Le fichier %s n'a pas été trouvé",file.toString());
+         } catch (IOException e) {
+             System.err.println("Impossible de lire le contenu du fichier "+ file.toString());
+         }
+         try {
+             bufferedReader.close();
+         } catch (IOException e) {
+             System.err.println("Impossible de fermer le fichier "+ file.toString());
+         } catch (NullPointerException e){
+             System.err.println("Impossible d'ouvrir le fichier "+ file.toString());
+         }
 
 
-            //EXEMPLE A SUPPPRIMER
-
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
+         return null;
+     }
 
 
 
-        return null;
-    }
 }
+
+
+

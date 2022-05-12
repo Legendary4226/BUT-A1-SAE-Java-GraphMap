@@ -80,7 +80,6 @@ public class SitesComparisons {
         if (! ( findShortestWay.findShortestWay(wkMatrix, node1.getNom(), node2.getNom()).size() < 2
                 || node1.getTypeLieu() != filter
                 || node2.getTypeLieu() != filter
-
         ) ) {
             XDistanceSite twoDistanceSite = new XDistanceSite();
             NodeFilters citiesFilters = new NodeFilters();

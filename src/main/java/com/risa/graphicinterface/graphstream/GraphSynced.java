@@ -41,9 +41,8 @@ public class GraphSynced {
         view = viewer.addDefaultView(false);
         camera = view.getCamera();
 
-        viewer.getDefaultView().setMouseManager(new MouseOverMouseManager(EnumSet.of(InteractiveElement.EDGE, InteractiveElement.NODE)));
+        viewer.getDefaultView().enableMouseOptions();
         viewer.enableAutoLayout();
-
     }
 
     public Graph getGraph() {
@@ -77,6 +76,8 @@ public class GraphSynced {
                             if(noeud.getTypeLieu() == TypeLieu.CENTRE_LOISIR) {
                                 put("ui.class", "leisurecenter");
                             }
+
+                            put("ui.label", noeud.getNom());
                         }
                     }
             );
@@ -91,8 +92,9 @@ public class GraphSynced {
                 ).setAttributes(
                         new HashMap<String, Object>() {
                             {
-                                put("TypeRoute", arete.getTypeRoute());
-                                put("Distance", arete.getDistance());
+                                put("typeroute", arete.getTypeRoute());
+                                put("distance", arete.getDistance());
+                                put("ui.label", arete.getTypeRoute() + " - " + arete.getDistance());
                             }
                         }
                 );

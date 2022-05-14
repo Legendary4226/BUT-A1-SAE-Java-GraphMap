@@ -2,10 +2,15 @@ package com.risa.graphicinterface;
 
 import com.risa.graphicinterface.graphstream.GraphSynced;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
+import org.graphstream.algorithm.APSP;
+import org.graphstream.algorithm.AStar;
 import org.graphstream.graph.implementations.MultiGraph;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainWindow extends JFrame {
     private final com.risa.graph.Graph graphSAE;
@@ -32,6 +37,19 @@ public class MainWindow extends JFrame {
         jPanel.add((Component) graphUI.getView());
 
         jPanel.add(new ScreensManager());
+
+        APSP apsp = new APSP();
+        apsp.init(graphUI.getGraph());
+        apsp.setDirected(false);
+        apsp.setWeightAttributeName("distance");
+
+        apsp.compute();
+
+        APSP.APSPInfo info = (APSP.APSPInfo) graphUI.getGraph().getNode("a").getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
+        System.out.println(info.getShortestPathTo("b"));
+
+        String[] s = "lol.lul".split("\\.");
+        List<String> liste = Arrays.asList(s);
 
         return jPanel;
     }

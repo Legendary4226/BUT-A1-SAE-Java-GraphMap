@@ -1,29 +1,37 @@
 package com.risa.graphicinterface;
 
+import com.risa.graphicinterface.graphstream.GraphSynced;
+import com.risa.graphicinterface.screensmanager.ScreensManager;
+import org.graphstream.graph.implementations.MultiGraph;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
-
-    public MainWindow() {
+    private final com.risa.graph.Graph graphSAE;
+    private final GraphSynced graphUI;
+    public MainWindow(com.risa.graph.Graph graphSAE) {
         super();
-        setTitle("SAE-GraphMap");
-        setSize(600, 500);
-        setJMenuBar(buildMenuBar());
-        setContentPane(buildContentPane());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        this.graphSAE = graphSAE;
+        graphUI = new GraphSynced(new MultiGraph("Graph"));
+        graphUI.loadVisualFromSAEGraph(graphSAE);
+
+        setTitle("Test");
+        setSize(1200, 850);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setContentPane(buildMainPanel());
         setVisible(true);
     }
 
-    private JMenuBar buildMenuBar() {
-        return new JMenuBar();
-    }
-
-    private JPanel buildContentPane() {
+    private JPanel buildMainPanel() {
         JPanel jPanel = new JPanel(new GridLayout(1, 2));
 
+        jPanel.add((Component) graphUI.getView());
 
+        jPanel.add(new ScreensManager());
 
         return jPanel;
     }

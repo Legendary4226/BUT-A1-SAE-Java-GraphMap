@@ -1,5 +1,6 @@
 package com.risa.graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Graph {
@@ -72,6 +73,16 @@ public class Graph {
         return success;
     }
 
+    public ArrayList<Arete> getAretes() {
+        ArrayList<Arete> aretes = new ArrayList<>();
+
+        for (Noeud noeud : noeuds.values()) {
+            aretes.addAll(noeud.getAretes());
+        }
+
+        return aretes;
+    }
+
     @Override
     public String toString() {
         StringBuilder toCSV = new StringBuilder();
@@ -105,8 +116,6 @@ public class Graph {
                 );
             }
         }
-
-        //System.out.println(liensParNoeuds);
 
         for (String nomNoeud : liensParNoeuds.keySet()) {
             liens.append(liensParNoeuds.get(nomNoeud));

@@ -5,9 +5,11 @@ import java.util.HashMap;
 
 public class Graph {
     private final HashMap<String, Noeud> noeuds;
+    private final HashMap<String, Arete> aretes;
 
     public Graph() {
-        noeuds = new HashMap<String, Noeud>();
+        noeuds = new HashMap<>();
+        aretes = new HashMap<>();
     }
 
     public HashMap<String, Noeud> getNoeuds() {
@@ -95,6 +97,10 @@ public class Graph {
             toCSV.append("\n");
         }
 
+        if (toCSV.length() > 0) {
+            toCSV.deleteCharAt(toCSV.length() - 1);
+        }
+
         return toCSV.toString();
     }
 
@@ -122,7 +128,10 @@ public class Graph {
             liens.append(";");
         }
 
-        liens.deleteCharAt(liens.length() - 1);
+        if (liens.length() > 0) {
+            liens.deleteCharAt(liens.length() - 1);
+        }
+
 
         return liens.toString();
     }

@@ -53,4 +53,8 @@ public class MainWindow extends JFrame {
 
         return jPanel;
     }
+
+    public GraphSynced getGraphUI() {
+        return graphUI;
+    }
 }

@@ -1,7 +1,10 @@
 package com.risa.graphicinterface;
 
+import com.risa.graph.Graph;
 import com.risa.graph.TypeLieu;
 import com.risa.graph.TypeRoute;
+
+import java.util.ArrayList;
 
 
 public class TestGraph {
@@ -40,6 +43,7 @@ public class TestGraph {
 
         //MainWindow mainWindow = new MainWindow();
 
+
         com.risa.graph.Graph graphSAE = new com.risa.graph.Graph();
         graphSAE.ajouterNoeud("a", TypeLieu.VILLE);
         graphSAE.ajouterNoeud("b", TypeLieu.RESTAURANT);
@@ -60,6 +64,16 @@ public class TestGraph {
 
         MainWindow mainWindow = new MainWindow(graphSAE);
 
+        ArrayList<String> way = new ArrayList<>() {
+            {
+                add("a");
+                add("e");
+                add("c");
+                add("b");
+            }
+        };
+
+        mainWindow.getGraphUI().colorizeGivenWay(way, graphSAE);
 
     }
 }

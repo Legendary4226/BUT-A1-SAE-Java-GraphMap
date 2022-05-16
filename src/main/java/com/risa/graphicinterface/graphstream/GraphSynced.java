@@ -1,21 +1,17 @@
 package com.risa.graphicinterface.graphstream;
 
+import com.risa.functionality.filter.EdgeFilters;
+import com.risa.functionality.filter.NodeFilters;
 import com.risa.graph.Arete;
 import com.risa.graph.Noeud;
 import com.risa.graph.TypeLieu;
 import org.graphstream.graph.Graph;
-import org.graphstream.ui.layout.Layout;
-import org.graphstream.ui.layout.LayoutRunner;
-import org.graphstream.ui.layout.Layouts;
 import org.graphstream.ui.swing_viewer.SwingViewer;
-import org.graphstream.ui.swing_viewer.util.MouseOverMouseManager;
 import org.graphstream.ui.view.View;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.camera.Camera;
-import org.graphstream.ui.view.util.InteractiveElement;
 
-import java.awt.*;
-import java.util.EnumSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GraphSynced {
@@ -25,9 +21,14 @@ public class GraphSynced {
     private final Camera camera;
     private final Stylesheets stylesheets;
 
+    private ArrayList<String> colorizedNodes;
+    private ArrayList<String> colorizedEdges;
+
     public GraphSynced(Graph graph) {
         System.setProperty("org.graphstream.ui", "swing");
 
+        colorizedNodes = null;
+        colorizedEdges = null;
         this.graph = graph;
         stylesheets = new Stylesheets();
 
@@ -99,6 +100,54 @@ public class GraphSynced {
                         }
                 );
             }
+        }
+    }
+
+    public void colorizeGivenWay(ArrayList<String> way, com.risa.graph.Graph graphSAE) {
+        EdgeFilters edgeFilters = new EdgeFilters();
+        if (colorizedNodes == null) {
+            colorizedNodes = new ArrayList<>();
+        }
+        if (colorizedNodes != null) {
+            uncolorNodes();
+        }
+        if (colorizedEdges == null) {
+            colorizedEdges = new ArrayList<>();
+        }
+        if (colorizedEdges != null) {
+            uncolorEdges();
+        }
+
+        for (int i = 0; i < way.size() - 1; ++i) {
+            graph.getNode(way.get(i)).setAttribute("ui.class", "showed");
+            colorizedNodes.add(way.get(i));
+
+            String areteID = null;
+            Arete arete = edgeFilters.filterEdgesMatchingAndShortest(
+                    graphSAE.getNoeud(way.get(i)),
+                    graphSAE.getNoeud(way.get(i + 1)),
+                    graphSAE
+            );
+
+            if (arete != null) {
+                areteID = String.valueOf(arete.hashCode());
+                graph.getEdge(areteID).setAttribute("ui.class", "showed");
+                colorizedEdges.add(areteID);
+            }
+        }
+
+        graph.getNode(way.get(way.size() - 1)).setAttribute("ui.class", "showed");
+    }
+
+    public void uncolorNodes() {
+        for (String node : colorizedNodes) {
+            graph.getNode(node).removeAttribute("ui.class");
+        }
+    }
+
+    public void uncolorEdges() {
+        for (String edge : colorizedEdges) {
+            graph.getEdge(edge).removeAttribute("ui.class");
         }
     }
 }

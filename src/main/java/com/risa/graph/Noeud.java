@@ -12,7 +12,7 @@ public class Noeud {
     public Noeud(String nom, TypeLieu typeLieu) {
         this.nom = nom;
         this.typeLieu = typeLieu;
-        aretes = new ArrayList<Arete>();
+        aretes = new ArrayList<>();
     }
 
     public String getNom() {
@@ -39,7 +39,7 @@ public class Noeud {
         boolean success = false;
 
         if (destination != null) {
-            success = aretes.add(new Arete(typeRoute, distance, destination));
+            success = aretes.add(new Arete(this, typeRoute, distance, destination));
         }
 
         return success;

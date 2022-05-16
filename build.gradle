@@ -13,10 +13,17 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
-    // ULTRA SUPER DUPER IMPORTANT LINES
+    // Ajout de GraphStream
     implementation('org.graphstream:gs-core:2.0')
     implementation('org.graphstream:gs-algo:2.0')
     implementation('org.graphstream:gs-ui-swing:2.0')
+
+    //Ajout de Mockito
+    implementation('org.mockito:mockito-core:4.5.1')
+    implementation('org.mockito:mockito-junit-jupiter:4.5.1')
+
+    //Ajout de AssertJ
+    implementation('org.assertj:assertj-core:3.22.0')
 }
 
 test {

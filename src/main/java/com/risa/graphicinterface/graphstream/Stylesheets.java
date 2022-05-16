@@ -5,7 +5,7 @@ public class Stylesheets {
     private String GraphStyle() {
         return """
                 graph {
-                padding: 50px;
+                    padding: 50px;
                     fill-color: #88665D;
                 }
                 """;
@@ -31,6 +31,10 @@ public class Stylesheets {
                 }
                 
                 node:clicked {
+                    fill-color: #FF2B0A;
+                }
+                
+                node.showed {
                     fill-color: #FF2B0A;
                 }
                 
@@ -66,6 +70,10 @@ public class Stylesheets {
                 }
                 
                 edge:clicked {
+                    fill-color: #FF2B0A;
+                }
+                
+                edge.showed {
                     fill-color: #FF2B0A;
                 }
                 """;

@@ -105,22 +105,24 @@ public class GraphSynced {
 
     public void colorizeGivenWay(ArrayList<String> way, com.risa.graph.Graph graphSAE) {
         EdgeFilters edgeFilters = new EdgeFilters();
-        if (colorizedNodes == null) {
-            colorizedNodes = new ArrayList<>();
-        }
         if (colorizedNodes != null) {
             uncolorNodes();
         }
-        if (colorizedEdges == null) {
-            colorizedEdges = new ArrayList<>();
+        if (colorizedNodes == null) {
+            colorizedNodes = new ArrayList<>();
         }
         if (colorizedEdges != null) {
             uncolorEdges();
+        }
+        if (colorizedEdges == null) {
+            colorizedEdges = new ArrayList<>();
         }
 
         for (int i = 0; i < way.size() - 1; ++i) {
             graph.getNode(way.get(i)).setAttribute("ui.class", "showed");
             colorizedNodes.add(way.get(i));
+
+            sleepFor(250);
 
             String areteID = null;
             Arete arete = edgeFilters.filterEdgesMatchingAndShortest(
@@ -134,9 +136,12 @@ public class GraphSynced {
                 graph.getEdge(areteID).setAttribute("ui.class", "showed");
                 colorizedEdges.add(areteID);
             }
+
+            sleepFor(250);
         }
 
         graph.getNode(way.get(way.size() - 1)).setAttribute("ui.class", "showed");
+        colorizedNodes.add(way.get(way.size() - 1));
     }
 
     public void uncolorNodes() {
@@ -149,5 +154,12 @@ public class GraphSynced {
         for (String edge : colorizedEdges) {
             graph.getEdge(edge).removeAttribute("ui.class");
         }
+    }
+
+    private void sleepFor(int timeInMilliseconds) {
+        try {
+            Thread.sleep(timeInMilliseconds);
+        }
+        catch (Exception e) {}
     }
 }

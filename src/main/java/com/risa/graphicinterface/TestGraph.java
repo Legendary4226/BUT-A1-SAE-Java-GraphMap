@@ -72,8 +72,18 @@ public class TestGraph {
                 add("b");
             }
         };
+        ArrayList<String> way2 = new ArrayList<>() {
+            {
+                add("e");
+                add("c");
+                add("d");
+                add("a");
+            }
+        };
 
         mainWindow.getGraphUI().colorizeGivenWay(way, graphSAE);
+
+        mainWindow.getGraphUI().colorizeGivenWay(way2, graphSAE);
 
     }
 }

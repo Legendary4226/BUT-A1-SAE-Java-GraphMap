@@ -45,45 +45,8 @@ public class TestGraph {
 
 
         com.risa.graph.Graph graphSAE = new com.risa.graph.Graph();
-        graphSAE.ajouterNoeud("a", TypeLieu.VILLE);
-        graphSAE.ajouterNoeud("b", TypeLieu.RESTAURANT);
-        graphSAE.ajouterNoeud("c", TypeLieu.VILLE);
-        graphSAE.ajouterNoeud("d", TypeLieu.VILLE);
-        graphSAE.ajouterNoeud("e", TypeLieu.CENTRE_LOISIR);
-        graphSAE.ajouterArete("a", TypeRoute.DEPARTEMENTALE, 10, "b");
-        graphSAE.ajouterArete("a", TypeRoute.AUTOROUTE, 15, "b");
-        graphSAE.ajouterArete("a", TypeRoute.AUTOROUTE, 5, "e");
-        graphSAE.ajouterArete("b", TypeRoute.DEPARTEMENTALE, 1, "c");
-        graphSAE.ajouterArete("b", TypeRoute.NATIONALE, 2, "e");
-        graphSAE.ajouterArete("c", TypeRoute.AUTOROUTE, 4, "d");
-        graphSAE.ajouterArete("d", TypeRoute.DEPARTEMENTALE, 6, "c");
-        graphSAE.ajouterArete("d", TypeRoute.AUTOROUTE, 7, "a");
-        graphSAE.ajouterArete("e", TypeRoute.AUTOROUTE, 9, "c");
-        graphSAE.ajouterArete("e", TypeRoute.NATIONALE, 2, "d");
-        graphSAE.ajouterArete("e", TypeRoute.NATIONALE, 3, "b");
+
 
         MainWindow mainWindow = new MainWindow(graphSAE);
-
-        ArrayList<String> way = new ArrayList<>() {
-            {
-                add("a");
-                add("e");
-                add("c");
-                add("b");
-            }
-        };
-        ArrayList<String> way2 = new ArrayList<>() {
-            {
-                add("e");
-                add("c");
-                add("d");
-                add("a");
-            }
-        };
-
-        mainWindow.getGraphUI().colorizeGivenWay(way, graphSAE);
-
-        mainWindow.getGraphUI().colorizeGivenWay(way2, graphSAE);
-
     }
 }

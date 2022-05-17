@@ -32,25 +32,19 @@ public class MainWindow extends JFrame {
     }
 
     private JPanel buildMainPanel() {
-        JPanel jPanel = new JPanel(new GridLayout(1, 2));
+        JPanel jPanel = new JPanel(new GridLayout(1, 1));
+        JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        jSplitPane.setResizeWeight(1);
 
-        jPanel.add((Component) graphUI.getView());
 
-        jPanel.add(new ScreensManager());
 
-        APSP apsp = new APSP();
-        apsp.init(graphUI.getGraph());
-        apsp.setDirected(false);
-        apsp.setWeightAttributeName("distance");
+        jSplitPane.setLeftComponent((Component) graphUI.getView());
+        jSplitPane.setRightComponent(new ScreensManager(graphUI, graphSAE));
+        jSplitPane.setDividerSize(1);
+        jSplitPane.setResizeWeight(1);
+        jSplitPane.setEnabled(false);
 
-        apsp.compute();
-
-        APSP.APSPInfo info = (APSP.APSPInfo) graphUI.getGraph().getNode("a").getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
-        System.out.println(info.getShortestPathTo("b"));
-
-        String[] s = "lol.lul".split("\\.");
-        List<String> liste = Arrays.asList(s);
-
+        jPanel.add(jSplitPane);
         return jPanel;
     }
 

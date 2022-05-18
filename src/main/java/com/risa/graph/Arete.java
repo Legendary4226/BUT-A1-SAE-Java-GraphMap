@@ -6,13 +6,6 @@ public class Arete {
     private final Noeud source;
     private final Noeud destination;
 
-    public Arete(TypeRoute typeRoute, float distance, Noeud destination) {
-        source = null;
-        this.typeRoute = typeRoute;
-        this.distance = distance;
-        this.destination = destination;
-    }
-
     public Arete(Noeud source, TypeRoute typeRoute, float distance, Noeud destination) {
         this.source = source;
         this.typeRoute = typeRoute;
@@ -38,6 +31,10 @@ public class Arete {
 
     @Override
     public String toString() {
+        return source.getNom() + " " + typeRoute + " " + distance + " " + destination.getNom();
+    }
+
+    public String CSVToString() {
         return typeRoute.toString() + "&" + distance;
     }
 }

@@ -1,22 +1,25 @@
 package com.risa.graphicinterface;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.risa.graphicinterface.graphstream.GraphSynced;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
-import org.graphstream.algorithm.APSP;
-import org.graphstream.algorithm.AStar;
 import org.graphstream.graph.implementations.MultiGraph;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainWindow extends JFrame {
     private final com.risa.graph.Graph graphSAE;
     private final GraphSynced graphUI;
     public MainWindow(com.risa.graph.Graph graphSAE) {
         super();
+
+        //Use flatlaf
+        try {
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
+        } catch (Exception e) {
+            System.out.println("Erreur application de FlatLaf");
+        }
 
         this.graphSAE = graphSAE;
         graphUI = new GraphSynced(new MultiGraph("Graph"));
@@ -25,7 +28,6 @@ public class MainWindow extends JFrame {
         setTitle("Test");
         setSize(1200, 850);
         setLocationRelativeTo(null);
-        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(buildMainPanel());
         setVisible(true);

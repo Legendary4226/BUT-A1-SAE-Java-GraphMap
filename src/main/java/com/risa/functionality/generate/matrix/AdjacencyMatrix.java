@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdjacencyMatrix {
-    private HashMap<String, HashMap<String, Float>> matrix;
-    private ArrayList<String> keys;
+    private final HashMap<String, HashMap<String, Float>> matrix;
+    private final ArrayList<String> keys;
 
     public AdjacencyMatrix(Graph graph) {
         matrix = new HashMap<>();

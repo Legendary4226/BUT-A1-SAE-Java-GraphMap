@@ -1,7 +1,5 @@
-package com.risa.graphicinterface.screensmanager.actions;
+package com.risa.graphicinterface.screensmanager.actions.main;
 
-import com.risa.functionality.load.LoadGraphFromCSV;
-import com.risa.graph.Graph;
 import com.risa.graph.TypeLieu;
 import com.risa.graph.TypeRoute;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
@@ -23,7 +21,7 @@ public class ActionSelectFile extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        File file = mainScreen.getjFileChooser().getSelectedFile();
+        File file = ((JFileChooser) e.getSource()).getSelectedFile();
         if (file != null) {
             //LoadGraphFromCSV load = new LoadGraphFromCSV();
             //load.load();
@@ -52,6 +50,8 @@ public class ActionSelectFile extends AbstractAction {
             mainScreen.getLoadState().setText("charge");
 
             mainScreen.getValidation().setEnabled(false);
+
+            screensManager.initialize();
         }
         else {
             mainScreen.getLoadState().setForeground(Color.RED);

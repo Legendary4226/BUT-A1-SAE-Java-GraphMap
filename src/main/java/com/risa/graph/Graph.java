@@ -112,13 +112,13 @@ public class Graph {
             if (!liensParNoeuds.containsKey(arete.getDestination().getNom())) {
                 liensParNoeuds.put(
                         arete.getDestination().getNom(),
-                        arete.getDestination().getNom() + ":" + arete
+                        arete.getDestination().getNom() + ":" + arete.CSVToString()
                 );
             }
             else {
                 liensParNoeuds.put(
                         arete.getDestination().getNom(),
-                        liensParNoeuds.get(arete.getDestination().getNom()) + "," + arete
+                        liensParNoeuds.get(arete.getDestination().getNom()) + "," + arete.CSVToString()
                 );
             }
         }

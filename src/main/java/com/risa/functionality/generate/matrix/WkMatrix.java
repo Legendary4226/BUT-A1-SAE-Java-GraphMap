@@ -5,7 +5,7 @@ import com.risa.graph.Graph;
 import java.util.HashMap;
 
 public class WkMatrix extends AdjacencyMatrix {
-    private HashMap<String, HashMap<String, DistanceNode>> wkMatrix;
+    private final HashMap<String, HashMap<String, DistanceNode>> wkMatrix;
     public WkMatrix(Graph graph) {
         super(graph);
 

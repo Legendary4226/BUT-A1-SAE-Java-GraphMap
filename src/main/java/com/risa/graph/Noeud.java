@@ -47,6 +47,10 @@ public class Noeud {
 
     @Override
     public String toString() {
+        return "[" + typeLieu.toString() + "] " + nom;
+    }
+
+    public String CSVToString() {
         return nom + "&" + typeLieu.toString();
     }
 }

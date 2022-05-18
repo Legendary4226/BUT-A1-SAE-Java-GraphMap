@@ -1,7 +1,7 @@
 package com.risa.graphicinterface.screensmanager.screens;
 
 import com.risa.graphicinterface.screensmanager.ScreensManager;
-import com.risa.graphicinterface.screensmanager.actions.ActionSelectFile;
+import com.risa.graphicinterface.screensmanager.actions.main.ActionSelectFile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,6 @@ public class MainScreen extends JPanel {
     ScreensManager screensManager;
     JLabel loadState;
     JButton validation;
-    JFileChooser jFileChooser;
     ActionSelectFile actionSelectFile;
 
     public MainScreen(ScreensManager screensManager) {
@@ -18,9 +17,9 @@ public class MainScreen extends JPanel {
 
         this.screensManager = screensManager;
         this.loadState = new JLabel("decharge");
-        this.validation = new JButton("Valider la selection et charger le graphe");
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         buildScreen();
     }
 
@@ -32,12 +31,13 @@ public class MainScreen extends JPanel {
         jFileChooser.setControlButtonsAreShown(false);
         jFileChooser.setMultiSelectionEnabled(false);
 
-        this.jFileChooser = jFileChooser;
         actionSelectFile = new ActionSelectFile(this);
+        validation = new JButton("Valider la selection et charger le graphe");
         validation.addActionListener(actionSelectFile);
 
         add(jFileChooser);
         add(validation);
+
         add(buildIsLoaded());
     }
 
@@ -45,7 +45,7 @@ public class MainScreen extends JPanel {
         JPanel jPanel = new JPanel();
 
         jPanel.add(new JLabel("Etat de chargement du graphe : "));
-        loadState.setForeground(Color.RED);
+        loadState.setForeground(Color.DARK_GRAY);
         jPanel.add(loadState);
 
         return jPanel;
@@ -65,9 +65,5 @@ public class MainScreen extends JPanel {
 
     public ActionSelectFile getActionSelectFile() {
         return actionSelectFile;
-    }
-
-    public JFileChooser getjFileChooser() {
-        return jFileChooser;
     }
 }

@@ -4,6 +4,7 @@ import com.risa.graph.Graph;
 import com.risa.graphicinterface.graphstream.GraphSynced;
 import com.risa.graphicinterface.screensmanager.screens.MainScreen;
 import com.risa.graphicinterface.screensmanager.screens.SecondScreen;
+import com.risa.graphicinterface.screensmanager.screens.ThirdScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +12,11 @@ import java.awt.*;
 public class ScreensManager extends JSplitPane {
     private final GraphSynced graphUI;
     private final com.risa.graph.Graph graphSAE;
-    private final CardLayout cardLayout;
+
     private final ScreensButtonMenu screensButtonMenu;
     private final JPanel screensContainer;
+    private final CardLayout cardLayout;
+
     public ScreensManager(GraphSynced graphUI, com.risa.graph.Graph graphSAE) {
         super(JSplitPane.VERTICAL_SPLIT);
 
@@ -35,7 +38,6 @@ public class ScreensManager extends JSplitPane {
         setBottomComponent(screensContainer);
 
         screensContainer.add(new MainScreen(this), "1");
-        screensContainer.add(new SecondScreen(), "2");
 
         for (String id : screensButtonMenu.getScreenButtons().keySet()) {
             screensButtonMenu.getScreenButtons().get(id).addActionListener(event -> {
@@ -43,6 +45,11 @@ public class ScreensManager extends JSplitPane {
                 screensButtonMenu.disableOtherButton(id);
             });
         }
+    }
+
+    public void initialize() {
+        screensContainer.add(new SecondScreen(), "2");
+        screensContainer.add(new ThirdScreen(this), "3");
     }
 
     public GraphSynced getGraphUI() {

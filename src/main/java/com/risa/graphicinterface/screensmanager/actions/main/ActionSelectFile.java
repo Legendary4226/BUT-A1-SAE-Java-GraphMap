@@ -1,5 +1,7 @@
 package com.risa.graphicinterface.screensmanager.actions.main;
 
+import com.risa.functionality.load.LoadGraphFromCSV;
+import com.risa.graph.Graph;
 import com.risa.graph.TypeLieu;
 import com.risa.graph.TypeRoute;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
@@ -22,10 +24,16 @@ public class ActionSelectFile extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         File file = mainScreen.getFileChooser().getSelectedFile();
+        Graph graphSAE = null;
+        graphSAE = new Graph(); // TEMPORARLY
+        /*
         if (file != null) {
-            //LoadGraphFromCSV load = new LoadGraphFromCSV();
-            //load.load();
+            LoadGraphFromCSV load = new LoadGraphFromCSV();
+            graphSAE = load.load(file);
+        }
+         */
 
+        if (graphSAE != null) {
             screensManager.getGraphSAE().ajouterNoeud("a", TypeLieu.VILLE);
             screensManager.getGraphSAE().ajouterNoeud("b", TypeLieu.RESTAURANT);
             screensManager.getGraphSAE().ajouterNoeud("c", TypeLieu.VILLE);
@@ -53,7 +61,8 @@ public class ActionSelectFile extends AbstractAction {
 
             screensManager.initialize();
         }
-        else {
+
+        if (file == null || graphSAE == null) {
             mainScreen.getLoadState().setForeground(Color.RED);
             mainScreen.getLoadState().setText("erreur lors du chargement");
         }

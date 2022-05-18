@@ -25,16 +25,24 @@ public class ScreensButtonMenu extends JMenuBar {
 
         disabledButton = "1";
         disableButton("1");
+
+        disableAll();
     }
 
     public HashMap<String, JButton> getScreenButtons() {
         return screenButtons;
     }
 
-    public void enableAll() {
+    public void disableAll() {
+        for (JButton jButton : screenButtons.values()) {
+            jButton.setEnabled(false);
+        }
+    }
+    public void enableAllExceptDisabled() {
         for (JButton jButton : screenButtons.values()) {
             jButton.setEnabled(true);
         }
+        disableButton(disabledButton);
     }
 
     private void disableButton(String id) {

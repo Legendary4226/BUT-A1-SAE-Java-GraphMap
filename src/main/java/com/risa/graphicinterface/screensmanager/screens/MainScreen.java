@@ -32,6 +32,7 @@ public class MainScreen extends JPanel {
         fileChooser.setControlButtonsAreShown(false);
         fileChooser.setMultiSelectionEnabled(false);
 
+
         actionSelectFile = new ActionSelectFile(this);
         validation = new JButton("Valider la selection et charger le graphe");
         validation.addActionListener(actionSelectFile);

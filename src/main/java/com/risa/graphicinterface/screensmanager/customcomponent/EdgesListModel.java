@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class EdgesComboBox extends AbstractListModel<Arete> implements ComboBoxModel<Arete> {
+public class EdgesListModel extends AbstractListModel<Arete> implements ComboBoxModel<Arete>, ListModel<Arete> {
     private final ArrayList<Arete> edges = new ArrayList<>();
     private Arete selected = null;
 
-    public EdgesComboBox() {
+    public EdgesListModel() {
         super();
     }
 

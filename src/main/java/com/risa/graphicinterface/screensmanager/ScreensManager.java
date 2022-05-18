@@ -50,6 +50,8 @@ public class ScreensManager extends JSplitPane {
     public void initialize() {
         screensContainer.add(new SecondScreen(), "2");
         screensContainer.add(new ThirdScreen(this), "3");
+
+        screensButtonMenu.enableAllExceptDisabled();
     }
 
     public GraphSynced getGraphUI() {

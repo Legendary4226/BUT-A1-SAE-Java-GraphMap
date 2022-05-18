@@ -21,7 +21,7 @@ public class ActionSelectFile extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        File file = ((JFileChooser) e.getSource()).getSelectedFile();
+        File file = mainScreen.getFileChooser().getSelectedFile();
         if (file != null) {
             //LoadGraphFromCSV load = new LoadGraphFromCSV();
             //load.load();

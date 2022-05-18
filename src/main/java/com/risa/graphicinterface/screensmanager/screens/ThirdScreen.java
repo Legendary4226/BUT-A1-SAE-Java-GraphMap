@@ -30,7 +30,7 @@ public class ThirdScreen extends JPanel {
         add(nodeSelectionPanel);
 
         JButton jButton = new JButton("Valider");
-        jButton.addActionListener();
+        //jButton.addActionListener();
         add(jButton);
     }
 }

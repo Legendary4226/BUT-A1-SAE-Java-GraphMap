@@ -9,6 +9,7 @@ import java.awt.*;
 public class MainScreen extends JPanel {
     ScreensManager screensManager;
     JLabel loadState;
+    JFileChooser fileChooser;
     JButton validation;
     ActionSelectFile actionSelectFile;
 
@@ -26,16 +27,16 @@ public class MainScreen extends JPanel {
     private void buildScreen() {
         add(new JLabel("Choisir un fichier :"));
 
-        JFileChooser jFileChooser = new JFileChooser(System.getProperty("user.dir") + "\\csv");
-        jFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        jFileChooser.setControlButtonsAreShown(false);
-        jFileChooser.setMultiSelectionEnabled(false);
+        fileChooser = new JFileChooser(System.getProperty("user.dir") + "\\csv");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setControlButtonsAreShown(false);
+        fileChooser.setMultiSelectionEnabled(false);
 
         actionSelectFile = new ActionSelectFile(this);
         validation = new JButton("Valider la selection et charger le graphe");
         validation.addActionListener(actionSelectFile);
 
-        add(jFileChooser);
+        add(fileChooser);
         add(validation);
 
         add(buildIsLoaded());
@@ -65,5 +66,9 @@ public class MainScreen extends JPanel {
 
     public ActionSelectFile getActionSelectFile() {
         return actionSelectFile;
+    }
+
+    public JFileChooser getFileChooser() {
+        return fileChooser;
     }
 }

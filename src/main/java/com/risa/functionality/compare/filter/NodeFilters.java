@@ -1,8 +1,11 @@
-package com.risa.functionality.filter;
+package com.risa.functionality.compare.filter;
 
 import com.risa.graph.Graph;
+import com.risa.graph.Noeud;
 import com.risa.graph.TypeLieu;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,5 +49,15 @@ public class NodeFilters {
             }
         }
         return filteredSites;
+    }
+
+    public ArrayList<Noeud> filterCustomized(Collection<Noeud> nodes, TypeLieu filter) {
+        ArrayList<Noeud> filteredNodes = new ArrayList<>();
+        for (Noeud node : nodes) {
+            if (node.getTypeLieu() == filter) {
+                filteredNodes.add(node);
+            }
+        }
+        return filteredNodes;
     }
 }

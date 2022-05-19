@@ -1,7 +1,6 @@
 package com.risa.graphicinterface.graphstream;
 
-import com.risa.functionality.filter.EdgeFilters;
-import com.risa.functionality.filter.NodeFilters;
+import com.risa.functionality.compare.filter.EdgeFilters;
 import com.risa.graph.Arete;
 import com.risa.graph.Noeud;
 import com.risa.graph.TypeLieu;

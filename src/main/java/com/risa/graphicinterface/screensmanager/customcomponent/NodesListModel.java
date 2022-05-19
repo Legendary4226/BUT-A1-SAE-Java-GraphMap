@@ -1,6 +1,8 @@
 package com.risa.graphicinterface.screensmanager.customcomponent;
 
+import com.risa.functionality.compare.filter.NodeFilters;
 import com.risa.graph.Noeud;
+import com.risa.graph.TypeLieu;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -63,6 +65,14 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
             nodes.clear();
             fireIntervalRemoved(nodes, 0, size);
         }
+    }
+
+    public void filterBy(TypeLieu typeLieu, Collection<Noeud> nodes) {
+        NodeFilters filter = new NodeFilters();
+        ArrayList<Noeud> filteredNodes = filter.filterCustomized(nodes, typeLieu);
+
+        emptyAll();
+        fill(filteredNodes);
     }
 
     @Override

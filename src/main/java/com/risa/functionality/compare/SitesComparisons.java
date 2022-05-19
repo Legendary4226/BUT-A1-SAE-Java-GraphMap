@@ -1,7 +1,7 @@
 package com.risa.functionality.compare;
 
 
-import com.risa.functionality.filter.NodeFilters;
+import com.risa.functionality.compare.filter.NodeFilters;
 import com.risa.functionality.generate.matrix.WkMatrix;
 import com.risa.functionality.way.neighbors.XDistanceSite;
 import com.risa.functionality.way.shortest.FindShortestWay;

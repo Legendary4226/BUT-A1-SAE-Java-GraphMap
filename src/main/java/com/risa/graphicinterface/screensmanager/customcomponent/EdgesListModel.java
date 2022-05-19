@@ -1,6 +1,8 @@
 package com.risa.graphicinterface.screensmanager.customcomponent;
 
+import com.risa.functionality.compare.filter.EdgeFilters;
 import com.risa.graph.Arete;
+import com.risa.graph.TypeRoute;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -63,6 +65,14 @@ public class EdgesListModel extends AbstractListModel<Arete> implements ComboBox
             edges.clear();
             fireIntervalRemoved(edges, 0, size);
         }
+    }
+
+    public void filterBy(TypeRoute typeRoute, Collection<Arete> edges) {
+        EdgeFilters filter = new EdgeFilters();
+        ArrayList<Arete> filteredEdges = filter.filterCustomized(edges, typeRoute);
+
+        emptyAll();
+        fill(filteredEdges);
     }
 
     @Override

@@ -4,8 +4,7 @@ import com.risa.graph.Arete;
 import com.risa.graph.Noeud;
 import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
-import com.risa.graphicinterface.screensmanager.actions.third.ActionDisplayEdgeInformations;
-import com.risa.graphicinterface.screensmanager.actions.third.ActionDisplayNodeInformations;
+import com.risa.graphicinterface.screensmanager.actions.third.*;
 import com.risa.graphicinterface.screensmanager.customcomponent.EdgesListModel;
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
@@ -64,6 +63,25 @@ public class ThirdScreen extends JPanel {
         jButton.setAlignmentX(CENTER_ALIGNMENT);
         add(jButton);
 
+        add(generator.verticalGlue(15));
+
+        label = new JLabel("Filtres (re-analyser pour reinitialiser)");
+        label.setAlignmentX(CENTER_ALIGNMENT);
+        add(label);
+
+        JPanel jPanel = new JPanel();
+        jPanel.setMaximumSize(new Dimension(10000, 100));
+        JButton filterCity = new JButton(new ActionFilterByCity(this));
+        filterCity.setText("Villes");
+        JButton filterRestaurant = new JButton(new ActionFilterByRestaurant(this));
+        filterRestaurant.setText("Restaurants");
+        JButton filterLeisureCenter = new JButton(new ActionFilterByLeisureCenter(this));
+        filterLeisureCenter.setText("Centres de loisir");
+        jPanel.add(filterCity);
+        jPanel.add(filterRestaurant);
+        jPanel.add(filterLeisureCenter);
+        add(jPanel);
+
         add(generator.verticalGlue(20));
 
         JList<Noeud> jList = new JList<>(displayNeighbours);
@@ -111,6 +129,8 @@ public class ThirdScreen extends JPanel {
         add(generator.verticalGlue(5));
 
         add(arrivalNode);
+
+        add(Box.createVerticalGlue());
     }
 
     public ScreensManager getScreensManager() {

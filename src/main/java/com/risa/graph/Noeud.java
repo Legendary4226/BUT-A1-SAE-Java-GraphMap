@@ -1,6 +1,7 @@
 package com.risa.graph;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 public class Noeud {
@@ -43,6 +44,18 @@ public class Noeud {
         }
 
         return success;
+    }
+
+    public Collection<Noeud> getNeibours() {
+        Collection<Noeud> neighbours = new ArrayList<>();
+
+        for (Arete arete : aretes) {
+            if (! neighbours.contains(arete.getDestination())) {
+                neighbours.add(arete.getDestination());
+            }
+        }
+
+        return neighbours;
     }
 
     @Override

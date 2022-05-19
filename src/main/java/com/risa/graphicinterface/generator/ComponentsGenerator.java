@@ -1,12 +1,13 @@
 package com.risa.graphicinterface.generator;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ComponentsGenerator {
-    private JButton jButton;
 
-    public ComponentsGenerator jButton(String text) {
-        jButton = new JButton(text);
-        return this;
+    public Component verticalGlue(int maxHeigth) {
+        Component box = Box.createVerticalGlue();
+        box.setMaximumSize(new Dimension(10000, maxHeigth));
+        return box;
     }
 }

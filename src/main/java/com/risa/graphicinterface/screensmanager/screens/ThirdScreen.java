@@ -1,51 +1,139 @@
 package com.risa.graphicinterface.screensmanager.screens;
 
+import com.risa.graph.Arete;
 import com.risa.graph.Noeud;
+import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
+import com.risa.graphicinterface.screensmanager.actions.third.ActionDisplayEdgeInformations;
 import com.risa.graphicinterface.screensmanager.actions.third.ActionDisplayNodeInformations;
+import com.risa.graphicinterface.screensmanager.customcomponent.EdgesListModel;
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ThirdScreen extends JPanel {
-    ScreensManager screensManager;
-    NodesListModel nodesListModel;
-    NodesListModel neighbours;
+    private final ScreensManager screensManager;
+    private final NodesListModel nodesSelector;
+    private final NodesListModel displayNeighbours;
+    private final EdgesListModel edgesSelector;
+    private final  JLabel startNode;
+    private final JLabel arrivalNode;
+
     public ThirdScreen(ScreensManager screensManager) {
         this.screensManager = screensManager;
-        neighbours = new NodesListModel();
+        displayNeighbours = new NodesListModel();
+        nodesSelector = new NodesListModel();
+        edgesSelector = new EdgesListModel();
+
+        startNode = new JLabel();
+        startNode.setAlignmentX(CENTER_ALIGNMENT);
+
+        arrivalNode = new JLabel();
+        arrivalNode.setAlignmentX(CENTER_ALIGNMENT);
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        setAlignmentY(CENTER_ALIGNMENT);
+        setAlignmentX(CENTER_ALIGNMENT);
 
         buildScreen();
     }
 
     private void buildScreen() {
-        JPanel nodeSelectionPanel = new JPanel();
-        nodeSelectionPanel.add(new JLabel("Noeud : "));
+        ComponentsGenerator generator = new ComponentsGenerator();
+        add(generator.verticalGlue(50));
 
-        JComboBox<Noeud> comboBox = new JComboBox<>();
-        nodesListModel = new NodesListModel();
-        comboBox.setModel(nodesListModel);
-        nodeSelectionPanel.add(comboBox);
+        JLabel label = new JLabel("Selectonnez un noeud pour aficher ses voisins : ");
+        label.setAlignmentX(CENTER_ALIGNMENT);
+        add(label);
 
-        nodesListModel.fill(screensManager.getGraphSAE().getNoeuds().values());
+        add(generator.verticalGlue(20));
 
-        add(nodeSelectionPanel);
+        JComboBox<Noeud> nodesComboBox = new JComboBox<>();
+        nodesComboBox.setModel(nodesSelector);
+        nodesSelector.fill(screensManager.getGraphSAE().getNoeuds().values());
+        nodesComboBox.setMaximumSize(new Dimension(300, 24));
+        nodesComboBox.setAlignmentX(CENTER_ALIGNMENT);
+        add(nodesComboBox);
 
-        JButton jButton = new JButton("Valider");
+        add(generator.verticalGlue(5));
+
+        JButton jButton = new JButton("Analyser");
         jButton.addActionListener(new ActionDisplayNodeInformations(this));
+        jButton.setAlignmentX(CENTER_ALIGNMENT);
         add(jButton);
-        add(new JList<>(neighbours));
+
+        add(generator.verticalGlue(20));
+
+        JList<Noeud> jList = new JList<>(displayNeighbours);
+        jList.setAlignmentX(CENTER_ALIGNMENT);
+        add(jList);
+
+        add(generator.verticalGlue(70));
+
+        label = new JLabel("Selectionnez une arete pour voir les neouds qui relie :");
+        label.setAlignmentX(CENTER_ALIGNMENT);
+        add(label);
+
+        add(generator.verticalGlue(20));
+
+        JComboBox<Arete> edgesComboBox = new JComboBox<>(edgesSelector);
+        edgesComboBox.setAlignmentX(CENTER_ALIGNMENT);
+        edgesComboBox.setModel(edgesSelector);
+        edgesSelector.fill(screensManager.getGraphSAE().getAretes());
+        edgesComboBox.setMaximumSize(new Dimension(300, 24));
+        add(edgesComboBox);
+
+        add(generator.verticalGlue(5));
+
+        jButton = new JButton("Analyser");
+        jButton.addActionListener(new ActionDisplayEdgeInformations(this));
+        jButton.setAlignmentX(CENTER_ALIGNMENT);
+        add(jButton);
+
+        add(generator.verticalGlue(20));
+
+        label = new JLabel("Noeud de depart :");
+        label.setAlignmentX(CENTER_ALIGNMENT);
+        add(label);
+
+        add(generator.verticalGlue(5));
+
+        add(startNode);
+
+        add(generator.verticalGlue(10));
+
+        label = new JLabel("Noeud d'arrivee :");
+        label.setAlignmentX(CENTER_ALIGNMENT);
+        add(label);
+
+        add(generator.verticalGlue(5));
+
+        add(arrivalNode);
     }
 
     public ScreensManager getScreensManager() {
         return screensManager;
     }
 
-    public NodesListModel getNodesComboBox() {
-        return nodesListModel;
+    public NodesListModel getDisplayNeighbours() {
+        return displayNeighbours;
     }
 
-    public NodesListModel getNeighbours() {
-        return neighbours;
+    public NodesListModel getNodesSelector() {
+        return nodesSelector;
+    }
+
+    public EdgesListModel getEdgesSelector() {
+        return edgesSelector;
+    }
+
+    public JLabel getStartNode() {
+        return startNode;
+    }
+
+    public JLabel getArrivalNode() {
+        return arrivalNode;
     }
 }

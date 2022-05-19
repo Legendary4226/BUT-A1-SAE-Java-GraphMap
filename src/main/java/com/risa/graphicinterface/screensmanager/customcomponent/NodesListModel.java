@@ -40,8 +40,8 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
 
     public void addNode(Noeud node) {
         if (node != null) {
-            fireIntervalAdded(node, nodes.size(), nodes.size());
             nodes.add(node);
+            fireIntervalAdded(node, nodes.size(), nodes.size());
         }
     }
 
@@ -54,6 +54,14 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
     public void fill(Collection<Noeud> nodes) {
         for (Noeud node : nodes) {
             addNode(node);
+        }
+    }
+
+    public void emptyAll() {
+        if (! nodes.isEmpty()) {
+            int size = nodes.size();
+            nodes.clear();
+            fireIntervalRemoved(nodes, 0, size);
         }
     }
 

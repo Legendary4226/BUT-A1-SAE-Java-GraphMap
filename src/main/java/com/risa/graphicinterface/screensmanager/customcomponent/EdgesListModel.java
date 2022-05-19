@@ -40,8 +40,8 @@ public class EdgesListModel extends AbstractListModel<Arete> implements ComboBox
 
     public void addEdge(Arete edge) {
         if (edge != null) {
-            fireIntervalAdded(edge, edges.size(), edges.size());
             edges.add(edge);
+            fireIntervalAdded(edge, edges.size(), edges.size());
         }
     }
 
@@ -54,6 +54,14 @@ public class EdgesListModel extends AbstractListModel<Arete> implements ComboBox
     public void fill(Collection<Arete> edges) {
         for (Arete edge : edges) {
             addEdge(edge);
+        }
+    }
+
+    public void emptyAll() {
+        if (! edges.isEmpty()) {
+            int size = edges.size();
+            edges.clear();
+            fireIntervalRemoved(edges, 0, size);
         }
     }
 

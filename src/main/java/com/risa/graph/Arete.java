@@ -29,6 +29,25 @@ public class Arete {
         return source;
     }
 
+    public String getUniqueIdentifier() {
+        String identifier = "";
+
+        int comparison = source.getNom().compareTo(destination.getNom());
+        if (comparison == 0) {
+            identifier = null;
+        }
+        if (comparison > 0) {
+            identifier += destination.getNom();
+            identifier += source.getNom();
+        }
+        if (comparison < 0) {
+            identifier += source.getNom();
+            identifier += destination.getNom();
+        }
+
+        return identifier + distance + typeRoute;
+    }
+
     @Override
     public String toString() {
         return source.getNom() + " " + typeRoute + " " + distance + " " + destination.getNom();

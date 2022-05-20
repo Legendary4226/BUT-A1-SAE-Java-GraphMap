@@ -1,10 +1,9 @@
 package com.risa.graphicinterface.screensmanager;
 
+import com.risa.functionality.generate.matrix.WkMatrix;
 import com.risa.graph.Graph;
 import com.risa.graphicinterface.graphstream.GraphSynced;
-import com.risa.graphicinterface.screensmanager.screens.MainScreen;
-import com.risa.graphicinterface.screensmanager.screens.SecondScreen;
-import com.risa.graphicinterface.screensmanager.screens.ThirdScreen;
+import com.risa.graphicinterface.screensmanager.screens.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,16 +11,18 @@ import java.awt.*;
 public class ScreensManager extends JSplitPane {
     private final GraphSynced graphUI;
     private final com.risa.graph.Graph graphSAE;
+    private WkMatrix wkMatrix;
 
     private final ScreensButtonMenu screensButtonMenu;
     private final JPanel screensContainer;
     private final CardLayout cardLayout;
 
-    public ScreensManager(GraphSynced graphUI, com.risa.graph.Graph graphSAE) {
+    public ScreensManager(GraphSynced graphUI, com.risa.graph.Graph graphSAE, WkMatrix wkMatrix) {
         super(JSplitPane.VERTICAL_SPLIT);
 
         this.graphUI = graphUI;
         this.graphSAE = graphSAE;
+        this.wkMatrix = wkMatrix;
         this.screensButtonMenu = new ScreensButtonMenu();
         cardLayout = new CardLayout();
         screensContainer = new JPanel();
@@ -50,6 +51,8 @@ public class ScreensManager extends JSplitPane {
     public void initialize() {
         screensContainer.add(new SecondScreen(), "2");
         screensContainer.add(new ThirdScreen(this), "3");
+        screensContainer.add(new FourthScreen(this), "4");
+        screensContainer.add(new BonusScreen(this), "5");
 
         screensButtonMenu.enableAllExceptDisabled();
     }
@@ -60,5 +63,13 @@ public class ScreensManager extends JSplitPane {
 
     public Graph getGraphSAE() {
         return graphSAE;
+    }
+
+    public WkMatrix getWkMatrix() {
+        return wkMatrix;
+    }
+
+    public void setWkMatrix(WkMatrix wkMatrix) {
+        this.wkMatrix = wkMatrix;
     }
 }

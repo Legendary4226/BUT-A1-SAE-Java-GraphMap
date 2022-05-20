@@ -12,6 +12,8 @@ import org.graphstream.ui.view.camera.Camera;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GraphSynced {
     private final Graph graph;
@@ -26,8 +28,8 @@ public class GraphSynced {
     public GraphSynced(Graph graph) {
         System.setProperty("org.graphstream.ui", "swing");
 
-        colorizedNodes = null;
-        colorizedEdges = null;
+        colorizedNodes = new ArrayList<>();
+        colorizedEdges = new ArrayList<>();
         this.graph = graph;
         stylesheets = new Stylesheets();
 
@@ -83,47 +85,48 @@ public class GraphSynced {
             );
         }
 
+        Set<String> usedIdentifier = new HashSet<>();
         for (Noeud noeud : graph.getNoeuds().values()) {
             for (Arete arete : noeud.getAretes()) {
-                this.graph.addEdge(
-                        String.valueOf(arete.hashCode()),
-                        noeud.getNom(),
-                        arete.getDestination().getNom()
-                ).setAttributes(
-                        new HashMap<String, Object>() {
-                            {
-                                put("typeroute", arete.getTypeRoute());
-                                put("distance", arete.getDistance());
-                                put("ui.label", arete.getTypeRoute() + " - " + arete.getDistance());
+                if (!usedIdentifier.contains(arete.getUniqueIdentifier())) {
+                    this.graph.addEdge(
+                            arete.getUniqueIdentifier(),
+                            noeud.getNom(),
+                            arete.getDestination().getNom()
+                    ).setAttributes(
+                            new HashMap<String, Object>() {
+                                {
+                                    put("typeroute", arete.getTypeRoute());
+                                    put("distance", arete.getDistance());
+                                    put("ui.label", arete.getTypeRoute() + " - " + arete.getDistance());
+                                }
                             }
-                        }
-                );
+                    );
+
+                    usedIdentifier.add(arete.getUniqueIdentifier());
+                }
             }
         }
     }
 
     public void colorizeGivenWay(ArrayList<String> way, com.risa.graph.Graph graphSAE) {
         EdgeFilters edgeFilters = new EdgeFilters();
-        if (colorizedNodes != null) {
+        if (colorizedNodes.size() != 0) {
             uncolorNodes();
         }
-        if (colorizedNodes == null) {
-            colorizedNodes = new ArrayList<>();
-        }
-        if (colorizedEdges != null) {
+        if (colorizedEdges.size() != 0 && !way.equals(colorizedNodes)) {
             uncolorEdges();
         }
-        if (colorizedEdges == null) {
-            colorizedEdges = new ArrayList<>();
-        }
 
+        int timeToSleep = 1000 / (way.size() - 1) / 2;
+
+        String areteID;
         for (int i = 0; i < way.size() - 1; ++i) {
             graph.getNode(way.get(i)).setAttribute("ui.class", "showed");
             colorizedNodes.add(way.get(i));
 
-            sleepFor(250);
+            sleepFor(timeToSleep);
 
-            String areteID = null;
             Arete arete = edgeFilters.filterEdgesMatchingAndShortest(
                     graphSAE.getNoeud(way.get(i)),
                     graphSAE.getNoeud(way.get(i + 1)),
@@ -131,12 +134,12 @@ public class GraphSynced {
             );
 
             if (arete != null) {
-                areteID = String.valueOf(arete.hashCode());
+                areteID = arete.getUniqueIdentifier();
                 graph.getEdge(areteID).setAttribute("ui.class", "showed");
                 colorizedEdges.add(areteID);
             }
 
-            sleepFor(250);
+            sleepFor(timeToSleep);
         }
 
         graph.getNode(way.get(way.size() - 1)).setAttribute("ui.class", "showed");
@@ -145,20 +148,22 @@ public class GraphSynced {
 
     public void uncolorNodes() {
         for (String node : colorizedNodes) {
-            graph.getNode(node).removeAttribute("ui.class");
+            graph.getNode(node).setAttribute("ui.class", "");
         }
+        colorizedNodes.clear();
     }
 
     public void uncolorEdges() {
         for (String edge : colorizedEdges) {
-            graph.getEdge(edge).removeAttribute("ui.class");
+            graph.getEdge(edge).setAttribute("ui.class", "");
         }
+        colorizedEdges.clear();
     }
 
     private void sleepFor(int timeInMilliseconds) {
         try {
             Thread.sleep(timeInMilliseconds);
         }
-        catch (Exception e) {}
+        catch (Exception ignored) {}
     }
 }

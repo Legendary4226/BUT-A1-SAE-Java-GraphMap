@@ -1,6 +1,7 @@
 package com.risa.graphicinterface;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+import com.risa.functionality.generate.matrix.WkMatrix;
 import com.risa.graphicinterface.graphstream.GraphSynced;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
 import org.graphstream.graph.implementations.MultiGraph;
@@ -10,6 +11,7 @@ import java.awt.*;
 
 public class MainWindow extends JFrame {
     private final com.risa.graph.Graph graphSAE;
+    private WkMatrix wkMatrix;
     private final GraphSynced graphUI;
     public MainWindow(com.risa.graph.Graph graphSAE) {
         super();
@@ -24,6 +26,7 @@ public class MainWindow extends JFrame {
         this.graphSAE = graphSAE;
         graphUI = new GraphSynced(new MultiGraph("Graph"));
         graphUI.loadVisualFromSAEGraph(graphSAE);
+        wkMatrix = null;
 
         setTitle("Test");
         setSize(1200, 850);
@@ -41,7 +44,7 @@ public class MainWindow extends JFrame {
 
 
         jSplitPane.setLeftComponent((Component) graphUI.getView());
-        jSplitPane.setRightComponent(new ScreensManager(graphUI, graphSAE));
+        jSplitPane.setRightComponent(new ScreensManager(graphUI, graphSAE, wkMatrix));
         jSplitPane.setDividerSize(1);
         jSplitPane.setResizeWeight(1);
         jSplitPane.setEnabled(false);

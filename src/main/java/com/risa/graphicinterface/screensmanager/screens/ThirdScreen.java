@@ -41,9 +41,11 @@ public class ThirdScreen extends JPanel {
 
     private void buildScreen() {
         ComponentsGenerator generator = new ComponentsGenerator();
+        JLabel label;
+
         add(generator.verticalGlue(50));
 
-        JLabel label = new JLabel("Selectonnez un noeud pour aficher ses voisins : ");
+        label = new JLabel("Selectonnez un noeud pour aficher ses voisins : ");
         label.setAlignmentX(CENTER_ALIGNMENT);
         add(label);
 
@@ -88,7 +90,7 @@ public class ThirdScreen extends JPanel {
         jList.setAlignmentX(CENTER_ALIGNMENT);
         add(jList);
 
-        add(generator.verticalGlue(70));
+        add(generator.verticalGlue(100));
 
         label = new JLabel("Selectionnez une arete pour voir les neouds qui relie :");
         label.setAlignmentX(CENTER_ALIGNMENT);

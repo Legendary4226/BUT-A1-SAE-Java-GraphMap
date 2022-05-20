@@ -46,7 +46,6 @@ public class TestGraph {
 
         com.risa.graph.Graph graphSAE = new com.risa.graph.Graph();
 
-
         MainWindow mainWindow = new MainWindow(graphSAE);
     }
 }

@@ -2,13 +2,22 @@ package com.risa.graphicinterface.graphstream;
 
 public class Stylesheets {
 
+    String backgroundColor = "#3C3F41";
+    String edgesColor = "#00AFB5";
+    String restaurantsColor = "#FF7700";
+    String citiesColor = "#9EE493";
+    String leisureCentersColor = "#F6D851";
+    String showedColor = "#FFF9FB";
+
+
     private String GraphStyle() {
         return """
                 graph {
                     padding: 50px;
-                    fill-color: #88665D;
+                    fill-color: backgroundColor;
                 }
-                """;
+                """
+                .replace("backgroundColor", backgroundColor);
     }
 
     private String NodeStyle() {
@@ -27,68 +36,66 @@ public class Stylesheets {
                 }
                 
                 node:selected {
-                    fill-color: #FF2B0A;
+                    fill-color: showedColor;
                 }
                 
                 node:clicked {
-                    fill-color: #FF2B0A;
+                    fill-color: showedColor;
                 }
                 
                 node.showed {
-                    fill-color: #FF2B0A;
+                    fill-color: showedColor;
                 }
                 
                 node.city {
                     shape: rounded-box;
-                    fill-color: #119DA4;
+                    fill-color: citiesColor;
                 }
                 
                 node.restaurant {
                     shape: circle;
-                    fill-color: #C2B97F;
+                    fill-color: restaurantsColor;
                 }
                 
                 node.leisurecenter {
                     shape: diamond;
-                    fill-color: #F2F7F2;
+                    fill-color: leisureCentersColor;
                 }
                 
-                """;
+                """
+                .replace("restaurantsColor", restaurantsColor)
+                .replace("citiesColor", citiesColor)
+                .replace("leisureCentersColor", leisureCentersColor);
     }
 
     private String EdgeStyle() {
         return """
                 edge {
-                    fill-color: #BCAA99;
+                    fill-color: edgesColor;
                     text-size: 15;
                     text-style: bold;
                     text-color: #F2F7F2;
+                    
                 }
                 
                 edge:selected {
-                    fill-color: #FF2B0A;
+                    fill-color: showedColor;
                 }
                 
                 edge:clicked {
-                    fill-color: #FF2B0A;
+                    fill-color: showedColor;
                 }
                 
                 edge.showed {
-                    fill-color: #FF2B0A;
+                    fill-color: showedColor;
                 }
-                """;
-    }
-
-    private String SpriteStyle() {
-        return """
-                sprite {
-                    
-                }
-                """;
+                """
+                .replace("edgesColor", edgesColor);
     }
 
     @Override
     public String toString() {
-        return GraphStyle() + NodeStyle() + EdgeStyle() + SpriteStyle();
+        return (GraphStyle() + NodeStyle() + EdgeStyle())
+                .replace("showedColor", showedColor);
     }
 }

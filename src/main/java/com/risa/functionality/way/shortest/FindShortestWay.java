@@ -25,6 +25,10 @@ public class FindShortestWay {
             way.add(position);
         }
 
+        if (from.equals(to)) {
+            way.clear();
+        }
+
         return way;
     }
 }

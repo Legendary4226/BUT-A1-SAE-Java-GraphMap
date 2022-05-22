@@ -38,15 +38,9 @@ public class ActionFindShortestWay extends AbstractAction {
                 answerShortestWay.setText(way.toString().replace("[", "<").replace("]", ">"));
                 answerShortestWay.setForeground(Color.GREEN);
 
-                // Start the function asyncronously
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        bonusScreen.getScreensManager().getGraphUI().colorizeGivenWay(
-                                way, bonusScreen.getScreensManager().getGraphSAE()
-                        );
-                    }
-                }).start();
+                bonusScreen.getScreensManager().getGraphUI().asyncColorizeGivenWay(
+                        way, bonusScreen.getScreensManager().getGraphSAE()
+                );
 
             }
         }

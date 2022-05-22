@@ -4,6 +4,7 @@ import com.risa.functionality.generate.matrix.WkMatrix;
 import com.risa.functionality.way.shortest.FindShortestWay;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 public class FindWayWithIntermediaries {
 
@@ -20,6 +21,9 @@ public class FindWayWithIntermediaries {
     public ArrayList<String> findWayWithIntermediaries(WkMatrix matrix, String from, String to, ArrayList<String> intermediaries) {
         ArrayList<String> way = new ArrayList<>();
         FindShortestWay findShortestWay = new FindShortestWay();
+
+        intermediaries.removeIf(Predicate.isEqual(to));
+        intermediaries.removeIf(Predicate.isEqual(from));
 
         String position = from;
         boolean intermediaryAlreadyReached = false;

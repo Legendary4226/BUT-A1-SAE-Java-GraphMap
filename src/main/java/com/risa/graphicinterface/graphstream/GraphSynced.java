@@ -109,6 +109,13 @@ public class GraphSynced {
         }
     }
 
+    public void asyncColorizeGivenWay(ArrayList<String> way, com.risa.graph.Graph graphSAE) {
+        // Start the function asyncronously
+        new Thread(() -> colorizeGivenWay(
+                way, graphSAE
+        )).start();
+    }
+
     public void colorizeGivenWay(ArrayList<String> way, com.risa.graph.Graph graphSAE) {
         EdgeFilters edgeFilters = new EdgeFilters();
         if (colorizedNodes.size() != 0) {
@@ -118,7 +125,7 @@ public class GraphSynced {
             uncolorEdges();
         }
 
-        int timeToSleep = 1000 / (way.size() - 1) / 2;
+        int timeToSleep = 1300 / (way.size() - 1) / 2;
 
         String areteID;
         for (int i = 0; i < way.size() - 1; ++i) {

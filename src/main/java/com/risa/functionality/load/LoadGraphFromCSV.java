@@ -3,7 +3,6 @@ package com.risa.functionality.load;
 import com.risa.graph.*;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoadGraphFromCSV {

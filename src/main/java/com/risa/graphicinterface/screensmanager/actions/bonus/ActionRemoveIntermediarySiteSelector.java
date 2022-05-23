@@ -3,7 +3,6 @@ package com.risa.graphicinterface.screensmanager.actions.bonus;
 import com.risa.graphicinterface.screensmanager.screens.BonusScreen;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ActionRemoveIntermediarySiteSelector extends AbstractAction {

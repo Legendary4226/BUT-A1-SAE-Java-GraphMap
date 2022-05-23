@@ -25,9 +25,9 @@ public class BonusScreen extends JPanel {
         this.screensManager = screensManager;
         selectorOne = new NodesListModel();
         selectorTwo = new NodesListModel();
-        answerShortestWay = new JLabel();
+        answerShortestWay = ComponentsGenerator.jLabel("", true);
         intermediarySites = new ArrayList<>();
-        answerWayWithIntermediaries = new JLabel();
+        answerWayWithIntermediaries = ComponentsGenerator.jLabel("", true);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -35,82 +35,49 @@ public class BonusScreen extends JPanel {
     }
 
     private void buildPanel() {
-        ComponentsGenerator generator = new ComponentsGenerator();
-        JLabel label;
         JButton button;
 
-        add(generator.verticalGlue(50));
+        add(ComponentsGenerator.verticalGlue(50));
 
-        JComboBox<Noeud> selector1 = new JComboBox<>(selectorOne);
-        selector1.setAlignmentX(CENTER_ALIGNMENT);
-        selector1.setMaximumSize(new Dimension(300, 24));
-        JComboBox<Noeud> selector2 = new JComboBox<>(selectorTwo);
-        selector2.setAlignmentX(CENTER_ALIGNMENT);
-        selector2.setMaximumSize(new Dimension(300, 24));
-
+        add(ComponentsGenerator.jLabel("Site quelconque 1", true));
+        add(ComponentsGenerator.customNodesComboBox(true, selectorOne));
         selectorOne.fill(screensManager.getGraphSAE().getNoeuds().values());
+        add(ComponentsGenerator.jLabel("Site quelconque 2", true));
+        add(ComponentsGenerator.customNodesComboBox(true, selectorTwo));
         selectorTwo.fill(screensManager.getGraphSAE().getNoeuds().values());
 
-        label = new JLabel("Site quelconque 1");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        add(label);
-        add(selector1);
-        label = new JLabel("Site quelconque 2");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        add(label);
-        add(selector2);
+        add(ComponentsGenerator.verticalGlue(5));
 
-        add(generator.verticalGlue(5));
+        add(ComponentsGenerator.jButton("Chercher le plus court chemin", true,
+                new ActionFindShortestWay(this))
+        );
 
-        button = new JButton(new ActionFindShortestWay(this));
-        button.setText("Chercher le plus court chemin");
-        button.setAlignmentX(CENTER_ALIGNMENT);
-        add(button);
-
-        add(generator.verticalGlue(5));
-
-        answerShortestWay.setAlignmentX(CENTER_ALIGNMENT);
+        add(ComponentsGenerator.verticalGlue(5));
         add(answerShortestWay);
-
-        add(generator.verticalGlue(25));
-
-        label = new JLabel("Trouver un chemin entre les deux sites choisis avec des sites intermediaires par lesquels passer :");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        add(label);
-
-        add(generator.verticalGlue(5));
-
+        add(ComponentsGenerator.verticalGlue(25));
+        add(ComponentsGenerator.jLabel(
+                "Trouver un chemin entre les deux sites choisis avec des sites intermediaires par lesquels passer :",
+                true)
+        );
+        add(ComponentsGenerator.verticalGlue(5));
         add(buildSubPanel());
+        add(ComponentsGenerator.jButton("Chercher un chemin passant par la selection", true,
+                new ActionFindWayWithIntermediaries(this))
+        );
 
-        button = new JButton("Chercher un chemin passant par la selection");
-        button.setAlignmentX(CENTER_ALIGNMENT);
-        button.addActionListener(new ActionFindWayWithIntermediaries(this));
-        add(button);
+        add(ComponentsGenerator.verticalGlue(5));
 
-        add(generator.verticalGlue(5));
-
-        answerWayWithIntermediaries.setAlignmentX(CENTER_ALIGNMENT);
         add(answerWayWithIntermediaries);
 
-        add(generator.verticalGlue(5));
+        add(ComponentsGenerator.verticalGlue(5));
     }
 
     private JPanel buildSubPanel() {
         JPanel panel = new JPanel(new FlowLayout());
 
-        JLabel label = new JLabel("Ajouter ou supprimer un site intermediaire : ");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        panel.add(label);
-
-        JButton button = new JButton("    +    ");
-        button.setAlignmentX(CENTER_ALIGNMENT);
-        button.addActionListener(new ActionAddIntermediarySiteSelector(this));
-        panel.add(button);
-
-        button = new JButton("    -    ");
-        button.setAlignmentX(CENTER_ALIGNMENT);
-        button.addActionListener(new ActionRemoveIntermediarySiteSelector(this));
-        panel.add(button);
+        panel.add(ComponentsGenerator.jLabel("Ajouter ou supprimer un site intermediaire : ", true));
+        panel.add(ComponentsGenerator.jButton("    +    ", true, new ActionAddIntermediarySiteSelector(this)));
+        panel.add(ComponentsGenerator.jButton("    -    ", true, new ActionRemoveIntermediarySiteSelector(this)));
 
         panel.setPreferredSize(new Dimension(10000, 50));
         panel.setMaximumSize(panel.getPreferredSize());

@@ -1,13 +1,11 @@
 package com.risa.graphicinterface.screensmanager.screens;
 
-import com.risa.graph.Noeud;
 import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
 import com.risa.graphicinterface.screensmanager.actions.onedistance.ActionTwoDistanceNodes;
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class TwoDistanceScreen extends JPanel {
     private final ScreensManager screensManager;
@@ -19,7 +17,7 @@ public class TwoDistanceScreen extends JPanel {
         this.screensManager = screensManager;
         selectorOne = new NodesListModel();
         selectorTwo = new NodesListModel();
-        answer = new JLabel();
+        answer = ComponentsGenerator.jLabel("", true);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -27,38 +25,20 @@ public class TwoDistanceScreen extends JPanel {
     }
 
     private void buildPanel() {
-        ComponentsGenerator generator = new ComponentsGenerator();
-        JLabel label;
+        add(ComponentsGenerator.verticalGlue(50));
 
-        add(generator.verticalGlue(50));
-
-        JComboBox<Noeud> selector1 = new JComboBox<>(selectorOne);
-        selector1.setAlignmentX(CENTER_ALIGNMENT);
-        selector1.setMaximumSize(new Dimension(300, 24));
-        JComboBox<Noeud> selector2 = new JComboBox<>(selectorTwo);
-        selector2.setAlignmentX(CENTER_ALIGNMENT);
-        selector2.setMaximumSize(new Dimension(300, 24));
-
+        add(ComponentsGenerator.jLabel("Noeud 1", true));
+        add(ComponentsGenerator.customNodesComboBox(true, selectorOne));
         selectorOne.fill(screensManager.getGraphSAE().getNoeuds().values());
+        add(ComponentsGenerator.jLabel("Noeud 2", true));
+        add(ComponentsGenerator.customNodesComboBox(true, selectorTwo));
         selectorTwo.fill(screensManager.getGraphSAE().getNoeuds().values());
 
-        label = new JLabel("Noeud 1");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        add(label);
-        add(selector1);
-        label = new JLabel("Noeud 2");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        add(label);
-        add(selector2);
+        add(ComponentsGenerator.verticalGlue(5));
 
-        add(generator.verticalGlue(5));
+        add(ComponentsGenerator.jButton("Analyser", true, new ActionTwoDistanceNodes(this)));
 
-        JButton button = new JButton(new ActionTwoDistanceNodes(this));
-        button.setText("Analyser");
-        button.setAlignmentX(CENTER_ALIGNMENT);
-        add(button);
-
-        add(generator.verticalGlue(15));
+        add(ComponentsGenerator.verticalGlue(15));
 
         answer.setAlignmentX(CENTER_ALIGNMENT);
         add(answer);

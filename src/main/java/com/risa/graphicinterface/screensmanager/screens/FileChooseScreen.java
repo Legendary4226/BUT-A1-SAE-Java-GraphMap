@@ -1,5 +1,6 @@
 package com.risa.graphicinterface.screensmanager.screens;
 
+import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
 import com.risa.graphicinterface.screensmanager.actions.filechoose.ActionSelectFile;
 
@@ -17,7 +18,7 @@ public class FileChooseScreen extends JPanel {
         super();
 
         this.screensManager = screensManager;
-        this.loadState = new JLabel("decharge");
+        this.loadState = ComponentsGenerator.jLabel("decharge", false);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -25,7 +26,7 @@ public class FileChooseScreen extends JPanel {
     }
 
     private void buildScreen() {
-        add(new JLabel("Choisir un fichier :"));
+        add(ComponentsGenerator.jLabel("Choisir un fichier :", true));
 
         fileChooser = new JFileChooser(System.getProperty("user.dir") + "\\csv");
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -34,11 +35,11 @@ public class FileChooseScreen extends JPanel {
 
 
         actionSelectFile = new ActionSelectFile(this);
-        validation = new JButton("Valider la selection et charger le graphe");
-        validation.addActionListener(actionSelectFile);
 
         add(fileChooser);
-        add(validation);
+        add(ComponentsGenerator.jButton("Valider la selection et charger le graphe", true,
+                actionSelectFile)
+        );
 
         add(buildIsLoaded());
     }
@@ -46,7 +47,7 @@ public class FileChooseScreen extends JPanel {
     private JPanel buildIsLoaded() {
         JPanel jPanel = new JPanel();
 
-        jPanel.add(new JLabel("Etat de chargement du graphe : "));
+        jPanel.add(ComponentsGenerator.jLabel("Etat de chargement du graphe : ", false));
         loadState.setForeground(Color.DARK_GRAY);
         jPanel.add(loadState);
 
@@ -63,10 +64,6 @@ public class FileChooseScreen extends JPanel {
 
     public JButton getValidation() {
         return validation;
-    }
-
-    public ActionSelectFile getActionSelectFile() {
-        return actionSelectFile;
     }
 
     public JFileChooser getFileChooser() {

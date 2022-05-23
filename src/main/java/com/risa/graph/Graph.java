@@ -90,7 +90,7 @@ public class Graph {
         StringBuilder toCSV = new StringBuilder();
 
         for (Noeud noeud : getNoeuds().values()) {
-            toCSV.append(noeud.toString());
+            toCSV.append(noeud.CSVToString());
             toCSV.append(";;");
 
             toCSV.append(toStringLien(noeud));

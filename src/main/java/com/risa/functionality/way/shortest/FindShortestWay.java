@@ -3,8 +3,6 @@ package com.risa.functionality.way.shortest;
 import com.risa.functionality.generate.matrix.WkMatrix;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class FindShortestWay {
 

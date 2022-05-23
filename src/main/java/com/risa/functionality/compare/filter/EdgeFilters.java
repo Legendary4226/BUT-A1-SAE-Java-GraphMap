@@ -7,18 +7,6 @@ import java.util.Collection;
 
 public class EdgeFilters {
 
-    public ArrayList<Arete> filterEdgesMatching(Noeud source, Noeud destination, Graph graph) {
-        ArrayList<Arete> aretes = new ArrayList<>();
-
-        for (Arete arete : graph.getAretes()) {
-            if (arete.getSource().getNom().equals(source.getNom()) && arete.getDestination().getNom().equals(destination.getNom())) {
-                aretes.add(arete);
-            }
-        }
-
-        return aretes;
-    }
-
     public Arete filterEdgesMatchingAndShortest(Noeud source, Noeud destination, Graph graph) {
         Arete result = null;
 

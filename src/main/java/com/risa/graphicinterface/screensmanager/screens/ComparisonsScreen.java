@@ -1,7 +1,6 @@
 package com.risa.graphicinterface.screensmanager.screens;
 
 import com.risa.functionality.compare.filter.NodeFilters;
-import com.risa.graph.Noeud;
 import com.risa.graph.TypeLieu;
 import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
@@ -9,7 +8,6 @@ import com.risa.graphicinterface.screensmanager.actions.comparisons.ActionCompar
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ComparisonsScreen extends JPanel {
     private final ScreensManager screensManager;
@@ -23,12 +21,9 @@ public class ComparisonsScreen extends JPanel {
         this.screensManager = screensManager;
         citySelectorOne = new NodesListModel();
         citySelectorTwo = new NodesListModel();
-        answerOppened = new JLabel();
-        answerGastronomic = new JLabel();
-        answerCultural = new JLabel();
-        answerOppened.setAlignmentX(CENTER_ALIGNMENT);
-        answerCultural.setAlignmentX(CENTER_ALIGNMENT);
-        answerGastronomic.setAlignmentX(CENTER_ALIGNMENT);
+        answerOppened = ComponentsGenerator.jLabel("", true);
+        answerGastronomic = ComponentsGenerator.jLabel("", true);
+        answerCultural = ComponentsGenerator.jLabel("", true);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -36,47 +31,30 @@ public class ComparisonsScreen extends JPanel {
     }
 
     private void buildPanel() {
-        ComponentsGenerator generator = new ComponentsGenerator();
-        JLabel label;
-        JButton button;
-
-        add(generator.verticalGlue(50));
-
-        JComboBox<Noeud> selector1 = new JComboBox<>(citySelectorOne);
-        selector1.setAlignmentX(CENTER_ALIGNMENT);
-        selector1.setMaximumSize(new Dimension(300, 24));
-        JComboBox<Noeud> selector2 = new JComboBox<>(citySelectorTwo);
-        selector2.setAlignmentX(CENTER_ALIGNMENT);
-        selector2.setMaximumSize(new Dimension(300, 24));
-
+        add(ComponentsGenerator.verticalGlue(50));
 
         NodeFilters filter = new NodeFilters();
+
+        add(ComponentsGenerator.jLabel("Ville 1", true));
+        add(ComponentsGenerator.customNodesComboBox(true, citySelectorOne));
         citySelectorOne.fill(
                 filter.filterCustomized(screensManager.getGraphSAE().getNoeuds().values(), TypeLieu.VILLE)
         );
+        add(ComponentsGenerator.jLabel("Ville 2", true));
+        add(ComponentsGenerator.customNodesComboBox(true, citySelectorTwo));
         citySelectorTwo.fill(
                 filter.filterCustomized(screensManager.getGraphSAE().getNoeuds().values(), TypeLieu.VILLE)
         );
 
-        label = new JLabel("Ville 1");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        add(label);
-        add(selector1);
-        label = new JLabel("Ville 2");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        add(label);
-        add(selector2);
+        add(ComponentsGenerator.jButton("Comparer", true,
+                new ActionCompareTwoCities(this))
+        );
 
-        button = new JButton(new ActionCompareTwoCities(this));
-        button.setText("Comparer");
-        button.setAlignmentX(CENTER_ALIGNMENT);
-        add(button);
-
-        add(generator.verticalGlue(15));
+        add(ComponentsGenerator.verticalGlue(15));
         add(answerOppened);
-        add(generator.verticalGlue(5));
+        add(ComponentsGenerator.verticalGlue(5));
         add(answerGastronomic);
-        add(generator.verticalGlue(5));
+        add(ComponentsGenerator.verticalGlue(5));
         add(answerCultural);
     }
 

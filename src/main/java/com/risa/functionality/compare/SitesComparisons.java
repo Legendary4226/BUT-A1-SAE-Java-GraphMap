@@ -30,10 +30,6 @@ public class SitesComparisons {
         return compareNodes(node1, node2, TypeLieu.VILLE);
     }
 
-    public float cityCompare(String node1, String node2) {
-        return compareNodes(graph.getNoeud(node1), graph.getNoeud(node2), TypeLieu.VILLE);
-    }
-
     /**
      * Si la ville A a plus de restaurants voisins 2-distance que la ville B alors le restaurant A est
      * plus gastronomique que la ville, à l’inverse la ville A est moins gastronomique que la ville B.
@@ -46,10 +42,6 @@ public class SitesComparisons {
         return compareNodes(node1, node2, TypeLieu.RESTAURANT);
     }
 
-    public float restaurantsCompare(String node1, String node2) {
-        return compareNodes(graph.getNoeud(node1), graph.getNoeud(node2), TypeLieu.RESTAURANT);
-    }
-
     /**
      * Si la ville A a plus de centres de loirirs voisins 2-distance que la ville B alors la ville A est
      * plus culturel que la ville, à l’inverse la ville A est moins culturel que la ville B.
@@ -60,10 +52,6 @@ public class SitesComparisons {
      */
     public float centresLoisirCompare(Noeud node1, Noeud node2) {
         return compareNodes(node1, node2, TypeLieu.CENTRE_LOISIR);
-    }
-
-    public float centresLoisirCompare(String node1, String node2) {
-        return compareNodes(graph.getNoeud(node1), graph.getNoeud(node2), TypeLieu.CENTRE_LOISIR);
     }
 
 

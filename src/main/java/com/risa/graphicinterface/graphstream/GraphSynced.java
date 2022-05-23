@@ -8,7 +8,6 @@ import org.graphstream.graph.Graph;
 import org.graphstream.ui.swing_viewer.SwingViewer;
 import org.graphstream.ui.view.View;
 import org.graphstream.ui.view.Viewer;
-import org.graphstream.ui.view.camera.Camera;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,10 +17,7 @@ import java.util.Set;
 public class GraphSynced {
     private final Graph graph;
     private final com.risa.graph.Graph graphSAE;
-    private final SwingViewer viewer;
     private final View view;
-    private final Camera camera;
-    private final Stylesheets stylesheets;
 
     private ArrayList<String> colorizedNodes;
     private ArrayList<String> colorizedEdges;
@@ -33,18 +29,16 @@ public class GraphSynced {
         colorizedEdges = new ArrayList<>();
         this.graph = graph;
         this.graphSAE = graphSAE;
-        stylesheets = new Stylesheets();
 
+        Stylesheets stylesheets = new Stylesheets();
         graph.setAttribute("ui.stylesheet", stylesheets.toString());
         graph.setAttribute("ui.quality");
         graph.setAttribute("ui.antialias");
         graph.setStrict(false);
         graph.setAutoCreate(true);
 
-        viewer = new SwingViewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+        Viewer viewer = new SwingViewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
         view = viewer.addDefaultView(false);
-        camera = view.getCamera();
-
         viewer.getDefaultView().enableMouseOptions();
         viewer.enableAutoLayout();
     }
@@ -53,16 +47,8 @@ public class GraphSynced {
         return graph;
     }
 
-    public SwingViewer getViewer() {
-        return viewer;
-    }
-
     public View getView() {
         return view;
-    }
-
-    public Camera getCamera() {
-        return camera;
     }
 
     public void loadVisualFromSAEGraph(com.risa.graph.Graph graphSAE) {

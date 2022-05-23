@@ -32,6 +32,8 @@ public class ActionFindWayWithIntermediaries extends AbstractAction {
             bonusScreen.getAnswerWayWithIntermediaries().setText(
                     way.toString().replace("[", "<").replace("]", ">")
             );
+
+            bonusScreen.getScreensManager().getGraphUI().asyncColorizeGivenWay(way);
         }
 
         if (! checkSelections) {

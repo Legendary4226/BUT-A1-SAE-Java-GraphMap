@@ -24,7 +24,7 @@ public class MainWindow extends JFrame {
         }
 
         this.graphSAE = graphSAE;
-        graphUI = new GraphSynced(new MultiGraph("Graph"));
+        graphUI = new GraphSynced(new MultiGraph("Graph"), graphSAE);
         graphUI.loadVisualFromSAEGraph(graphSAE);
         wkMatrix = null;
 

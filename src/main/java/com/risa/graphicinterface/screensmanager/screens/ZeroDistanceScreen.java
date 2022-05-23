@@ -2,9 +2,9 @@ package com.risa.graphicinterface.screensmanager.screens;
 
 import javax.swing.*;
 
-public class SecondScreen extends JPanel {
+public class ZeroDistanceScreen extends JPanel {
 
-    public SecondScreen() {
+    public ZeroDistanceScreen() {
         add(new JLabel("Manipuler les sites a X Distance"));
     }
 }

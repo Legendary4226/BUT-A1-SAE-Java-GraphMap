@@ -3,19 +3,19 @@ package com.risa.graphicinterface.screensmanager.screens;
 import com.risa.graph.Noeud;
 import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
-import com.risa.graphicinterface.screensmanager.actions.fourth.ActionTwoDistanceNodes;
+import com.risa.graphicinterface.screensmanager.actions.onedistance.ActionTwoDistanceNodes;
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class FourthScreen extends JPanel {
+public class TwoDistanceScreen extends JPanel {
     private final ScreensManager screensManager;
     private final NodesListModel selectorOne;
     private final NodesListModel selectorTwo;
     private final JLabel answer;
 
-    public FourthScreen(ScreensManager screensManager) {
+    public TwoDistanceScreen(ScreensManager screensManager) {
         this.screensManager = screensManager;
         selectorOne = new NodesListModel();
         selectorTwo = new NodesListModel();

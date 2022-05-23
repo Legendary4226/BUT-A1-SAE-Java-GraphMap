@@ -17,6 +17,7 @@ import java.util.Set;
 
 public class GraphSynced {
     private final Graph graph;
+    private final com.risa.graph.Graph graphSAE;
     private final SwingViewer viewer;
     private final View view;
     private final Camera camera;
@@ -25,12 +26,13 @@ public class GraphSynced {
     private ArrayList<String> colorizedNodes;
     private ArrayList<String> colorizedEdges;
 
-    public GraphSynced(Graph graph) {
+    public GraphSynced(Graph graph, com.risa.graph.Graph graphSAE) {
         System.setProperty("org.graphstream.ui", "swing");
 
         colorizedNodes = new ArrayList<>();
         colorizedEdges = new ArrayList<>();
         this.graph = graph;
+        this.graphSAE = graphSAE;
         stylesheets = new Stylesheets();
 
         graph.setAttribute("ui.stylesheet", stylesheets.toString());
@@ -63,9 +65,9 @@ public class GraphSynced {
         return camera;
     }
 
-    public void loadVisualFromSAEGraph(com.risa.graph.Graph graph) {
-        for (Noeud noeud : graph.getNoeuds().values()) {
-            this.graph.addNode(noeud.getNom())
+    public void loadVisualFromSAEGraph(com.risa.graph.Graph graphSAE) {
+        for (Noeud noeud : graphSAE.getNoeuds().values()) {
+            graph.addNode(noeud.getNom())
                     .setAttributes(
                     new HashMap<>() {
                         {
@@ -86,10 +88,10 @@ public class GraphSynced {
         }
 
         Set<String> usedIdentifier = new HashSet<>();
-        for (Noeud noeud : graph.getNoeuds().values()) {
+        for (Noeud noeud : graphSAE.getNoeuds().values()) {
             for (Arete arete : noeud.getAretes()) {
                 if (!usedIdentifier.contains(arete.getUniqueIdentifier())) {
-                    this.graph.addEdge(
+                     graph.addEdge(
                             arete.getUniqueIdentifier(),
                             noeud.getNom(),
                             arete.getDestination().getNom()
@@ -109,14 +111,20 @@ public class GraphSynced {
         }
     }
 
-    public void asyncColorizeGivenWay(ArrayList<String> way, com.risa.graph.Graph graphSAE) {
+    public void asyncColorizeGivenWay(ArrayList<String> way) {
         // Start the function asyncronously
-        new Thread(() -> colorizeGivenWay(
-                way, graphSAE
-        )).start();
+        new Thread(() -> colorizeGivenWay(way)).start();
     }
 
-    public void colorizeGivenWay(ArrayList<String> way, com.risa.graph.Graph graphSAE) {
+    public void asyncUncolorizeAll() {
+        // Start the function asyncronously
+        new Thread(() -> {
+            uncolorEdges();
+            uncolorNodes();
+        }).start();
+    }
+
+    private void colorizeGivenWay(ArrayList<String> way) {
         EdgeFilters edgeFilters = new EdgeFilters();
         if (colorizedNodes.size() != 0) {
             uncolorNodes();

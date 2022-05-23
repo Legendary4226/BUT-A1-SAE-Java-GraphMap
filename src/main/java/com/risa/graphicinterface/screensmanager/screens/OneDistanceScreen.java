@@ -4,14 +4,14 @@ import com.risa.graph.Arete;
 import com.risa.graph.Noeud;
 import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
-import com.risa.graphicinterface.screensmanager.actions.third.*;
+import com.risa.graphicinterface.screensmanager.actions.zerodistance.*;
 import com.risa.graphicinterface.screensmanager.customcomponent.EdgesListModel;
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ThirdScreen extends JPanel {
+public class OneDistanceScreen extends JPanel {
     private final ScreensManager screensManager;
     private final NodesListModel nodesSelector;
     private final NodesListModel displayNeighbours;
@@ -19,7 +19,7 @@ public class ThirdScreen extends JPanel {
     private final  JLabel startNode;
     private final JLabel arrivalNode;
 
-    public ThirdScreen(ScreensManager screensManager) {
+    public OneDistanceScreen(ScreensManager screensManager) {
         this.screensManager = screensManager;
         displayNeighbours = new NodesListModel();
         nodesSelector = new NodesListModel();

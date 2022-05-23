@@ -27,7 +27,7 @@ public class Stylesheets {
                     fill-color: #119DA4;
                     text-alignment: above;
                     text-size: 15;
-                    text-padding: 6, 3;
+                    text-padding: 6px, 0px;
                     text-style: bold;
                     text-color: #F2F7F2;
                     text-background-color: #493732;
@@ -41,6 +41,7 @@ public class Stylesheets {
                 
                 node:clicked {
                     fill-color: showedColor;
+                    size: 25px;
                 }
                 
                 node.showed {
@@ -75,7 +76,10 @@ public class Stylesheets {
                     text-size: 15;
                     text-style: bold;
                     text-color: #F2F7F2;
-                    
+                    text-alignment: above;
+                    text-background-mode: rounded-box;
+                    text-background-color: #493732;
+                    text-padding: 4px, 0px;
                 }
                 
                 edge:selected {
@@ -88,6 +92,7 @@ public class Stylesheets {
                 
                 edge.showed {
                     fill-color: showedColor;
+                    size: 3px;
                 }
                 """
                 .replace("edgesColor", edgesColor);

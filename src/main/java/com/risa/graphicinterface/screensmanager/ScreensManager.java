@@ -38,7 +38,7 @@ public class ScreensManager extends JSplitPane {
         setTopComponent(screensButtonMenu);
         setBottomComponent(screensContainer);
 
-        screensContainer.add(new MainScreen(this), "1");
+        screensContainer.add(new FileChooseScreen(this), "1");
 
         for (String id : screensButtonMenu.getScreenButtons().keySet()) {
             screensButtonMenu.getScreenButtons().get(id).addActionListener(event -> {
@@ -49,10 +49,12 @@ public class ScreensManager extends JSplitPane {
     }
 
     public void initialize() {
-        screensContainer.add(new SecondScreen(), "2");
-        screensContainer.add(new ThirdScreen(this), "3");
-        screensContainer.add(new FourthScreen(this), "4");
-        screensContainer.add(new BonusScreen(this), "5");
+        screensContainer.add(new ZeroDistanceScreen(), "2");
+        screensContainer.add(new OneDistanceScreen(this), "3");
+        screensContainer.add(new TwoDistanceScreen(this), "4");
+        screensContainer.add(new ComparisonsScreen(this), "5");
+        screensContainer.add(new BonusScreen(this), "6");
+        screensContainer.add(new UIManagment(this), "7");
 
         screensButtonMenu.enableAllExceptDisabled();
     }

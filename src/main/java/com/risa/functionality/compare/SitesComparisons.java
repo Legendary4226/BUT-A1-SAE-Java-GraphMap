@@ -72,11 +72,7 @@ public class SitesComparisons {
         float result = Float.POSITIVE_INFINITY;
         FindShortestWay findShortestWay = new FindShortestWay();
 
-        if (! ( findShortestWay.findShortestWay(wkMatrix, node1.getNom(), node2.getNom()).size() < 2
-                || node1.getTypeLieu() != filter
-                || node2.getTypeLieu() != filter
-
-        ) ) {
+        if (! (findShortestWay.findShortestWay(wkMatrix, node1.getNom(), node2.getNom()).size() < 2)) {
             XDistanceSite twoDistanceSite = new XDistanceSite();
             NodeFilters citiesFilters = new NodeFilters();
             int twoDistanceSite1 = citiesFilters.filterCustomized(

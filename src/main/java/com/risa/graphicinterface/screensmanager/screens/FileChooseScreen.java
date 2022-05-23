@@ -1,19 +1,19 @@
 package com.risa.graphicinterface.screensmanager.screens;
 
 import com.risa.graphicinterface.screensmanager.ScreensManager;
-import com.risa.graphicinterface.screensmanager.actions.main.ActionSelectFile;
+import com.risa.graphicinterface.screensmanager.actions.filechoose.ActionSelectFile;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainScreen extends JPanel {
+public class FileChooseScreen extends JPanel {
     ScreensManager screensManager;
     JLabel loadState;
     JFileChooser fileChooser;
     JButton validation;
     ActionSelectFile actionSelectFile;
 
-    public MainScreen(ScreensManager screensManager) {
+    public FileChooseScreen(ScreensManager screensManager) {
         super();
 
         this.screensManager = screensManager;

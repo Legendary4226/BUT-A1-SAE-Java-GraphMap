@@ -7,7 +7,6 @@ import com.risa.graphicinterface.screensmanager.actions.bonus.ActionAddIntermedi
 import com.risa.graphicinterface.screensmanager.actions.bonus.ActionFindShortestWay;
 import com.risa.graphicinterface.screensmanager.actions.bonus.ActionFindWayWithIntermediaries;
 import com.risa.graphicinterface.screensmanager.actions.bonus.ActionRemoveIntermediarySiteSelector;
-import com.risa.graphicinterface.screensmanager.actions.fourth.ActionTwoDistanceNodes;
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
 import javax.swing.*;
@@ -103,12 +102,12 @@ public class BonusScreen extends JPanel {
         label.setAlignmentX(CENTER_ALIGNMENT);
         panel.add(label);
 
-        JButton button = new JButton("Ajouter un site");
+        JButton button = new JButton("    +    ");
         button.setAlignmentX(CENTER_ALIGNMENT);
         button.addActionListener(new ActionAddIntermediarySiteSelector(this));
         panel.add(button);
 
-        button = new JButton("Supprimer le dernier site");
+        button = new JButton("    -    ");
         button.setAlignmentX(CENTER_ALIGNMENT);
         button.addActionListener(new ActionRemoveIntermediarySiteSelector(this));
         panel.add(button);

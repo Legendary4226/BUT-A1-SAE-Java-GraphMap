@@ -38,14 +38,12 @@ public class ActionFindShortestWay extends AbstractAction {
                 answerShortestWay.setText(way.toString().replace("[", "<").replace("]", ">"));
                 answerShortestWay.setForeground(Color.GREEN);
 
-                bonusScreen.getScreensManager().getGraphUI().asyncColorizeGivenWay(
-                        way, bonusScreen.getScreensManager().getGraphSAE()
-                );
+                bonusScreen.getScreensManager().getGraphUI().asyncColorizeGivenWay(way);
 
             }
         }
         if (node1 == null || node2 == null) {
-            JOptionPane.showMessageDialog(null, "Veuillez selectionner deux sites quelconques !");
+            JOptionPane.showMessageDialog(bonusScreen, "Veuillez selectionner deux sites quelconques !");
         }
     }
 }

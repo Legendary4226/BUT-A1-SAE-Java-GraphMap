@@ -16,6 +16,11 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
         super();
     }
 
+    /**
+     * Permet de changer l'élément actuellement sélectionné.
+     * @param anItem the list object to select or <code>null</code>
+     *        to clear the selection
+     */
     @Override
     public void setSelectedItem(Object anItem) {
         if (anItem instanceof Noeud) {
@@ -25,21 +30,37 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
         }
     }
 
+    /**
+     * Permet de récupérer l'élément sélectionné.
+     * @return Noeud (Cast requis)
+     */
     @Override
     public Object getSelectedItem() {
         return selected;
     }
 
+    /**
+     * Retourne le nombre d'éléments contenu par le model.
+     * @return int
+     */
     @Override
     public int getSize() {
         return nodes.size();
     }
 
+    /**
+     * @param index the requested index
+     * @return Noeud
+     */
     @Override
     public Noeud getElementAt(int index) {
         return nodes.get(index);
     }
 
+    /**
+     * Permet d'ajouter un élément au model.
+     * @param node un noeud
+     */
     public void addNode(Noeud node) {
         if (node != null) {
             nodes.add(node);
@@ -47,18 +68,29 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
         }
     }
 
+    /**
+     * Permet d'enlever un élément au model.
+     * @param node un noeud
+     */
     public void removeNode(Noeud node) {
         int i = nodes.indexOf(node);
         nodes.remove(node);
         fireIntervalRemoved(nodes, i, i);
     }
 
+    /**
+     * Permet de remplir le model avec la liste de neouds passé en paramètre.
+     * @param nodes liste de noeuds
+     */
     public void fill(Collection<Noeud> nodes) {
         for (Noeud node : nodes) {
             addNode(node);
         }
     }
 
+    /**
+     * Vide entièrement le model.
+     */
     public void emptyAll() {
         if (! nodes.isEmpty()) {
             int size = nodes.size();
@@ -67,6 +99,11 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
         }
     }
 
+    /**
+     * Permet de re-remplir le model avec un filtre donné et de nouveaux noeuds.
+     * @param typeLieu filtre
+     * @param nodes nouvelle liste de noeuds
+     */
     public void filterBy(TypeLieu typeLieu, Collection<Noeud> nodes) {
         NodeFilters filter = new NodeFilters();
         ArrayList<Noeud> filteredNodes = filter.filterCustomized(nodes, typeLieu);

@@ -15,6 +15,11 @@ public class ActionFindWayWithIntermediaries extends AbstractAction {
         this.bonusScreen = bonusScreen;
     }
 
+    /**
+     * Permet de récupérer les neouds choisis pour ensuite trouver et afficher un chemin avec des noeuds intermédiaires.
+     * Dans le cas ou tout les noeuds ne sont pas sélectionnés l'utilisateur est averti.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         boolean checkSelections = checkSelections();
@@ -26,8 +31,6 @@ public class ActionFindWayWithIntermediaries extends AbstractAction {
                     ((Noeud) bonusScreen.getSelectorTwo().getSelectedItem()).getNom(),
                     getSelections()
             );
-
-            System.out.println(way);
 
             bonusScreen.getAnswerWayWithIntermediaries().setText(
                     way.toString().replace("[", "<").replace("]", ">")

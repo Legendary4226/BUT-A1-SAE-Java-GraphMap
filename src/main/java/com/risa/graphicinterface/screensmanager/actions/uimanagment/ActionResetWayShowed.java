@@ -12,6 +12,10 @@ public class ActionResetWayShowed extends AbstractAction {
         this.uiManagment = uiManagment;
     }
 
+    /**
+     * Permet à l'utilisateur de décolorer les noeuds.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         uiManagment.getScreensManager().getGraphUI().asyncUncolorizeAll();

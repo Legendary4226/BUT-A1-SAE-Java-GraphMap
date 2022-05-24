@@ -19,8 +19,8 @@ public class GraphSynced {
     private final com.risa.graph.Graph graphSAE;
     private final View view;
 
-    private ArrayList<String> colorizedNodes;
-    private ArrayList<String> colorizedEdges;
+    private final ArrayList<String> colorizedNodes;
+    private final ArrayList<String> colorizedEdges;
 
     public GraphSynced(Graph graph, com.risa.graph.Graph graphSAE) {
         System.setProperty("org.graphstream.ui", "swing");
@@ -51,6 +51,10 @@ public class GraphSynced {
         return view;
     }
 
+    /**
+     * Permet de charger le graphe de la SAE dans la structure de donnée du graphe de la librairie GraphStream.
+     * @param graphSAE graphSAE
+     */
     public void loadVisualFromSAEGraph(com.risa.graph.Graph graphSAE) {
         for (Noeud noeud : graphSAE.getNoeuds().values()) {
             graph.addNode(noeud.getNom())
@@ -97,11 +101,20 @@ public class GraphSynced {
         }
     }
 
+    /**
+     * Permet de changer la couleur et taille des noeuds et arêtes de la route de noeuds passé en paramètres.
+     * Ceci se fait en asyncrone pour ne pas bloquer le programme principal et animer le tout.
+     * @param way way
+     */
     public void asyncColorizeGivenWay(ArrayList<String> way) {
         // Start the function asyncronously
         new Thread(() -> colorizeGivenWay(way)).start();
     }
 
+    /**
+     * Permet de réinitialiser la couleur et taille des noeuds et arêtes coloré.
+     * Ceci se fait en asyncrone pour ne pas bloquer le programme principal.
+     */
     public void asyncUncolorizeAll() {
         // Start the function asyncronously
         new Thread(() -> {
@@ -147,14 +160,14 @@ public class GraphSynced {
         colorizedNodes.add(way.get(way.size() - 1));
     }
 
-    public void uncolorNodes() {
+    private void uncolorNodes() {
         for (String node : colorizedNodes) {
             graph.getNode(node).setAttribute("ui.class", "");
         }
         colorizedNodes.clear();
     }
 
-    public void uncolorEdges() {
+    private void uncolorEdges() {
         for (String edge : colorizedEdges) {
             graph.getEdge(edge).setAttribute("ui.class", "");
         }

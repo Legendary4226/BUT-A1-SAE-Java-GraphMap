@@ -34,11 +34,18 @@ public class ScreensButtonMenu extends JMenuBar {
         return screenButtons;
     }
 
+    /**
+     * Permet de désactiver tout les boutons du menu.
+     */
     public void disableAll() {
         for (JButton jButton : screenButtons.values()) {
             jButton.setEnabled(false);
         }
     }
+
+    /**
+     * Active tout les boutons sauf celui désactivé.
+     */
     public void enableAllExceptDisabled() {
         for (JButton jButton : screenButtons.values()) {
             jButton.setEnabled(true);
@@ -46,11 +53,19 @@ public class ScreensButtonMenu extends JMenuBar {
         disableButton(disabledButton);
     }
 
+    /**
+     * Désactive le bouton dont l'ID est donné.
+     * @param id button à désactiver
+     */
     private void disableButton(String id) {
         screenButtons.get(id).setEnabled(false);
         disabledButton = id;
     }
 
+    /**
+     * Désactive un bouton passé en paramètres et réactive l'ancien bouton désactivé.
+     * @param id button à désactiver
+     */
     public void disableOtherButton(String id) {
         if (! disabledButton.equals(id)) {
             enableButton(disabledButton);
@@ -58,6 +73,10 @@ public class ScreensButtonMenu extends JMenuBar {
         }
     }
 
+    /**
+     * Active le bouton dont l'ID est donné.
+     * @param id bouton à activer
+     */
     public void enableButton(String id) {
         screenButtons.get(id).setEnabled(true);
     }

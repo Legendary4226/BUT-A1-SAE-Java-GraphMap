@@ -21,6 +21,11 @@ public class ActionSelectFile extends AbstractAction {
         screensManager = fileChooseScreen.getScreensManager();
     }
 
+    /**
+     * Donne a l'utilisateur la possibilité de choisir un fichier CSV pour faire charger le graphe.
+     * Dans le cas ou le fichier n'est pas bon l'utilisateur est averti.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         File file = fileChooseScreen.getFileChooser().getSelectedFile();

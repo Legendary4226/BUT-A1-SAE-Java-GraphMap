@@ -14,6 +14,12 @@ public class ActionTwoDistanceNodes extends AbstractAction {
     public ActionTwoDistanceNodes(TwoDistanceScreen twoDistanceScreen) {
         this.twoDistanceScreen = twoDistanceScreen;
     }
+
+    /**
+     * Permet d'afficher si les deux sites sélectionnés sont exactement à deux distance ou non.
+     * Dans le cas ou tout les noeuds ne sont pas sélectionnés l'utilisateur est averti.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Noeud nodeOne = (Noeud) twoDistanceScreen.getSelectorOne().getSelectedItem();

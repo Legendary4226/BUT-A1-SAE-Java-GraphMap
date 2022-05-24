@@ -9,14 +9,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class ActionFilterByCity extends AbstractAction {
-    private final ScreensManager screensManager;
     private final OneDistanceScreen oneDistanceScreen;
 
     public ActionFilterByCity(OneDistanceScreen oneDistanceScreen) {
-        this.screensManager = oneDistanceScreen.getScreensManager();
         this.oneDistanceScreen = oneDistanceScreen;
     }
 
+    /**
+     * Permet de filtrer les noeuds étant des villes dans la liste des voisins du noeud.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (oneDistanceScreen.getNodesSelector().getSelectedItem() != null) {

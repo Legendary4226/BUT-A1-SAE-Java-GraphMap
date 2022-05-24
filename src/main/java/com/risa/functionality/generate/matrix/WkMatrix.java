@@ -20,10 +20,22 @@ public class WkMatrix extends AdjacencyMatrix {
         return wkMatrix;
     }
 
+    /**
+     * Permet de récupérer une valeur de la matrice par le biais de deux entiers x et y.
+     * @param x Integer
+     * @param y Integer
+     * @return Float
+     */
     public Float getMatrixValue(int x, int y) {
         return wkMatrix.get(getKeys().get(x)).get(getKeys().get(y)).getDistance();
     }
 
+    /**
+     * Permet de récupérer une valeur de la matrice par le biais de deux noms de noeuds x et y.
+     * @param x String
+     * @param y String
+     * @return Float
+     */
     public Float getMatrixValue(String x, String y) {
         return wkMatrix.get(x).get(y).getDistance();
     }

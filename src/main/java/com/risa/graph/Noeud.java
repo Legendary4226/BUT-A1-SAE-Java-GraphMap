@@ -46,6 +46,10 @@ public class Noeud {
         return success;
     }
 
+    /**
+     * Permet de retourner les voisins de ce noeud.
+     * @return liste de noeuds
+     */
     public Collection<Noeud> getNeibours() {
         Collection<Noeud> neighbours = new ArrayList<>();
 
@@ -63,6 +67,10 @@ public class Noeud {
         return "[" + typeLieu.toString() + "] " + nom;
     }
 
+    /**
+     * Permet de retourner la représentation CSV d'un noeud.
+     * @return "Nom&TypeLieu"
+     */
     public String CSVToString() {
         return nom + "&" + typeLieu.toString();
     }

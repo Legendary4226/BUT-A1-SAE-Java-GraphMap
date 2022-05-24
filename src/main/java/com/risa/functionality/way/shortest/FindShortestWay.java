@@ -11,7 +11,7 @@ public class FindShortestWay {
      * @param matrix la Wk matrice calculée
      * @param from le noeud de départ
      * @param to le noeud d'arrivé
-     * @return une liste des noeuds par lesquels il faut passer, dans l'ordre
+     * @return une liste ordonnée des noeuds par lesquels il faut passer
      */
     public ArrayList<String> findShortestWay(WkMatrix matrix, String from, String to) {
         ArrayList<String> way = new ArrayList<>();

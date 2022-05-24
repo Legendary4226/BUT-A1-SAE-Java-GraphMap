@@ -11,6 +11,12 @@ import java.util.Set;
 
 public class NodeFilters {
 
+    /**
+     * Permet de filtrer des nom de noeuds passé en paramètre selon un type de lieu.
+     * @param sites liste de nom de noeuds
+     * @param filter filtre
+     * @return la liste filtrée
+     */
     public Set<String> filterCustomized(Set<String> sites, Graph graph, TypeLieu filter) {
         Set<String> filteredSites = new HashSet<>();
         for (String site : sites) {
@@ -21,6 +27,12 @@ public class NodeFilters {
         return filteredSites;
     }
 
+    /**
+     * Permet de filtrer des noeuds passé en paramètre selon un type de lieu.
+     * @param nodes liste de noeuds
+     * @param filter filtre
+     * @return liste filtrée
+     */
     public ArrayList<Noeud> filterCustomized(Collection<Noeud> nodes, TypeLieu filter) {
         ArrayList<Noeud> filteredNodes = new ArrayList<>();
         for (Noeud node : nodes) {

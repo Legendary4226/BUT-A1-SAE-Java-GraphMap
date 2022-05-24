@@ -13,6 +13,11 @@ public class ActionDisplayEdgeInformations extends AbstractAction {
         this.oneDistanceScreen = oneDistanceScreen;
     }
 
+    /**
+     * Permet d'afficher les informations d'une arête.
+     * Dans le cas ou tout les noeuds ne sont pas sélectionnés l'utilisateur est averti.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Arete edge = (Arete) oneDistanceScreen.getEdgesSelector().getSelectedItem();

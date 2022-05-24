@@ -62,6 +62,14 @@ public class XDistanceSite {
         return recursiveNDistanceSite(oneDistanceSite(node), graph, n - 1);
     }
 
+    /**
+     * Permet de trouver les sites à n distance du noeud donné.
+     * Utiliser un Set permet d'ajouter des valeurs sans les dupliquer.
+     * @param sites liste de nom de noeuds
+     * @param graph graphe
+     * @param n Integer
+     * @return liste de nom de noeuds
+     */
     private Set<String> recursiveNDistanceSite(Set<String> sites, Graph graph, int n) {
         if (n == 0) {
             return sites;

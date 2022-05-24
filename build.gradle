@@ -1,9 +1,14 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+
+jacocoTestReport {
+    dependsOn test
+}
 
 repositories {
     mavenCentral()
@@ -31,4 +36,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
+
+    finalizedBy jacocoTestReport
 }

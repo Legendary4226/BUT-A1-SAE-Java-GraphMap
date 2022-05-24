@@ -12,6 +12,10 @@ public class ActionRemoveIntermediarySiteSelector extends AbstractAction {
         this.bonusScreen = bonusScreen;
     }
 
+    /**
+     * Permet de supprimer dynamiquement un sélecteur de noeuds à l'interface pour l'utilisateur.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (bonusScreen.getIntermediarySites().size() > 0) {

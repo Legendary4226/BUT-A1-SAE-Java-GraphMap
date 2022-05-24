@@ -35,8 +35,6 @@ public class BonusScreen extends JPanel {
     }
 
     private void buildPanel() {
-        JButton button;
-
         add(ComponentsGenerator.verticalGlue(50));
 
         add(ComponentsGenerator.jLabel("Site quelconque 1", true));

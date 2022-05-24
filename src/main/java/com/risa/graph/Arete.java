@@ -29,6 +29,11 @@ public class Arete {
         return source;
     }
 
+    /**
+     * Permet de créer un identifiant unique pour deux arêtes reliant les mêmes noeuds. Partant du principe qu'il
+     * n'existe pas deux arêtes ayant une même source et destination avec le même type de route et même distance.
+     * @return identifiant
+     */
     public String getUniqueIdentifier() {
         String identifier = "";
 
@@ -37,15 +42,15 @@ public class Arete {
             identifier = null;
         }
         if (comparison > 0) {
-            identifier += destination.getNom();
-            identifier += source.getNom();
+            identifier += String.valueOf(destination.hashCode());
+            identifier += String.valueOf(source.getNom());
         }
         if (comparison < 0) {
-            identifier += source.getNom();
-            identifier += destination.getNom();
+            identifier += String.valueOf(source.getNom());
+            identifier += String.valueOf(destination.getNom());
         }
 
-        return identifier + distance + typeRoute;
+        return identifier;
     }
 
     @Override
@@ -53,6 +58,10 @@ public class Arete {
         return source.getNom() + " " + typeRoute + " " + distance + " " + destination.getNom();
     }
 
+    /**
+     * Permet de retourner la représentation CSV d'une arête.
+     * @return "TypeRoute&Distance"
+     */
     public String CSVToString() {
         return typeRoute.toString() + "&" + distance;
     }

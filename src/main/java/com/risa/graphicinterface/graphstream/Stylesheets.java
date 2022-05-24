@@ -2,12 +2,12 @@ package com.risa.graphicinterface.graphstream;
 
 public class Stylesheets {
 
-    String backgroundColor = "#3C3F41";
-    String edgesColor = "#00AFB5";
-    String restaurantsColor = "#FF7700";
-    String citiesColor = "#9EE493";
-    String leisureCentersColor = "#F6D851";
-    String showedColor = "#FFF9FB";
+    private final String backgroundColor = "#3C3F41";
+    private final String edgesColor = "#00AFB5";
+    private final String restaurantsColor = "#FF7700";
+    private final String citiesColor = "#9EE493";
+    private final String leisureCentersColor = "#F6D851";
+    private final String showedColor = "#FFF9FB";
 
 
     private String GraphStyle() {
@@ -66,7 +66,8 @@ public class Stylesheets {
                 """
                 .replace("restaurantsColor", restaurantsColor)
                 .replace("citiesColor", citiesColor)
-                .replace("leisureCentersColor", leisureCentersColor);
+                .replace("leisureCentersColor", leisureCentersColor)
+                .replace("showedColor", showedColor);
     }
 
     private String EdgeStyle() {
@@ -95,7 +96,8 @@ public class Stylesheets {
                     size: 3px;
                 }
                 """
-                .replace("edgesColor", edgesColor);
+                .replace("edgesColor", edgesColor)
+                .replace("showedColor", showedColor);
     }
 
     @Override

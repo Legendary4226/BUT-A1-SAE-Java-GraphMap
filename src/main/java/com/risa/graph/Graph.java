@@ -5,11 +5,9 @@ import java.util.HashMap;
 
 public class Graph {
     private final HashMap<String, Noeud> noeuds;
-    private final HashMap<String, Arete> aretes;
 
     public Graph() {
         noeuds = new HashMap<>();
-        aretes = new HashMap<>();
     }
 
     public HashMap<String, Noeud> getNoeuds() {
@@ -75,6 +73,10 @@ public class Graph {
         return success;
     }
 
+    /**
+     * Permet de retourner la liste des arêtes du graphe.
+     * @return liste d'arêtes
+     */
     public ArrayList<Arete> getAretes() {
         ArrayList<Arete> aretes = new ArrayList<>();
 
@@ -85,6 +87,10 @@ public class Graph {
         return aretes;
     }
 
+    /**
+     * Retourne la version CSV de ce graphe.
+     * @return CSV
+     */
     @Override
     public String toString() {
         StringBuilder toCSV = new StringBuilder();

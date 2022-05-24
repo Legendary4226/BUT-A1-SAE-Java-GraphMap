@@ -16,6 +16,12 @@ public class ActionFindShortestWay extends AbstractAction {
         this.bonusScreen = bonusScreen;
     }
 
+    /**
+     * Permet de vérifier si l'utilisateur a bien sélectionner des noeuds pour ensuite récupérer les noeuds et afficher
+     * le plus court chemin entre eux dans un JLabel.
+     * Dans le cas ou tout les noeuds ne sont pas sélectionnés l'utilisateur est averti.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Noeud node1 = (Noeud) bonusScreen.getSelectorOne().getSelectedItem();

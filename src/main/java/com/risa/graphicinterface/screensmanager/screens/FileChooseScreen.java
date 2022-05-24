@@ -37,9 +37,10 @@ public class FileChooseScreen extends JPanel {
         actionSelectFile = new ActionSelectFile(this);
 
         add(fileChooser);
-        add(ComponentsGenerator.jButton("Valider la selection et charger le graphe", true,
-                actionSelectFile)
+        validation = ComponentsGenerator.jButton("Valider la selection et charger le graphe", true,
+                actionSelectFile
         );
+        add(validation);
 
         add(buildIsLoaded());
     }

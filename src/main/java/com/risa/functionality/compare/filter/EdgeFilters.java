@@ -7,6 +7,13 @@ import java.util.Collection;
 
 public class EdgeFilters {
 
+    /**
+     * Permet de trouver l'arête la plus courte entre un noeud source et de destination.
+     * @param source source
+     * @param destination destination
+     * @param graph graphe
+     * @return arête
+     */
     public Arete filterEdgesMatchingAndShortest(Noeud source, Noeud destination, Graph graph) {
         Arete result = null;
 
@@ -24,6 +31,12 @@ public class EdgeFilters {
         return result;
     }
 
+    /**
+     * Permet de filtrer des arêtes passé en paramètres selon un type de route.
+     * @param egdes liste d'arêtes
+     * @param filter filtre
+     * @return la liste filtrée
+     */
     public ArrayList<Arete> filterCustomized(Collection<Arete> egdes, TypeRoute filter) {
         ArrayList<Arete> filteredEdges = new ArrayList<>();
         for (Arete edge : egdes) {

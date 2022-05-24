@@ -9,12 +9,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ActionCompareTwoCities extends AbstractAction {
-    private ComparisonsScreen comparisonsScreen;
+    private final ComparisonsScreen comparisonsScreen;
 
     public ActionCompareTwoCities(ComparisonsScreen comparisonsScreen) {
         this.comparisonsScreen = comparisonsScreen;
     }
 
+    /**
+     * Permet en fonction des deux villes choisies afficher si l'une est plus ouverte/gastronomique/culturelle que
+     * l'autre dans trois JLabel.
+     * Dans le cas ou tout les noeuds ne sont pas sélectionnés l'utilisateur est averti.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Noeud node1 = (Noeud) comparisonsScreen.getCitySelectorOne().getSelectedItem();
@@ -31,9 +37,9 @@ public class ActionCompareTwoCities extends AbstractAction {
             float resultGastronomic = compare.restaurantsCompare(node1, node2);
             float resultCultural = compare.centresLoisirCompare(node1, node2);
 
-            comparisonsScreen.getAnswerOppened().setForeground(Color.GREEN);
-            comparisonsScreen.getAnswerGastronomic().setForeground(Color.GREEN);
-            comparisonsScreen.getAnswerCultural().setForeground(Color.GREEN);
+            comparisonsScreen.getAnswerOppened().setForeground(Color.WHITE);
+            comparisonsScreen.getAnswerGastronomic().setForeground(Color.WHITE);
+            comparisonsScreen.getAnswerCultural().setForeground(Color.WHITE);
 
             if (resultOpened == 1) {
                 comparisonsScreen.getAnswerOppened().setText(node1.getNom() + " est plus ouvert que " + node2.getNom());

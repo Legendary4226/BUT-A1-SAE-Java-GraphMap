@@ -33,7 +33,7 @@ public class LoadGraphFromCSV {
         String typelieu = splitted[0].split("&")[1];
         System.out.println(typelieu);
         graph.ajouterNoeud(nomDUNoeud, valueOfTypeLieu(typelieu));
-        stockageStructure.put = (nomDUNoeud  new HashMap<>());
+        //stockageStructure.put = (nomDUNoeud  new HashMap<>());
 
         String reste = String.valueOf(splitted[1].split(";;"));
         System.out.println(reste);

@@ -2,6 +2,7 @@ package com.risa.graphicinterface;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.risa.functionality.generate.matrix.WkMatrix;
+import com.risa.graph.Graph;
 import com.risa.graphicinterface.graphstream.GraphSynced;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
 import org.graphstream.graph.implementations.MultiGraph;
@@ -13,7 +14,7 @@ public class MainWindow extends JFrame {
     private final com.risa.graph.Graph graphSAE;
     private WkMatrix wkMatrix;
     private final GraphSynced graphUI;
-    public MainWindow(com.risa.graph.Graph graphSAE) {
+    public MainWindow() {
         super();
 
         //Use flatlaf
@@ -23,7 +24,7 @@ public class MainWindow extends JFrame {
             System.out.println("Erreur application de FlatLaf");
         }
 
-        this.graphSAE = graphSAE;
+        this.graphSAE = new Graph();
         graphUI = new GraphSynced(new MultiGraph("Graph"), graphSAE);
         graphUI.loadVisualFromSAEGraph(graphSAE);
         wkMatrix = null;

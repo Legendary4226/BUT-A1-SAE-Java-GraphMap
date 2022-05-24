@@ -1,6 +1,7 @@
 package com.risa.graphicinterface.screensmanager.actions.filechoose;
 
 import com.risa.functionality.generate.matrix.WkMatrix;
+import com.risa.functionality.load.LoadGraphFromCSV;
 import com.risa.graph.Graph;
 import com.risa.graph.TypeLieu;
 import com.risa.graph.TypeRoute;
@@ -31,12 +32,11 @@ public class ActionSelectFile extends AbstractAction {
         File file = fileChooseScreen.getFileChooser().getSelectedFile();
         Graph graphSAE = null;
         graphSAE = new Graph(); // TEMPORARLY
-        /*
+
         if (file != null) {
-            LoadGraphFromCSV load = new LoadGraphFromCSV();
+            LoadGraphFromCSV load = new LoadGraphFromCSV(graphSAE);
             graphSAE = load.load(file);
         }
-         */
 
         if (graphSAE != null) {
             screensManager.getGraphSAE().ajouterNoeud("a", TypeLieu.VILLE);

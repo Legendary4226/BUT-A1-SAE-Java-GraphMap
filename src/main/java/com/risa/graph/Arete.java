@@ -43,11 +43,11 @@ public class Arete {
         }
         if (comparison > 0) {
             identifier += String.valueOf(destination.hashCode());
-            identifier += String.valueOf(source.getNom());
+            identifier += String.valueOf(source.hashCode());
         }
         if (comparison < 0) {
-            identifier += String.valueOf(source.getNom());
-            identifier += String.valueOf(destination.getNom());
+            identifier += String.valueOf(source.hashCode());
+            identifier += String.valueOf(destination.hashCode());
         }
 
         return identifier;

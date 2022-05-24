@@ -8,15 +8,19 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class LoadGraphFromCSV {
-    HashMap<String, HashMap<String,String>> stockageStructure =  new HashMap<>();
-    Graph graph = new Graph();
+    private final HashMap<String, HashMap<String,String>> stockageStructure =  new HashMap<>();
+    private Graph graph;
+
+    public LoadGraphFromCSV(Graph graph) {
+        this.graph = graph;
+    }
 
     public Graph load(File file)  {
         String line;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             while ((line = bufferedReader.readLine()) != null) {
                 split(line);
-                System.out.println(line);
+               // System.out.println(line);
             }
         } catch (IOException e) {
             graph = null;
@@ -33,81 +37,26 @@ public class LoadGraphFromCSV {
         String typelieu = splitted[0].split("&")[1];
         System.out.println(typelieu);
         graph.ajouterNoeud(nomDUNoeud, valueOfTypeLieu(typelieu));
-        //stockageStructure.put = (nomDUNoeud  new HashMap<>());
-
-        String reste = String.valueOf(splitted[1].split(";;"));
-        System.out.println(reste);
-
-       // stockageStructure.put(reste, new HashMap<>());
-
-
-
-
-       /*
-        String[] noeudSource = splitted[0].split(":");
-        graph.ajouterNoeud(noeudSource[0],TypeLieu.valueOf(noeudSource[1]));
-        stockageStructure.put(noeudSource[0], new HashMap<>());
-       split2(splitted[1], noeudSource[0]);*/
+        stockageStructure.put(nomDUNoeud, new HashMap<>());
+        splitArete(splitted[1]);
     }
-/*
-    public void split2(String arete, String noeudPrincipal){
-        String[] r = arete.split (";");
-        for (String noeudDestinationPlusRoute: r){
-            String [] t = noeudDestinationPlusRoute.split ("&");
-            stockageStructure.get(noeudPrincipal).put(t[0], t[1]);
-        }
-    } */
+
+    public void splitArete(String arete){
+        String[] splitted = arete.split(":");
+        String noeudArrivee = splitted[0];
+        System.out.println( noeudArrivee);
+        String typeRoutePlusDistance = splitted[1];
+        String[] separe = typeRoutePlusDistance.split("&");
+        String typeRoute = separe[0];
+        System.out.println( typeRoute);
+        String distance = separe[1];
+        System.out.println( distance);
+
+       //graph.ajouterArete();
 
 
-   /*  public void split3(String reste){
-         String[] r = reste.split ("");
-
-     }*/
-
-
-/*
-     private String splitNoeudPrincipal(String line ){
-         String[] splitted = line.split(";;");
-         line = Arrays.toString(splitted);
-
-        for(int i=0; i<splitted.length; i++){
-             System.out.println(splitted[i]);
-         }
-         return line;
-     }
-     private String splitCouple(String line){
-         String[] splitted = line.split(";");
-         line = Arrays.toString(splitted);
-         for(int i=0; i<splitted.length; i++){
-             System.out.println(splitted[i]);
-         }
-         return line;
-     }
-    private String splitNomDestination(String line){
-        String[] splitted = line.split(":");
-        line = Arrays.toString(splitted);
-        for(int i=0; i<splitted.length; i++){
-            System.out.println(splitted[i]);
-        }
-        return line;
     }
-    private String splitArete(String line){
-        String[] splitted = line.split(",");
-        line = Arrays.toString(splitted);
-        for(int i=0; i<splitted.length; i++){
-            System.out.println(splitted[i]);
-        }
-        return line;
-    }
-    private String splitReste(String line){
-        String[] splitted = line.split("&");
-        line = Arrays.toString(splitted);
-        for(int i=0; i<splitted.length; i++){
-            System.out.println(splitted[i]);
-        }
-        return line;
-    }
-*/
+
 
     private TypeLieu valueOfTypeLieu(String typeLieu) {
         if (typeLieu.equals("V")) {

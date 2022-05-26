@@ -14,10 +14,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class GraphTest {
-    String source = "source";
-    String destination = "destination";
-    float distance = 5;
-
     Graph graph;
 
     @BeforeEach
@@ -36,22 +32,22 @@ public class GraphTest {
 
     @Test
     void ajouterAreteWithStringNodes() {
-        graph.ajouterNoeud(source, TypeLieu.RESTAURANT);
-        graph.ajouterNoeud(destination, TypeLieu.CENTRE_LOISIR);
-        graph.ajouterArete(source, TypeRoute.AUTOROUTE, distance, destination);
+        graph.ajouterNoeud("source", TypeLieu.RESTAURANT);
+        graph.ajouterNoeud("destination", TypeLieu.CENTRE_LOISIR);
+        graph.ajouterArete("source", TypeRoute.AUTOROUTE, 5, "destination");
 
-        int result = graph.getNoeud(source).getAretes().size();
+        int result = graph.getNoeud("source").getAretes().size();
         assertThat(result).isEqualTo(1);
     }
 
     @Test
     void ajouterAreteWithNoeudNodes() {
-        graph.ajouterNoeud(source, TypeLieu.RESTAURANT);
-        graph.ajouterNoeud(destination, TypeLieu.RESTAURANT);
+        graph.ajouterNoeud("source", TypeLieu.RESTAURANT);
+        graph.ajouterNoeud("destination", TypeLieu.RESTAURANT);
 
-        graph.ajouterArete(graph.getNoeud(source), TypeRoute.AUTOROUTE, distance, graph.getNoeud(destination));
+        graph.ajouterArete(graph.getNoeud("source"), TypeRoute.AUTOROUTE, 5, graph.getNoeud("destination"));
 
-        int result = graph.getNoeud(source).getAretes().size();
+        int result = graph.getNoeud("source").getAretes().size();
         assertThat(result).isEqualTo(1);
     }
 

@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class LoadGraphFromCSV {
-    private final HashMap<String, HashMap<String,String>> stockageStructure =  new HashMap<>();
+    private final ArrayList<String> stockageAretes =  new ArrayList<>();
     private Graph graph;
 
     public LoadGraphFromCSV(Graph graph) {
@@ -22,6 +22,8 @@ public class LoadGraphFromCSV {
                 split(line);
                // System.out.println(line);
             }
+
+            ajouterAretes();
         } catch (IOException e) {
             graph = null;
             System.out.println("Erreur lors du chargement du graphe.");
@@ -33,39 +35,48 @@ public class LoadGraphFromCSV {
     public void split (String line) {
         String[] splitted = line.split( ";;");
         String nomDUNoeud = splitted[0].split("&")[0];
-        System.out.println(nomDUNoeud);
         String typelieu = splitted[0].split("&")[1];
-        System.out.println(typelieu);
         graph.ajouterNoeud(nomDUNoeud, valueOfTypeLieu(typelieu));
-        stockageStructure.put(nomDUNoeud, new HashMap<>());
-        splitArete(splitted[1]);
+        splitAretes(splitted[1], nomDUNoeud);
     }
 
-    public void splitArete(String arete){
-        String[] splitted = arete.split(":");
-        String noeudArrivee = splitted[0];
-        System.out.println( noeudArrivee);
-        String typeRoutePlusDistance = splitted[1];
-        String[] separe = typeRoutePlusDistance.split("&");
-        String typeRoute = separe[0];
-        System.out.println( typeRoute);
-        String distance = separe[1];
-        System.out.println( distance);
+    public void splitAretes(String aretes, String noeudDepart){
+        String[] splitted = aretes.split(";");
 
-       //graph.ajouterArete();
+       for(int i = 0; i < splitted.length; i++) {
+            String[] separe = splitted[i].split(":");
+            String nomNoeudArrivee = separe[0];
+            String[] arete = separe[1].split(",");
 
+           for(int j=0; j < arete.length; j++){
+               String[] typeRoutePlusDistance = arete[j].split("&") ;
+               String distance = typeRoutePlusDistance[1];
+               String typeRoute = typeRoutePlusDistance[0];
 
+               stockageAretes.add(noeudDepart + "##" + typeRoute + "##" + distance + "##" + nomNoeudArrivee);
+           }
+       }
     }
+
+
+    public void ajouterAretes() {
+        for (int i = 0; i < stockageAretes.size(); i++) {
+            String[] arete = stockageAretes.get(i).split("##");
+
+            graph.ajouterArete(arete[0], valueOfTypeRoute(arete[1]), Float.parseFloat(arete[2]), arete[3]);
+        }
+    }
+//
 
 
     private TypeLieu valueOfTypeLieu(String typeLieu) {
-        if (typeLieu.equals("V")) {
+        if (typeLieu.compareTo("V") == 0) {
             return TypeLieu.VILLE;
         }
-        if (typeLieu.equals("C")) {
+        if (typeLieu.compareTo("C") == 0) {
             return TypeLieu.CENTRE_LOISIR;
         }
-        if (typeLieu.equals("R")) {
+        if (typeLieu.compareTo("R") == 0) {
             return TypeLieu.RESTAURANT;
         }
 
@@ -73,13 +84,13 @@ public class LoadGraphFromCSV {
     }
 
     private TypeRoute valueOfTypeRoute(String typeRoute) {
-        if (typeRoute.equals("D")) {
+        if (typeRoute.compareTo("D") == 0) {
             return TypeRoute.DEPARTEMENTALE;
         }
-        if (typeRoute.equals("A")) {
+        if (typeRoute.compareTo("A") == 0) {
             return TypeRoute.AUTOROUTE;
         }
-        if (typeRoute.equals("N")) {
+        if (typeRoute.compareTo("N") == 0) {
             return TypeRoute.NATIONALE;
         }
 

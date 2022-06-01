@@ -3,7 +3,7 @@ package com.risa.graphicinterface.screensmanager.screens;
 import com.risa.graph.Noeud;
 import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
-import com.risa.graphicinterface.screensmanager.actions.zerodistance.*;
+import com.risa.graphicinterface.screensmanager.actions.onedistance.*;
 import com.risa.graphicinterface.screensmanager.customcomponent.EdgesListModel;
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
@@ -38,7 +38,7 @@ public class OneDistanceScreen extends JPanel {
     private void buildScreen() {
         add(ComponentsGenerator.verticalGlue(50));
 
-        add(ComponentsGenerator.jLabel("Selectonnez un noeud pour aficher ses voisins : ", true));
+        add(ComponentsGenerator.jLabel("Selectonnez un noeud pour aficher ses voisins : ", true, true));
 
         add(ComponentsGenerator.verticalGlue(20));
 
@@ -50,7 +50,7 @@ public class OneDistanceScreen extends JPanel {
         add(ComponentsGenerator.jButton("Analyser", true, new ActionDisplayNodeInformations(this)));
 
         add(ComponentsGenerator.verticalGlue(15));
-        add(ComponentsGenerator.jLabel("Filtres (re-analyser pour reinitialiser)", true));
+        add(ComponentsGenerator.jLabel("Filtrer par type de voisins (re-analyser pour reinitialiser) :", true, true));
 
         JPanel jPanel = new JPanel();
         jPanel.setMaximumSize(new Dimension(10000, 100));
@@ -67,7 +67,7 @@ public class OneDistanceScreen extends JPanel {
 
         add(ComponentsGenerator.verticalGlue(100));
 
-        add(ComponentsGenerator.jLabel("Selectionnez une arete pour voir les neouds qui relie :", true));
+        add(ComponentsGenerator.jLabel("Selectionnez une arete pour voir les noeuds qu'il relie :", true, true));
 
         add(ComponentsGenerator.verticalGlue(20));
 

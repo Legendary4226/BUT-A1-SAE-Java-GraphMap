@@ -64,7 +64,14 @@ public class Noeud {
 
     @Override
     public String toString() {
-        return "[" + typeLieu.toString() + "] " + nom;
+        String toReturn = "";
+
+        if (typeLieu != null) {
+            toReturn += "[" + typeLieu + "] ";
+        }
+
+        toReturn += nom;
+        return toReturn;
     }
 
     /**

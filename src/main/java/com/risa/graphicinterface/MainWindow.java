@@ -30,7 +30,8 @@ public class MainWindow extends JFrame {
         wkMatrix = null;
 
         setTitle("Test");
-        setSize(1200, 850);
+        setSize(1300, 900);
+        setMinimumSize(new Dimension(1300, 900));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(buildMainPanel());

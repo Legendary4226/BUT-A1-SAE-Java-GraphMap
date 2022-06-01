@@ -41,6 +41,23 @@ public class ComponentsGenerator {
         return label;
     }
 
+    public static JLabel jLabel(String text, boolean centered, boolean bold) {
+        JLabel label = new JLabel(text);
+
+        if (centered) {
+            label.setAlignmentX(CENTER_ALIGNMENT);
+        }
+        if (bold) {
+            label.setFont(new Font(
+                    label.getFont().getFontName(),
+                    Font.BOLD,
+                    label.getFont().getSize()
+            ));
+        }
+
+        return label;
+    }
+
     /**
      * Créé un JButton avec un texte donné, et automatiquement centré celon centered.
      * Et avec un ActionListener facultatif.

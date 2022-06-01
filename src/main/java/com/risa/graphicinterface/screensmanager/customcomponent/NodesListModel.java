@@ -110,6 +110,10 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
 
         emptyAll();
         fill(filteredNodes);
+
+        if (filteredNodes.isEmpty()) {
+            addNode(new Noeud("Aucun", null));
+        }
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.risa.graphicinterface.screensmanager.screens;
 
 import com.risa.graphicinterface.generator.ComponentsGenerator;
 import com.risa.graphicinterface.screensmanager.ScreensManager;
-import com.risa.graphicinterface.screensmanager.actions.onedistance.ActionTwoDistanceNodes;
+import com.risa.graphicinterface.screensmanager.actions.twodistance.ActionTwoDistanceNodes;
 import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 
 import javax.swing.*;
@@ -26,6 +26,10 @@ public class TwoDistanceScreen extends JPanel {
 
     private void buildPanel() {
         add(ComponentsGenerator.verticalGlue(50));
+
+        add(ComponentsGenerator.jLabel("Selectionner deux sites pour savoir si ils sont a deux distance :", true, true));
+
+        add(ComponentsGenerator.verticalGlue(25));
 
         add(ComponentsGenerator.jLabel("Noeud 1", true));
         add(ComponentsGenerator.customNodesComboBox(true, selectorOne));

@@ -1,7 +1,6 @@
-package com.risa.graphicinterface.screensmanager.actions.zerodistance;
+package com.risa.graphicinterface.screensmanager.actions.onedistance;
 
 import com.risa.graph.Noeud;
-import com.risa.graphicinterface.screensmanager.ScreensManager;
 import com.risa.graphicinterface.screensmanager.screens.OneDistanceScreen;
 
 import javax.swing.*;

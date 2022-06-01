@@ -18,7 +18,7 @@ public class FileChooseScreen extends JPanel {
         super();
 
         this.screensManager = screensManager;
-        this.loadState = ComponentsGenerator.jLabel("decharge", false);
+        this.loadState = ComponentsGenerator.jLabel("decharge", false, true);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -26,7 +26,8 @@ public class FileChooseScreen extends JPanel {
     }
 
     private void buildScreen() {
-        add(ComponentsGenerator.jLabel("Choisir un fichier :", true));
+        add(ComponentsGenerator.verticalGlue(20));
+        add(ComponentsGenerator.jLabel("Pour commencer il faut choisir un fichier :", true, true));
 
         fileChooser = new JFileChooser(System.getProperty("user.dir") + "\\csv");
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -41,14 +42,15 @@ public class FileChooseScreen extends JPanel {
                 actionSelectFile
         );
         add(validation);
-
+        add(ComponentsGenerator.verticalGlue(25));
         add(buildIsLoaded());
+        add(ComponentsGenerator.verticalGlue(25));
     }
 
     private JPanel buildIsLoaded() {
         JPanel jPanel = new JPanel();
 
-        jPanel.add(ComponentsGenerator.jLabel("Etat de chargement du graphe : ", false));
+        jPanel.add(ComponentsGenerator.jLabel("Etat de chargement du graphe : ", false, true));
         loadState.setForeground(Color.DARK_GRAY);
         jPanel.add(loadState);
 

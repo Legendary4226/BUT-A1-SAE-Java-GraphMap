@@ -1,4 +1,4 @@
-package com.risa.graphicinterface.screensmanager.actions.onedistance;
+package com.risa.graphicinterface.screensmanager.actions.twodistance;
 
 import com.risa.functionality.way.neighbors.XDistanceSite;
 import com.risa.graph.Noeud;

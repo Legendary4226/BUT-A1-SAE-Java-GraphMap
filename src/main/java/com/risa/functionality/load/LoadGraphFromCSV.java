@@ -10,45 +10,11 @@ public class LoadGraphFromCSV {
     private final ArrayList<String> saveEdges =  new ArrayList<>();
     private final Graph graph;
 
-    private int nbEdges = 0;
-
     public LoadGraphFromCSV(Graph graph) {
         this.graph = graph;
     }
 
     public void load(File file) throws LoadFileExceptions {
-        /*graph.ajouterNoeud("Dakar", TypeLieu.VILLE);
-        graph.ajouterNoeud("La Saint Louisienne", TypeLieu.VILLE);
-        graph.ajouterNoeud("Lac Rose", TypeLieu.VILLE);
-        graph.ajouterNoeud("Village des Tortues", TypeLieu.VILLE);
-        graph.ajouterNoeud("Les délices du Baol", TypeLieu.VILLE);
-        graph.ajouterNoeud("Thiès", TypeLieu.VILLE);
-        graph.ajouterNoeud("Kébémer", TypeLieu.VILLE);
-        graph.ajouterNoeud("Saint-Louis", TypeLieu.VILLE);
-        graph.ajouterNoeud("Le Tournedos", TypeLieu.VILLE);
-        graph.ajouterNoeud("Nouakchott", TypeLieu.VILLE);
-        graph.ajouterNoeud("Aousserd", TypeLieu.VILLE);
-        graph.ajouterNoeud("Laâyoune", TypeLieu.VILLE);
-        graph.ajouterNoeud("La Crêperie de Marrakech", TypeLieu.VILLE);
-        graph.ajouterNoeud("Marrakech", TypeLieu.VILLE);
-        graph.ajouterNoeud("Rabat", TypeLieu.VILLE);
-        graph.ajouterNoeud("Fès", TypeLieu.VILLE);
-        graph.ajouterNoeud("Madrid", TypeLieu.VILLE);
-        graph.ajouterNoeud("Parc d'Attraction de Madrid", TypeLieu.VILLE);
-        graph.ajouterNoeud("Grenade", TypeLieu.VILLE);
-        graph.ajouterNoeud("Barcelone", TypeLieu.VILLE);
-        graph.ajouterNoeud("Marseille", TypeLieu.VILLE);
-        graph.ajouterNoeud("Valence", TypeLieu.VILLE);
-        graph.ajouterNoeud("L'Ardoise Bleue", TypeLieu.VILLE);
-        graph.ajouterNoeud("Lyon", TypeLieu.VILLE);
-        graph.ajouterNoeud("Parc de la Tête d'Or", TypeLieu.VILLE);
-        graph.ajouterNoeud("Chambéry", TypeLieu.VILLE);
-        graph.ajouterNoeud("Station de Sky de Sainte-Foy", TypeLieu.VILLE);
-        graph.ajouterNoeud("Les Marquises", TypeLieu.VILLE);
-        graph.ajouterNoeud("Le repaire des écureuils", TypeLieu.VILLE);
-        graph.ajouterNoeud("Bourg Saint Maurice", TypeLieu.VILLE);*/
-
-
         String lineRead;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             while ((lineRead = bufferedReader.readLine()) != null) {
@@ -56,17 +22,12 @@ public class LoadGraphFromCSV {
             }
 
             parseEdges();
-
-            HashMap<String, Integer> count = new HashMap<>();
-            for (Arete arete : graph.getAretes()) {
-
-            }
         } catch (IOException e) {
             throw new LoadFileExceptions(1);
         }
     }
 
-    private void parseLine(String line) {
+    private void parseLine(String line) throws LoadFileExceptions {
         String[] nodeAndEdges = line.split(";;");
 
         String mainNodeName = parseNode(nodeAndEdges[0]);
@@ -74,7 +35,7 @@ public class LoadGraphFromCSV {
         saveEdges(nodeAndEdges[1], mainNodeName);
     }
 
-    private String parseNode(String node) {
+    private String parseNode(String node) throws LoadFileExceptions {
         String[] nameAndTypeLieu = node.split("&");
 
         graph.ajouterNoeud(nameAndTypeLieu[0], valueOfTypeLieu(nameAndTypeLieu[1]));
@@ -88,7 +49,7 @@ public class LoadGraphFromCSV {
         }
     }
 
-    public void parseEdges() {
+    public void parseEdges() throws LoadFileExceptions {
         for (String element : saveEdges) {
             String[] edges = element.split("///");
             String mainNodeName = edges[0];
@@ -104,58 +65,15 @@ public class LoadGraphFromCSV {
         }
     }
 
-    public void addEdges(String mainNodeName, String edges, String destination) {
+    public void addEdges(String mainNodeName, String edges, String destination) throws LoadFileExceptions {
         for (String typeRouteAndDistance : edges.split(",")) {
             String[] edge = typeRouteAndDistance.split("&");
 
             graph.ajouterArete(mainNodeName, valueOfTypeRoute(edge[0]), Float.parseFloat(edge[1]), destination);
-            nbEdges++;
         }
     }
 
-
-
-    /*
-    public void split(String line) {
-        String[] splitted = line.split( ";;");
-        String nomDUNoeud = splitted[0].split("&")[0];
-        String typelieu = splitted[0].split("&")[1];
-        graph.ajouterNoeud(nomDUNoeud, valueOfTypeLieu(typelieu));
-        splitAretes(splitted[1], nomDUNoeud);
-    }
-
-    public void splitAretes(String aretes, String noeudDepart){
-        String[] splitted = aretes.split(";");
-
-        for (String s : splitted) {
-            String[] separe = s.split(":");
-            String nomNoeudArrivee = separe[0];
-            String[] arete = separe[1].split(",");
-
-            for (String value : arete) {
-                String[] typeRoutePlusDistance = value.split("&");
-                String distance = typeRoutePlusDistance[1];
-                String typeRoute = typeRoutePlusDistance[0];
-
-                stockageAretes.add(noeudDepart + "##" + typeRoute + "##" + distance + "##" + nomNoeudArrivee);
-            }
-        }
-    }
-
-
-    public void ajouterAretes() {
-        System.out.println("IL Y A : " + stockageAretes.size() + " ARETES !!!!!!!!!!!!!!!!");
-
-        for (String stockageArete : stockageAretes) {
-            String[] arete = stockageArete.split("##");
-
-            graph.ajouterArete(arete[0], valueOfTypeRoute(arete[1]), Float.parseFloat(arete[2]), arete[3]);
-        }
-    }
-    */
-
-
-    private TypeLieu valueOfTypeLieu(String typeLieu) {
+    private TypeLieu valueOfTypeLieu(String typeLieu) throws LoadFileExceptions {
         TypeLieu parsed = null;
 
         if (typeLieu.compareTo("V") == 0) {
@@ -168,10 +86,14 @@ public class LoadGraphFromCSV {
             parsed = TypeLieu.RESTAURANT;
         }
 
+        if (parsed == null) {
+            throw new LoadFileExceptions(2);
+        }
+
         return parsed;
     }
 
-    private TypeRoute valueOfTypeRoute(String typeRoute) {
+    private TypeRoute valueOfTypeRoute(String typeRoute) throws LoadFileExceptions {
         TypeRoute parsed = null;
 
         if (typeRoute.compareTo("D") == 0) {
@@ -182,6 +104,10 @@ public class LoadGraphFromCSV {
         }
         if (typeRoute.compareTo("N") == 0) {
             parsed = TypeRoute.NATIONALE;
+        }
+
+        if (parsed == null) {
+            throw new LoadFileExceptions(2);
         }
 
         return parsed;

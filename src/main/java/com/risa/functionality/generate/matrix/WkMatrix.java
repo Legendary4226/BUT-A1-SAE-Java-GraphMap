@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 public class WkMatrix extends AdjacencyMatrix {
     private final HashMap<String, HashMap<String, DistanceNode>> wkMatrix;
+
     public WkMatrix(Graph graph) {
         super(graph);
 
@@ -87,7 +88,7 @@ public class WkMatrix extends AdjacencyMatrix {
         Float wkToCheck = getMatrixValue(row, column);
         DistanceNode wkToCheckDN = getDistanceNode(row, column);
 
-        if (wkColumn + wkRow <= wkToCheck) {
+        if (wkColumn + wkRow < wkToCheck) {
             wkToCheckDN.setDistance(wkColumn + wkRow);
             wkToCheckDN.setNode(
                     getDistanceNode(colomnRowNumber, column).getNode()

@@ -50,6 +50,9 @@ public class Arete {
             identifier += String.valueOf(destination.hashCode());
         }
 
+        identifier += typeRoute;
+        identifier += distance;
+
         return identifier;
     }
 

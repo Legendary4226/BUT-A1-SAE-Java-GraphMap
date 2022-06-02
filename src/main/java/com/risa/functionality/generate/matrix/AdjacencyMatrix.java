@@ -13,7 +13,7 @@ public class AdjacencyMatrix {
 
     public AdjacencyMatrix(Graph graph) {
         matrix = new HashMap<>();
-        keys = new ArrayList<>();
+        keys = new ArrayList<>(graph.getNoeuds().keySet());
 
         genAdjacencyMatrixFromGraph(graph);
     }
@@ -48,11 +48,9 @@ public class AdjacencyMatrix {
 
     private void genAdjacencyMatrixFromGraph(Graph graph) {
         // Initialize empty Hashmap matrix
-        for (String nodeName : graph.getNoeuds().keySet()) {
-            keys.add(nodeName);
-
+        for (String nodeName : keys) {
             matrix.put(nodeName, new HashMap<String, Float>());
-            for (String nodeName2 : graph.getNoeuds().keySet()) {
+            for (String nodeName2 : keys) {
                 matrix.get(nodeName).put(nodeName2, Float.POSITIVE_INFINITY);
             }
         }

@@ -102,7 +102,7 @@ public class ComponentsGenerator {
     }
 
     /**
-     *
+     *Créé une JComboBox centrée celon centered et permettant lui affecter un model.
      * @param centered si le Composant doit être centré
      * @param model le model ou null
      * @return JComboBox
@@ -120,5 +120,24 @@ public class ComponentsGenerator {
         }
 
         return comboBox;
+    }
+
+    /**
+     * Créé un JTextArea centré en fonction de centered et ayant le word-wrapping activé.
+     * @param text test
+     * @return JTextArea
+     */
+    public static JTextArea jTextArea(String text, boolean centered) {
+        JTextArea jTextArea = new JTextArea(text);
+
+        jTextArea.setLineWrap(true);
+        jTextArea.setWrapStyleWord(true);
+        jTextArea.setEditable(false);
+
+        if (centered) {
+            jTextArea.setAlignmentX(CENTER_ALIGNMENT);
+        }
+
+        return jTextArea;
     }
 }

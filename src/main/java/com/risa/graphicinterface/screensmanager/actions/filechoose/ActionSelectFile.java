@@ -47,8 +47,6 @@ public class ActionSelectFile extends AbstractAction {
             screensManager.getGraphUI().loadVisualFromSAEGraph(screensManager.getGraphSAE());
             screensManager.setWkMatrix(new WkMatrix(screensManager.getGraphSAE()));
 
-            System.out.println(screensManager.getWkMatrix());
-
             fileChooseScreen.getLoadState().setForeground(Color.BLUE);
             fileChooseScreen.getLoadState().setText("charge");
 

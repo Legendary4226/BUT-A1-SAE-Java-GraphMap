@@ -28,7 +28,7 @@ public class ActionFindShortestWay extends AbstractAction {
         Noeud node2 = (Noeud) bonusScreen.getSelectorTwo().getSelectedItem();
 
         if (node1 != null && node2 != null) {
-            JLabel answerShortestWay = bonusScreen.getAnswerShortestWay();
+            JTextArea answerShortestWay = bonusScreen.getAnswerShortestWay();
 
             FindShortestWay shortestWay = new FindShortestWay();
             ArrayList<String> way = shortestWay.findShortestWay(

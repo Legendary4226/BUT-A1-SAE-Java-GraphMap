@@ -13,7 +13,7 @@ public class Stylesheets {
     private String GraphStyle() {
         return """
                 graph {
-                    padding: 50px;
+                    padding: 20px;
                     fill-color: backgroundColor;
                 }
                 """
@@ -26,8 +26,8 @@ public class Stylesheets {
                     size: 20px;
                     fill-color: #119DA4;
                     text-alignment: above;
-                    text-size: 15;
-                    text-padding: 6px, 0px;
+                    text-size: 10;
+                    text-padding: 4px, 0px;
                     text-style: bold;
                     text-color: #F2F7F2;
                     text-background-color: #493732;
@@ -74,13 +74,13 @@ public class Stylesheets {
         return """
                 edge {
                     fill-color: edgesColor;
-                    text-size: 15;
+                    text-size: 9;
                     text-style: bold;
                     text-color: #F2F7F2;
                     text-alignment: above;
                     text-background-mode: rounded-box;
                     text-background-color: #493732;
-                    text-padding: 4px, 0px;
+                    text-padding: 2px, 0px;
                 }
                 
                 edge:selected {

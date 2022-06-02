@@ -1,6 +1,7 @@
 package com.risa.graphicinterface.screensmanager.actions.filechoose;
 
 import com.risa.functionality.generate.matrix.WkMatrix;
+import com.risa.functionality.load.LoadFileExceptions;
 import com.risa.functionality.load.LoadGraphFromCSV;
 import com.risa.graph.Graph;
 import com.risa.graph.TypeLieu;
@@ -30,47 +31,19 @@ public class ActionSelectFile extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         File file = fileChooseScreen.getFileChooser().getSelectedFile();
-        Graph graphSAE = null;
-        graphSAE = new Graph(); // TEMPORARLY
 
         if (file != null) {
-            LoadGraphFromCSV load = new LoadGraphFromCSV(graphSAE);
-            graphSAE = load.load(file);
+            LoadGraphFromCSV load = new LoadGraphFromCSV(screensManager.getGraphSAE());
+
+            try {
+                load.load(file);
+            } catch (LoadFileExceptions ignored) {
+
+            }
+
         }
 
-        if (graphSAE != null) {
-            screensManager.getGraphSAE().ajouterNoeud("a", TypeLieu.VILLE);
-            screensManager.getGraphSAE().ajouterNoeud("b", TypeLieu.RESTAURANT);
-            screensManager.getGraphSAE().ajouterNoeud("c", TypeLieu.VILLE);
-            screensManager.getGraphSAE().ajouterNoeud("d", TypeLieu.RESTAURANT);
-            screensManager.getGraphSAE().ajouterNoeud("e", TypeLieu.CENTRE_LOISIR);
-            screensManager.getGraphSAE().ajouterNoeud("f", TypeLieu.VILLE);
-            screensManager.getGraphSAE().ajouterArete("a", TypeRoute.DEPARTEMENTALE, 10, "b");
-            screensManager.getGraphSAE().ajouterArete("b", TypeRoute.DEPARTEMENTALE, 10, "a");
-            screensManager.getGraphSAE().ajouterArete("a", TypeRoute.AUTOROUTE, 15, "b");
-            screensManager.getGraphSAE().ajouterArete("b", TypeRoute.AUTOROUTE, 15, "a");
-            screensManager.getGraphSAE().ajouterArete("a", TypeRoute.AUTOROUTE, 5, "e");
-            screensManager.getGraphSAE().ajouterArete("e", TypeRoute.AUTOROUTE, 5, "a");
-            screensManager.getGraphSAE().ajouterArete("b", TypeRoute.DEPARTEMENTALE, 1, "c");
-            screensManager.getGraphSAE().ajouterArete("c", TypeRoute.DEPARTEMENTALE, 1, "b");
-            screensManager.getGraphSAE().ajouterArete("b", TypeRoute.NATIONALE, 2, "e");
-            screensManager.getGraphSAE().ajouterArete("e", TypeRoute.NATIONALE, 2, "b");
-            screensManager.getGraphSAE().ajouterArete("c", TypeRoute.AUTOROUTE, 4, "d");
-            screensManager.getGraphSAE().ajouterArete("d", TypeRoute.AUTOROUTE, 4, "c");
-            screensManager.getGraphSAE().ajouterArete("d", TypeRoute.DEPARTEMENTALE, 6, "c");
-            screensManager.getGraphSAE().ajouterArete("c", TypeRoute.DEPARTEMENTALE, 6, "d");
-            screensManager.getGraphSAE().ajouterArete("d", TypeRoute.AUTOROUTE, 7, "a");
-            screensManager.getGraphSAE().ajouterArete("a", TypeRoute.AUTOROUTE, 7, "d");
-            screensManager.getGraphSAE().ajouterArete("e", TypeRoute.AUTOROUTE, 9, "c");
-            screensManager.getGraphSAE().ajouterArete("c", TypeRoute.AUTOROUTE, 9, "e");
-            screensManager.getGraphSAE().ajouterArete("e", TypeRoute.NATIONALE, 2, "d");
-            screensManager.getGraphSAE().ajouterArete("d", TypeRoute.NATIONALE, 2, "e");
-            screensManager.getGraphSAE().ajouterArete("e", TypeRoute.NATIONALE, 3, "b");
-            screensManager.getGraphSAE().ajouterArete("b", TypeRoute.NATIONALE, 3, "e");
-            screensManager.getGraphSAE().ajouterArete("c", TypeRoute.NATIONALE, 3, "f");
-            screensManager.getGraphSAE().ajouterArete("f", TypeRoute.NATIONALE, 3, "c");
-
-
+        if (screensManager.getGraphSAE() != null) {
             screensManager.getGraphUI().loadVisualFromSAEGraph(screensManager.getGraphSAE());
             screensManager.setWkMatrix(new WkMatrix(screensManager.getGraphSAE()));
 
@@ -82,7 +55,7 @@ public class ActionSelectFile extends AbstractAction {
             screensManager.initialize();
         }
 
-        if (file == null || graphSAE == null) {
+        if (file == null || screensManager.getGraphSAE() == null) {
             fileChooseScreen.getLoadState().setForeground(Color.RED);
             fileChooseScreen.getLoadState().setText("erreur lors du chargement");
             JOptionPane.showMessageDialog(fileChooseScreen, "Merci de selectionner un fichier !");

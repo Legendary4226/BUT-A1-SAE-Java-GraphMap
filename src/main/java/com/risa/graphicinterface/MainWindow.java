@@ -12,7 +12,6 @@ import java.awt.*;
 
 public class MainWindow extends JFrame {
     private final com.risa.graph.Graph graphSAE;
-    private WkMatrix wkMatrix;
     private final GraphSynced graphUI;
     public MainWindow() {
         super();
@@ -27,7 +26,6 @@ public class MainWindow extends JFrame {
         this.graphSAE = new Graph();
         graphUI = new GraphSynced(new MultiGraph("Graph"), graphSAE);
         graphUI.loadVisualFromSAEGraph(graphSAE);
-        wkMatrix = null;
 
         setTitle("Test");
         setSize(1300, 900);
@@ -46,7 +44,7 @@ public class MainWindow extends JFrame {
 
 
         jSplitPane.setLeftComponent((Component) graphUI.getView());
-        jSplitPane.setRightComponent(new ScreensManager(graphUI, graphSAE, wkMatrix));
+        jSplitPane.setRightComponent(new ScreensManager(graphUI, graphSAE));
         jSplitPane.setDividerSize(1);
         jSplitPane.setResizeWeight(1);
         jSplitPane.setEnabled(false);

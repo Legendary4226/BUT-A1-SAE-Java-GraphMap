@@ -17,12 +17,12 @@ public class ScreensManager extends JSplitPane {
     private final JPanel screensContainer;
     private final CardLayout cardLayout;
 
-    public ScreensManager(GraphSynced graphUI, com.risa.graph.Graph graphSAE, WkMatrix wkMatrix) {
+    public ScreensManager(GraphSynced graphUI, com.risa.graph.Graph graphSAE) {
         super(JSplitPane.VERTICAL_SPLIT);
 
         this.graphUI = graphUI;
         this.graphSAE = graphSAE;
-        this.wkMatrix = wkMatrix;
+        this.wkMatrix = null;
         this.screensButtonMenu = new ScreensButtonMenu();
         cardLayout = new CardLayout();
         screensContainer = new JPanel();

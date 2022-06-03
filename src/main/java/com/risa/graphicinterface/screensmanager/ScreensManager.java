@@ -52,7 +52,7 @@ public class ScreensManager extends JSplitPane {
      * Permet d'activer l'interface après qu'un graphe ai été chargé.
      */
     public void initialize() {
-        screensContainer.add(new ZeroDistanceScreen(), "2");
+        screensContainer.add(new ZeroDistanceScreen(this), "2");
         screensContainer.add(new OneDistanceScreen(this), "3");
         screensContainer.add(new TwoDistanceScreen(this), "4");
         screensContainer.add(new ComparisonsScreen(this), "5");

@@ -17,17 +17,17 @@ public class BonusScreen extends JPanel {
     private final ScreensManager screensManager;
     private final NodesListModel selectorOne;
     private final NodesListModel selectorTwo;
-    private final JLabel answerShortestWay;
+    private final JTextArea answerShortestWay;
     private final ArrayList<JComboBox<Noeud>> intermediarySites;
-    private final JLabel answerWayWithIntermediaries;
+    private final JTextArea answerWayWithIntermediaries;
 
     public BonusScreen(ScreensManager screensManager) {
         this.screensManager = screensManager;
         selectorOne = new NodesListModel();
         selectorTwo = new NodesListModel();
-        answerShortestWay = ComponentsGenerator.jLabel("", true);
+        answerShortestWay = ComponentsGenerator.jTextArea("", true);
         intermediarySites = new ArrayList<>();
-        answerWayWithIntermediaries = ComponentsGenerator.jLabel("", true);
+        answerWayWithIntermediaries = ComponentsGenerator.jTextArea("", true);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -95,7 +95,7 @@ public class BonusScreen extends JPanel {
         return selectorTwo;
     }
 
-    public JLabel getAnswerShortestWay() {
+    public JTextArea getAnswerShortestWay() {
         return answerShortestWay;
     }
 
@@ -103,7 +103,7 @@ public class BonusScreen extends JPanel {
         return intermediarySites;
     }
 
-    public JLabel getAnswerWayWithIntermediaries() {
+    public JTextArea getAnswerWayWithIntermediaries() {
         return answerWayWithIntermediaries;
     }
 }

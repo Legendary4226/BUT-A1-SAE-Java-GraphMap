@@ -29,4 +29,8 @@ public class FindShortestWay {
 
         return way;
     }
+
+    public float distanceOfShortestWay(WkMatrix wkMatrix, String from, String to) {
+        return wkMatrix.getDistanceNode(from, to).getDistance();
+    }
 }

@@ -13,7 +13,7 @@ public class Stylesheets {
     private String GraphStyle() {
         return """
                 graph {
-                    padding: 20px;
+                    padding: 40px;
                     fill-color: backgroundColor;
                 }
                 """
@@ -24,7 +24,6 @@ public class Stylesheets {
         return """
                 node {
                     size: 20px;
-                    fill-color: #119DA4;
                     text-alignment: above;
                     text-size: 10;
                     text-padding: 4px, 0px;
@@ -44,10 +43,6 @@ public class Stylesheets {
                     size: 25px;
                 }
                 
-                node.showed {
-                    fill-color: showedColor;
-                }
-                
                 node.city {
                     shape: rounded-box;
                     fill-color: citiesColor;
@@ -63,6 +58,10 @@ public class Stylesheets {
                     fill-color: leisureCentersColor;
                 }
                 
+                node.showed {
+                    fill-color: showedColor;
+                    size: 23px;
+                }
                 """
                 .replace("restaurantsColor", restaurantsColor)
                 .replace("citiesColor", citiesColor)

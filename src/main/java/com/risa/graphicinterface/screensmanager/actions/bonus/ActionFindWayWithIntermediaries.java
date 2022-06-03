@@ -5,6 +5,7 @@ import com.risa.graph.Noeud;
 import com.risa.graphicinterface.screensmanager.screens.BonusScreen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class ActionFindWayWithIntermediaries extends AbstractAction {
                     getSelections()
             );
 
+            bonusScreen.getAnswerWayWithIntermediaries().setForeground(Color.GREEN);
             bonusScreen.getAnswerWayWithIntermediaries().setText(
                     way.toString().replace("[", "<").replace("]", ">")
             );

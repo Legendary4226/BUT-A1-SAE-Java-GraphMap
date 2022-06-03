@@ -28,12 +28,17 @@ public class ActionFindShortestWay extends AbstractAction {
         Noeud node2 = (Noeud) bonusScreen.getSelectorTwo().getSelectedItem();
 
         if (node1 != null && node2 != null) {
-            JLabel answerShortestWay = bonusScreen.getAnswerShortestWay();
+            JTextArea answerShortestWay = bonusScreen.getAnswerShortestWay();
 
             FindShortestWay shortestWay = new FindShortestWay();
             ArrayList<String> way = shortestWay.findShortestWay(
                     bonusScreen.getScreensManager().getWkMatrix(),
                     node1.getNom(), node2.getNom()
+            );
+            float distanceShortestWay = shortestWay.distanceOfShortestWay(
+                    bonusScreen.getScreensManager().getWkMatrix(),
+                    node1.getNom(),
+                    node2.getNom()
             );
 
             if (way.size() == 0) {
@@ -41,11 +46,12 @@ public class ActionFindShortestWay extends AbstractAction {
                 answerShortestWay.setForeground(Color.ORANGE);
             }
             if (way.size() > 0) {
-                answerShortestWay.setText(way.toString().replace("[", "<").replace("]", ">"));
+                answerShortestWay.setText(
+                        way.toString().replace("[", "<").replace("]", ">")
+                        + "\n\nDistance a parcourir : " + distanceShortestWay + "km.");
                 answerShortestWay.setForeground(Color.GREEN);
 
                 bonusScreen.getScreensManager().getGraphUI().asyncColorizeGivenWay(way);
-
             }
         }
         if (node1 == null || node2 == null) {

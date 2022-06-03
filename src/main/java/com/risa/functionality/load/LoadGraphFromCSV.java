@@ -1,10 +1,14 @@
 package com.risa.functionality.load;
 
-import com.risa.graph.*;
+import com.risa.graph.Graph;
+import com.risa.graph.TypeLieu;
+import com.risa.graph.TypeRoute;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class LoadGraphFromCSV {
     private final ArrayList<String> saveEdges =  new ArrayList<>();
@@ -43,13 +47,13 @@ public class LoadGraphFromCSV {
         return nameAndTypeLieu[0];
     }
 
-    public void saveEdges(String edges, String mainNodeName) {
+    private void saveEdges(String edges, String mainNodeName) {
         for (String edge : edges.split(";")) {
             saveEdges.add(mainNodeName + "///" + edge);
         }
     }
 
-    public void parseEdges() throws LoadFileExceptions {
+    private void parseEdges() throws LoadFileExceptions {
         for (String element : saveEdges) {
             String[] edges = element.split("///");
             String mainNodeName = edges[0];
@@ -65,7 +69,7 @@ public class LoadGraphFromCSV {
         }
     }
 
-    public void addEdges(String mainNodeName, String edges, String destination) throws LoadFileExceptions {
+    private void addEdges(String mainNodeName, String edges, String destination) throws LoadFileExceptions {
         for (String typeRouteAndDistance : edges.split(",")) {
             String[] edge = typeRouteAndDistance.split("&");
 

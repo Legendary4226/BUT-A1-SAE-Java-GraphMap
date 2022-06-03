@@ -32,6 +32,25 @@ public class EdgeFilters {
     }
 
     /**
+     * Permet de trouver les arêtes entre un noeud source et de destination.
+     * @param source source
+     * @param destination destination
+     * @param graph graphe
+     * @return liste d'arêtes
+     */
+    public ArrayList<Arete> filterEdgesMatching(String source, String destination, Graph graph) {
+        ArrayList<Arete> result = new ArrayList<>();
+
+        for (Arete arete : graph.getAretes()) {
+            if (arete.getSource().getNom().equals(source) && arete.getDestination().getNom().equals(destination)) {
+                result.add(arete);
+            }
+        }
+
+        return result;
+    }
+
+    /**
      * Permet de filtrer des arêtes passé en paramètres selon un type de route.
      * @param egdes liste d'arêtes
      * @param filter filtre

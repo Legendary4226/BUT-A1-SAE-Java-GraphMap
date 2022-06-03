@@ -31,23 +31,23 @@ public class ActionSelectFile extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         File file = fileChooseScreen.getFileChooser().getSelectedFile();
+        boolean fileSuccesfullyLoaded = false;
 
         if (file != null) {
             LoadGraphFromCSV load = new LoadGraphFromCSV(screensManager.getGraphSAE());
 
             try {
                 load.load(file);
-            } catch (LoadFileExceptions ignored) {
-
+                fileSuccesfullyLoaded = true;
+            } catch (LoadFileExceptions loadFileExceptions) {
+                JOptionPane.showMessageDialog(screensManager, "Le fichier selectionne doit comporter des erreurs de syntaxe.");
             }
 
         }
 
-        if (screensManager.getGraphSAE() != null) {
+        if (fileSuccesfullyLoaded) {
             screensManager.getGraphUI().loadVisualFromSAEGraph(screensManager.getGraphSAE());
             screensManager.setWkMatrix(new WkMatrix(screensManager.getGraphSAE()));
-
-            System.out.println(screensManager.getWkMatrix());
 
             fileChooseScreen.getLoadState().setForeground(Color.BLUE);
             fileChooseScreen.getLoadState().setText("charge");
@@ -57,7 +57,7 @@ public class ActionSelectFile extends AbstractAction {
             screensManager.initialize();
         }
 
-        if (file == null || screensManager.getGraphSAE() == null) {
+        if (file == null) {
             fileChooseScreen.getLoadState().setForeground(Color.RED);
             fileChooseScreen.getLoadState().setText("erreur lors du chargement");
             JOptionPane.showMessageDialog(fileChooseScreen, "Merci de selectionner un fichier !");

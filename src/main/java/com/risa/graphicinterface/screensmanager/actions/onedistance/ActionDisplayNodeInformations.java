@@ -1,10 +1,12 @@
 package com.risa.graphicinterface.screensmanager.actions.onedistance;
 
 import com.risa.graph.Noeud;
+import com.risa.graphicinterface.graphstream.GraphSynced;
 import com.risa.graphicinterface.screensmanager.screens.OneDistanceScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class ActionDisplayNodeInformations extends AbstractAction {
     private final OneDistanceScreen oneDistanceScreen;
@@ -25,6 +27,15 @@ public class ActionDisplayNodeInformations extends AbstractAction {
         if (node != null) {
             oneDistanceScreen.getDisplayNeighbours().emptyAll();
             oneDistanceScreen.getDisplayNeighbours().fill(node.getNeibours());
+
+            GraphSynced graphSynced = oneDistanceScreen.getScreensManager().getGraphUI();
+            ArrayList<String> neighbours = new ArrayList<>();
+
+            for (Noeud destination : node.getNeibours()) {
+                neighbours.add(destination.getNom());
+            }
+
+            graphSynced.asyncColorizeNodeAndNeighbours(node.getNom(), neighbours);
         }
         if (node == null) {
             JOptionPane.showMessageDialog(oneDistanceScreen, "Il faut selectionner un noeud !");

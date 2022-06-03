@@ -35,17 +35,23 @@ public class ActionFindShortestWay extends AbstractAction {
                     bonusScreen.getScreensManager().getWkMatrix(),
                     node1.getNom(), node2.getNom()
             );
+            float distanceShortestWay = shortestWay.distanceOfShortestWay(
+                    bonusScreen.getScreensManager().getWkMatrix(),
+                    node1.getNom(),
+                    node2.getNom()
+            );
 
             if (way.size() == 0) {
                 answerShortestWay.setText("Il n'existe pas de plus court chemin entre les deux sites choisis.");
                 answerShortestWay.setForeground(Color.ORANGE);
             }
             if (way.size() > 0) {
-                answerShortestWay.setText(way.toString().replace("[", "<").replace("]", ">"));
+                answerShortestWay.setText(
+                        way.toString().replace("[", "<").replace("]", ">")
+                        + "\n\nDistance a parcourir : " + distanceShortestWay + "km.");
                 answerShortestWay.setForeground(Color.GREEN);
 
                 bonusScreen.getScreensManager().getGraphUI().asyncColorizeGivenWay(way);
-
             }
         }
         if (node1 == null || node2 == null) {

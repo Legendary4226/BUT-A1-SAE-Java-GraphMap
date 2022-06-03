@@ -86,11 +86,12 @@ public class GraphSynced {
                             noeud.getNom(),
                             arete.getDestination().getNom()
                     ).setAttributes(
-                            new HashMap<String, Object>() {
+                            new HashMap<>() {
                                 {
                                     put("typeroute", arete.getTypeRoute());
                                     put("distance", arete.getDistance());
                                     put("ui.label", arete.getTypeRoute() + " - " + arete.getDistance());
+                                    put("ui.class", "");
                                 }
                             }
                     );
@@ -109,6 +110,15 @@ public class GraphSynced {
     public void asyncColorizeGivenWay(ArrayList<String> way) {
         // Start the function asyncronously
         new Thread(() -> colorizeGivenWay(way)).start();
+    }
+
+    /**
+     * Colorie pour un noeud et ses voisins les noeuds concernés et les arêtes entre eux.
+     * @param node noeud principal
+     * @param neighbours ses voisins
+     */
+    public void asyncColorizeNodeAndNeighbours(String node, ArrayList<String> neighbours) {
+        new Thread(() -> colorizeNodeAndNeighbours(node, neighbours)).start();
     }
 
     /**
@@ -132,12 +142,11 @@ public class GraphSynced {
             uncolorEdges();
         }
 
-        int timeToSleep = 1300 / (way.size() - 1) / 2;
+        int timeToSleep = 1400 / (way.size() - 1) / 2;
 
         String areteID;
         for (int i = 0; i < way.size() - 1; ++i) {
-            graph.getNode(way.get(i)).setAttribute("ui.class", "showed");
-            colorizedNodes.add(way.get(i));
+            colorNode(way.get(i));
 
             sleepFor(timeToSleep);
 
@@ -156,13 +165,39 @@ public class GraphSynced {
             sleepFor(timeToSleep);
         }
 
-        graph.getNode(way.get(way.size() - 1)).setAttribute("ui.class", "showed");
-        colorizedNodes.add(way.get(way.size() - 1));
+        colorNode(way.get(way.size() - 1));
+    }
+
+    public void colorizeNodeAndNeighbours(String node, ArrayList<String> neighbours) {
+        uncolorNodes();
+        uncolorEdges();
+
+        EdgeFilters edgeFilters = new EdgeFilters();
+        colorNode(node);
+
+        for (String neighbour : neighbours) {
+            colorNode(neighbour);
+
+            ArrayList<Arete> edges = edgeFilters.filterEdgesMatching(node, neighbour, graphSAE);
+            for (Arete edge : edges) {
+                colorEdge(edge.getUniqueIdentifier());
+            }
+        }
     }
 
     private void uncolorNodes() {
         for (String node : colorizedNodes) {
-            graph.getNode(node).setAttribute("ui.class", "");
+            TypeLieu typeLieu = graphSAE.getNoeud(node).getTypeLieu();
+
+            if (typeLieu == TypeLieu.VILLE) {
+                graph.getNode(node).setAttribute("ui.class", "city");
+            }
+            if (typeLieu == TypeLieu.RESTAURANT) {
+                graph.getNode(node).setAttribute("ui.class", "restaurant");
+            }
+            if (typeLieu == TypeLieu.CENTRE_LOISIR) {
+                graph.getNode(node).setAttribute("ui.class", "leisurecenter");
+            }
         }
         colorizedNodes.clear();
     }
@@ -172,6 +207,24 @@ public class GraphSynced {
             graph.getEdge(edge).setAttribute("ui.class", "");
         }
         colorizedEdges.clear();
+    }
+
+    private void colorNode(String id) {
+        String classes = (String) graph.getNode(id).getAttribute("ui.class");
+
+        if (classes.length() == 0) {
+            graph.getNode(id).setAttribute("ui.class", "showed");
+            colorizedNodes.add(id);
+        }
+        if (classes.length() > 0) {
+            graph.getNode(id).setAttribute("ui.class", "showed," + classes);
+            colorizedNodes.add(id);
+        }
+    }
+
+    private void colorEdge(String id) {
+        graph.getEdge(id).setAttribute("ui.class", "showed");
+        colorizedEdges.add(id);
     }
 
     private void sleepFor(int timeInMilliseconds) {

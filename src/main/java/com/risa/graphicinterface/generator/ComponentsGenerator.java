@@ -133,6 +133,8 @@ public class ComponentsGenerator {
         jTextArea.setLineWrap(true);
         jTextArea.setWrapStyleWord(true);
         jTextArea.setEditable(false);
+        jTextArea.setMaximumSize(new Dimension(5000, 60));
+        jTextArea.setPreferredSize(jTextArea.getMaximumSize());
 
         if (centered) {
             jTextArea.setAlignmentX(CENTER_ALIGNMENT);

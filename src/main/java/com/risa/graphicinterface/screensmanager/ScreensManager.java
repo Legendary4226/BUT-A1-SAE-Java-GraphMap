@@ -57,7 +57,7 @@ public class ScreensManager extends JSplitPane {
         screensContainer.add(new TwoDistanceScreen(this), "4");
         screensContainer.add(new ComparisonsScreen(this), "5");
         screensContainer.add(new BonusScreen(this), "6");
-        screensContainer.add(new UIManagment(this), "7");
+        screensContainer.add(new ToolsAndHelp(this), "7");
 
         screensButtonMenu.enableAllExceptDisabled();
     }

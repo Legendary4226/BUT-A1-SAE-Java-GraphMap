@@ -36,6 +36,7 @@ public class ComponentsGenerator {
 
         if (centered) {
             label.setAlignmentX(CENTER_ALIGNMENT);
+            label.setHorizontalAlignment(SwingConstants.CENTER);
         }
 
         return label;
@@ -46,6 +47,7 @@ public class ComponentsGenerator {
 
         if (centered) {
             label.setAlignmentX(CENTER_ALIGNMENT);
+            label.setHorizontalAlignment(SwingConstants.CENTER);
         }
         if (bold) {
             label.setFont(new Font(
@@ -71,6 +73,7 @@ public class ComponentsGenerator {
 
         if (centered) {
             button.setAlignmentX(CENTER_ALIGNMENT);
+            button.setHorizontalAlignment(SwingConstants.CENTER);
         }
 
         if (abstractAction != null) {
@@ -133,7 +136,7 @@ public class ComponentsGenerator {
         jTextArea.setLineWrap(true);
         jTextArea.setWrapStyleWord(true);
         jTextArea.setEditable(false);
-        jTextArea.setMaximumSize(new Dimension(5000, 60));
+        jTextArea.setMaximumSize(new Dimension(5000, 100));
         jTextArea.setPreferredSize(jTextArea.getMaximumSize());
 
         if (centered) {

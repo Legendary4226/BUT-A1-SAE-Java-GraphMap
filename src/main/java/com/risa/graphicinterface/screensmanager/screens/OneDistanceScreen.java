@@ -17,6 +17,8 @@ public class OneDistanceScreen extends JPanel {
     private final EdgesListModel edgesSelector;
     private final  JLabel startNode;
     private final JLabel arrivalNode;
+    private final  JLabel edgeDistance;
+    private final JLabel edgeType;
 
     public OneDistanceScreen(ScreensManager screensManager) {
         this.screensManager = screensManager;
@@ -24,13 +26,12 @@ public class OneDistanceScreen extends JPanel {
         nodesSelector = new NodesListModel();
         edgesSelector = new EdgesListModel();
 
-        startNode = ComponentsGenerator.jLabel("", true);
-        arrivalNode = ComponentsGenerator.jLabel("", true);
+        startNode = ComponentsGenerator.jLabel("", true, true);
+        arrivalNode = ComponentsGenerator.jLabel("", true, true);
+        edgeDistance = ComponentsGenerator.jLabel("", true, true);
+        edgeType = ComponentsGenerator.jLabel("", true, true);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-        setAlignmentY(CENTER_ALIGNMENT);
-        setAlignmentX(CENTER_ALIGNMENT);
 
         buildScreen();
     }
@@ -63,6 +64,7 @@ public class OneDistanceScreen extends JPanel {
 
         JList<Noeud> jList = new JList<>(displayNeighbours);
         jList.setAlignmentX(CENTER_ALIGNMENT);
+        jList.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         add(jList);
 
         add(ComponentsGenerator.verticalGlue(100));
@@ -80,20 +82,30 @@ public class OneDistanceScreen extends JPanel {
 
         add(ComponentsGenerator.verticalGlue(20));
 
-        add(ComponentsGenerator.jLabel("Noeud de depart :", true));
+        JPanel edgesInfo = new JPanel();
+        edgesInfo.setLayout(new BoxLayout(edgesInfo, BoxLayout.Y_AXIS));
+        edgesInfo.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+        edgesInfo.setMaximumSize(new Dimension(150, 200));
 
-        add(ComponentsGenerator.verticalGlue(5));
+        edgesInfo.add(ComponentsGenerator.jLabel("Noeud de depart :", true));
+        edgesInfo.add(ComponentsGenerator.verticalGlue(5));
+        edgesInfo.add(startNode);
+        edgesInfo.add(ComponentsGenerator.verticalGlue(10));
+        edgesInfo.add(ComponentsGenerator.jLabel("Noeud d'arrivee :", true));
+        edgesInfo.add(ComponentsGenerator.verticalGlue(5));
+        edgesInfo.add(arrivalNode);
+        edgesInfo.add(ComponentsGenerator.verticalGlue(10));
+        edgesInfo.add(ComponentsGenerator.jLabel("Longueur :", true));
+        edgesInfo.add(ComponentsGenerator.verticalGlue(5));
+        edgesInfo.add(edgeDistance);
+        edgesInfo.add(ComponentsGenerator.verticalGlue(10));
+        edgesInfo.add(ComponentsGenerator.jLabel("Type de route :", true));
+        edgesInfo.add(ComponentsGenerator.verticalGlue(5));
+        edgesInfo.add(edgeType);
 
-        add(startNode);
+        add(edgesInfo);
 
-        add(ComponentsGenerator.verticalGlue(10));
-
-        add(ComponentsGenerator.jLabel("Noeud d'arrivee :", true));
-
-        add(ComponentsGenerator.verticalGlue(5));
-
-        add(arrivalNode);
-
+        // Fill empty remaining space
         add(Box.createVerticalGlue());
     }
 
@@ -119,5 +131,13 @@ public class OneDistanceScreen extends JPanel {
 
     public JLabel getArrivalNode() {
         return arrivalNode;
+    }
+
+    public JLabel getEdgeDistance() {
+        return edgeDistance;
+    }
+
+    public JLabel getEdgeType() {
+        return edgeType;
     }
 }

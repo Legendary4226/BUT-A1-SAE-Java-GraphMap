@@ -118,14 +118,14 @@ public class ZeroDistanceScreen extends JPanel {
         int nbNationales = edgeFilters.filterCustomized(this.getScreensManager().getGraphSAE().getAretes(), TypeRoute.NATIONALE).size()/2;
         int nbDepartementales = edgeFilters.filterCustomized(this.getScreensManager().getGraphSAE().getAretes() , TypeRoute.DEPARTEMENTALE).size()/2;
 
-        panel.add(ComponentsGenerator.jLabel("Nombre de noeuds : " + graphSAE.getNoeuds().size() + " noeuds.", true));
-        panel.add(ComponentsGenerator.jLabel("Nombre d'aretes : " + graphSAE.getAretes().size()/2  + " aretes", true));
-        panel.add(ComponentsGenerator.jLabel("Nombre de villes : " + nbVilles, true));
-        panel.add(ComponentsGenerator.jLabel("Nombre d'autoroutes : "  + nbAutoroutes, true));
-        panel.add(ComponentsGenerator.jLabel("Nombre de restaurants : " + nbRestaurants, true));
-        panel.add(ComponentsGenerator.jLabel("Nombre de departements : " + nbDepartementales, true));
-        panel.add(ComponentsGenerator.jLabel("Nombre de centres de loisir : " + nbCentresDeLoisir, true));
-        panel.add(ComponentsGenerator.jLabel("Nombre de Nationales : " + nbNationales, true));
+        panel.add(ComponentsGenerator.jLabel("Nombre de noeuds : " + graphSAE.getNoeuds().size() + " noeuds.", true, true));
+        panel.add(ComponentsGenerator.jLabel("Nombre d'aretes : " + graphSAE.getAretes().size()/2  + " aretes", true, true));
+        panel.add(ComponentsGenerator.jLabel("Nombre de villes : " + nbVilles, true, true));
+        panel.add(ComponentsGenerator.jLabel("Nombre d'autoroutes : "  + nbAutoroutes, true, true));
+        panel.add(ComponentsGenerator.jLabel("Nombre de restaurants : " + nbRestaurants, true, true));
+        panel.add(ComponentsGenerator.jLabel("Nombre de departements : " + nbDepartementales, true, true));
+        panel.add(ComponentsGenerator.jLabel("Nombre de centres de loisir : " + nbCentresDeLoisir, true, true));
+        panel.add(ComponentsGenerator.jLabel("Nombre de Nationales : " + nbNationales, true, true));
 
         return panel;
     }

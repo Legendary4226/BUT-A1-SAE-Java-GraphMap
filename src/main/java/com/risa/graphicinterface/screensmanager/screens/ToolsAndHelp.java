@@ -28,7 +28,11 @@ public class ToolsAndHelp extends JPanel {
         add(ComponentsGenerator.jLabel("Aide", true, true));
         add(ComponentsGenerator.verticalGlue(10));
         add(ComponentsGenerator.jTextArea("""
-                
+                Utilisation de la vue du graphe :
+                -- Zoomer et dezoumer avec FN + Page(Up/Down)
+                -- Deplacer la vue avec les fleches
+                -- Reinitialiser la vue avec Shift + R
+                -- Diverses interactions avec le curseur comme glisser deplacer un noeud, en selectionner.
                 """, true));
 
         add(ComponentsGenerator.verticalGlue(25));

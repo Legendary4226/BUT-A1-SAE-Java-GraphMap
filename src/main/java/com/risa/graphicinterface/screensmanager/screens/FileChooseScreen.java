@@ -18,7 +18,7 @@ public class FileChooseScreen extends JPanel {
         super();
 
         this.screensManager = screensManager;
-        this.loadState = ComponentsGenerator.jLabel("decharge", false, true);
+        this.loadState = ComponentsGenerator.jLabel("non charge", false, true);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -51,7 +51,7 @@ public class FileChooseScreen extends JPanel {
         JPanel jPanel = new JPanel();
 
         jPanel.add(ComponentsGenerator.jLabel("Etat de chargement du graphe : ", false, true));
-        loadState.setForeground(Color.DARK_GRAY);
+        loadState.setForeground(Color.GRAY);
         jPanel.add(loadState);
 
         return jPanel;

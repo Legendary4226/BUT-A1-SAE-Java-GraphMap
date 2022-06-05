@@ -58,7 +58,7 @@ public class Arete {
 
     @Override
     public String toString() {
-        return source.getNom() + " " + typeRoute + " " + distance + " " + destination.getNom();
+        return source.getNom() + " -> " + destination.getNom();
     }
 
     /**

@@ -1,15 +1,15 @@
 package com.risa.graphicinterface.screensmanager.actions.uimanagment;
 
-import com.risa.graphicinterface.screensmanager.screens.UIManagment;
+import com.risa.graphicinterface.screensmanager.screens.ToolsAndHelp;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class ActionResetWayShowed extends AbstractAction {
-    private final UIManagment uiManagment;
+    private final ToolsAndHelp toolsAndHelp;
 
-    public ActionResetWayShowed(UIManagment uiManagment) {
-        this.uiManagment = uiManagment;
+    public ActionResetWayShowed(ToolsAndHelp toolsAndHelp) {
+        this.toolsAndHelp = toolsAndHelp;
     }
 
     /**
@@ -18,6 +18,6 @@ public class ActionResetWayShowed extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        uiManagment.getScreensManager().getGraphUI().asyncUncolorizeAll();
+        toolsAndHelp.getScreensManager().getGraphUI().asyncUncolorizeAll();
     }
 }

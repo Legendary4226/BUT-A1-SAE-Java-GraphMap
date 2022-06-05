@@ -26,7 +26,7 @@ public class FileChooseScreen extends JPanel {
     }
 
     private void buildScreen() {
-        add(ComponentsGenerator.verticalGlue(20));
+        add(ComponentsGenerator.verticalGlue(50));
         add(ComponentsGenerator.jLabel("Pour commencer il faut choisir un fichier :", true, true));
 
         fileChooser = new JFileChooser(System.getProperty("user.dir") + "\\csv");

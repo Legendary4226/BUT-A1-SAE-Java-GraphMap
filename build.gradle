@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group 'org.example'
@@ -8,6 +10,14 @@ version '1.0-SNAPSHOT'
 
 jacocoTestReport {
     dependsOn test
+}
+
+application {
+    mainClassName = 'com.risa.main.Main'
+}
+
+shadowJar {
+    archiveFileName = "SAEGraphMapRiSa.jar"
 }
 
 repositories {

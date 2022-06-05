@@ -16,7 +16,7 @@ public class ScreensButtonMenu extends JMenuBar {
                 put("4", new JButton("2-distance"));
                 put("5", new JButton("Compaisons"));
                 put("6", new JButton("Bonus"));
-                put("7", new JButton("UI Managment"));
+                put("7", new JButton("Outils et Aide"));
             }
         };
 

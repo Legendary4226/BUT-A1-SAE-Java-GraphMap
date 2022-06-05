@@ -27,7 +27,9 @@ public class ToolsAndHelp extends JPanel {
         add(ComponentsGenerator.verticalGlue(25));
         add(ComponentsGenerator.jLabel("Aide", true, true));
         add(ComponentsGenerator.verticalGlue(10));
-        add(ComponentsGenerator.jLabel("Logiciel cree par Guilland Richard et Niang Sadiya.", true));
+        add(ComponentsGenerator.jTextArea("""
+                
+                """, true));
 
         add(ComponentsGenerator.verticalGlue(25));
         add(ComponentsGenerator.jLabel("A propos", true, true));

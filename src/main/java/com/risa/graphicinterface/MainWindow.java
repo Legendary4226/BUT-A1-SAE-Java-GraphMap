@@ -39,12 +39,10 @@ public class MainWindow extends JFrame {
     private JPanel buildMainPanel() {
         JPanel jPanel = new JPanel(new GridLayout(1, 1));
         JSplitPane jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        jSplitPane.setResizeWeight(1);
-
-
 
         jSplitPane.setLeftComponent((Component) graphUI.getView());
         jSplitPane.setRightComponent(new ScreensManager(graphUI, graphSAE));
+
         jSplitPane.setDividerSize(1);
         jSplitPane.setResizeWeight(1);
         jSplitPane.setEnabled(false);

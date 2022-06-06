@@ -27,14 +27,14 @@ public class TwoDistanceScreen extends JPanel {
     private void buildPanel() {
         add(ComponentsGenerator.verticalGlue(50));
 
-        add(ComponentsGenerator.jLabel("Selectionner deux sites pour savoir si ils sont a deux distance :", true, true));
+        add(ComponentsGenerator.jLabel("Selectionner deux sites pour savoir si ils sont exactement a deux distance.", true, true));
 
-        add(ComponentsGenerator.verticalGlue(25));
+        add(ComponentsGenerator.verticalGlue(20));
 
-        add(ComponentsGenerator.jLabel("Noeud 1", true));
+        add(ComponentsGenerator.jLabel("Site 1", true));
         add(ComponentsGenerator.customNodesComboBox(true, selectorOne));
         selectorOne.fill(screensManager.getGraphSAE().getNoeuds().values());
-        add(ComponentsGenerator.jLabel("Noeud 2", true));
+        add(ComponentsGenerator.jLabel("Site 2", true));
         add(ComponentsGenerator.customNodesComboBox(true, selectorTwo));
         selectorTwo.fill(screensManager.getGraphSAE().getNoeuds().values());
 

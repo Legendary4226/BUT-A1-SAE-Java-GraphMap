@@ -64,7 +64,7 @@ public class OneDistanceScreen extends JPanel {
 
         JList<Noeud> jList = new JList<>(displayNeighbours);
         jList.setAlignmentX(CENTER_ALIGNMENT);
-        jList.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        jList.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         add(jList);
 
         add(ComponentsGenerator.verticalGlue(100));
@@ -84,7 +84,7 @@ public class OneDistanceScreen extends JPanel {
 
         JPanel edgesInfo = new JPanel();
         edgesInfo.setLayout(new BoxLayout(edgesInfo, BoxLayout.Y_AXIS));
-        edgesInfo.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+        edgesInfo.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         edgesInfo.setMaximumSize(new Dimension(150, 200));
 
         edgesInfo.add(ComponentsGenerator.jLabel("Noeud de depart :", true));

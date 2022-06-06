@@ -8,8 +8,11 @@ import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
+import java.util.Map;
 
 import static java.awt.Component.CENTER_ALIGNMENT;
+import static java.awt.Component.LEFT_ALIGNMENT;
 
 public class ComponentsGenerator {
 
@@ -20,13 +23,13 @@ public class ComponentsGenerator {
      */
     public static Component verticalGlue(int maxHeigth) {
         Component box = Box.createVerticalGlue();
-        box.setMaximumSize(new Dimension(10000, maxHeigth));
-        box.setPreferredSize(box.getMaximumSize());
+        box.setMaximumSize(new Dimension(1, maxHeigth));
+        box.setPreferredSize(new Dimension(1, maxHeigth));
         return box;
     }
 
     /**
-     * Créé un JLabel avec un texte donné, automatiquement centré celon centered.
+     * Créé un JLabel avec un texte donné, automatiquement centré celon centered, en gras selon bold.
      * @param text texte
      * @param centered si le Composant doit être centré
      * @return JLabel
@@ -42,19 +45,40 @@ public class ComponentsGenerator {
         return label;
     }
 
+    /**
+     * Créé un JLabel avec un texte donné, automatiquement centré celon centered, en gras selon bold.
+     * @param text texte
+     * @param centered si le Composant doit être centré
+     * @param bold si le texte doit être en gras
+     * @return JLabel
+     */
     public static JLabel jLabel(String text, boolean centered, boolean bold) {
-        JLabel label = new JLabel(text);
+        JLabel label = jLabel(text, centered);
 
-        if (centered) {
-            label.setAlignmentX(CENTER_ALIGNMENT);
-            label.setHorizontalAlignment(SwingConstants.CENTER);
-        }
         if (bold) {
             label.setFont(new Font(
                     label.getFont().getFontName(),
                     Font.BOLD,
                     label.getFont().getSize()
             ));
+        }
+
+        return label;
+    }
+
+    /**
+     * Créé un JLabel avec un texte donné, automatiquement centré celon centered, en gras selon bold, et souligné selon underlined.
+     * @param text texte
+     * @param centered si le Composant doit être centré
+     * @param bold si le texte doit être en gras
+     * @param underlined si le texte doit être souligné
+     * @return JLabel
+     */
+    public static JLabel jLabel(String text, boolean centered, boolean bold, boolean underlined) {
+        JLabel label = jLabel(text, centered, bold);
+
+        if (underlined) {
+            label.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.GRAY));
         }
 
         return label;
@@ -127,7 +151,7 @@ public class ComponentsGenerator {
 
     /**
      * Créé un JTextArea centré en fonction de centered et ayant le word-wrapping activé.
-     * @param text test
+     * @param text text
      * @return JTextArea
      */
     public static JTextArea jTextArea(String text, boolean centered) {

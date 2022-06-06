@@ -45,8 +45,8 @@ public class ZeroDistanceScreen extends JPanel {
         panel.setMaximumSize(panel.getPreferredSize());
 
 
-        panel.add(ComponentsGenerator.jLabel("Noeuds", true));
-        panel.add(ComponentsGenerator.jLabel("Aretes", true));
+        panel.add(ComponentsGenerator.jLabel("Noeuds", true, true));
+        panel.add(ComponentsGenerator.jLabel("Aretes", true, true));
 
 
         panel.add(ComponentsGenerator.jButton("Afficher tout les noeuds", false,

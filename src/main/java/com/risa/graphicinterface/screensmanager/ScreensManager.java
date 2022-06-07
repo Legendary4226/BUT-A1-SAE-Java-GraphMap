@@ -60,6 +60,7 @@ public class ScreensManager extends JSplitPane {
         screensContainer.add(new ToolsAndHelp(this), "7");
 
         screensButtonMenu.enableAllExceptDisabled();
+
     }
 
     public GraphSynced getGraphUI() {

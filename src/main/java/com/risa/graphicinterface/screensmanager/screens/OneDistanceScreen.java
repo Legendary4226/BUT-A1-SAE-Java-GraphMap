@@ -85,7 +85,7 @@ public class OneDistanceScreen extends JPanel {
         JPanel edgesInfo = new JPanel();
         edgesInfo.setLayout(new BoxLayout(edgesInfo, BoxLayout.Y_AXIS));
         edgesInfo.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-        edgesInfo.setMaximumSize(new Dimension(150, 200));
+        edgesInfo.setMaximumSize(new Dimension(250, 200));
 
         edgesInfo.add(ComponentsGenerator.jLabel("Noeud de depart :", true));
         edgesInfo.add(ComponentsGenerator.verticalGlue(5));

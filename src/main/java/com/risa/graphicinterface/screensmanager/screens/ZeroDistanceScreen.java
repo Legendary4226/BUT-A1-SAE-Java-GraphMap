@@ -17,6 +17,8 @@ public class ZeroDistanceScreen extends JPanel {
     private final ScreensManager screensManager;
     private final EdgesListModel edgeListModel;
     private final NodesListModel nodesListModel;
+    private Component disabledNodeButton;
+    private Component disabledEdgeButton;
 
 
     public ZeroDistanceScreen(ScreensManager screensManager) {
@@ -25,6 +27,9 @@ public class ZeroDistanceScreen extends JPanel {
 
         edgeListModel = new EdgesListModel();
         nodesListModel = new NodesListModel();
+
+        disabledNodeButton = null;
+        disabledEdgeButton = null;
 
         buildPanel();
     }
@@ -49,12 +54,16 @@ public class ZeroDistanceScreen extends JPanel {
         panel.add(ComponentsGenerator.jLabel("Aretes", true, true));
 
 
-        panel.add(ComponentsGenerator.jButton("Afficher tout les noeuds", false,
+        disabledNodeButton = ComponentsGenerator.jButton("Afficher tout les noeuds", false,
                 new ActionFilterNodes(this)
-        ));
-        panel.add(ComponentsGenerator.jButton("Afficher toutes les aretes", false,
+        );
+        disabledNodeButton.setEnabled(false);
+        disabledEdgeButton = ComponentsGenerator.jButton("Afficher toutes les aretes", false,
                 new ActionFilterEdge(this )
-        ));
+        );
+        disabledEdgeButton.setEnabled(false);
+        panel.add(disabledNodeButton);
+        panel.add(disabledEdgeButton);
 
         panel.add(ComponentsGenerator.jButton("Villes",false,
                 new ActionFilterNodes(this, TypeLieu.VILLE)
@@ -133,11 +142,28 @@ public class ZeroDistanceScreen extends JPanel {
     public NodesListModel getNodesListModel() {
         return nodesListModel;
     }
+
     public EdgesListModel getEdgeListModel(){
         return edgeListModel;
     }
 
     public ScreensManager getScreensManager() {
         return screensManager;
+    }
+
+    public Component getDisabledNodeButton() {
+        return disabledNodeButton;
+    }
+
+    public void setDisabledNodeButton(Component disabledNodeButton) {
+        this.disabledNodeButton = disabledNodeButton;
+    }
+
+    public Component getDisabledEdgeButton() {
+        return disabledEdgeButton;
+    }
+
+    public void setDisabledEdgeButton(Component disabledEdgeButton) {
+        this.disabledEdgeButton = disabledEdgeButton;
     }
 }

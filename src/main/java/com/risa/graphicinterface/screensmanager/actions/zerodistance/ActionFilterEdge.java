@@ -5,6 +5,7 @@ import com.risa.graphicinterface.screensmanager.customcomponent.EdgesListModel;
 import com.risa.graphicinterface.screensmanager.screens.ZeroDistanceScreen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ActionFilterEdge extends AbstractAction {
@@ -34,5 +35,10 @@ public class ActionFilterEdge extends AbstractAction {
         if (!noFilter) {
             edgesListModel.filterBy(typeRouteFilter, zeroDistanceScreen.getScreensManager().getGraphSAE().getAretes());
         }
+
+        Component button = ((Component) e.getSource());
+        button.setEnabled(false);
+        zeroDistanceScreen.getDisabledEdgeButton().setEnabled(true);
+        zeroDistanceScreen.setDisabledEdgeButton(button);
     }
 }

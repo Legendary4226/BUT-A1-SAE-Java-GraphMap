@@ -17,7 +17,7 @@ application {
 }
 
 shadowJar {
-    archiveFileName = "SAEGraphMapRiSa.jar"
+    archiveFileName = "SAEGraphMapRiSaCompatible.jar"
 }
 
 repositories {

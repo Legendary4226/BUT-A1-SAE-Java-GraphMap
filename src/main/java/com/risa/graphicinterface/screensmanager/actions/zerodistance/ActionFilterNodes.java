@@ -5,6 +5,7 @@ import com.risa.graphicinterface.screensmanager.customcomponent.NodesListModel;
 import com.risa.graphicinterface.screensmanager.screens.ZeroDistanceScreen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ActionFilterNodes extends AbstractAction {
@@ -34,5 +35,10 @@ public class ActionFilterNodes extends AbstractAction {
         if (!noFilter) {
             nodesListModel.filterBy(typeLieuFilter, zeroDistanceScreen.getScreensManager().getGraphSAE().getNoeuds().values());
         }
+
+        Component button = ((Component) e.getSource());
+        button.setEnabled(false);
+        zeroDistanceScreen.getDisabledNodeButton().setEnabled(true);
+        zeroDistanceScreen.setDisabledNodeButton(button);
     }
 }

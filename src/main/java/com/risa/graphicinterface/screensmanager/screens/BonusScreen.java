@@ -67,7 +67,7 @@ public class BonusScreen extends JPanel {
         add(buildSubPanel());
 
         containSelectors.setLayout(new BoxLayout(containSelectors, BoxLayout.Y_AXIS));
-        containSelectors.setPreferredSize(new Dimension(10000,  200));
+        containSelectors.setPreferredSize(new Dimension(10000,  250));
         containSelectors.setMaximumSize(containSelectors.getPreferredSize());
         add(containSelectors);
 

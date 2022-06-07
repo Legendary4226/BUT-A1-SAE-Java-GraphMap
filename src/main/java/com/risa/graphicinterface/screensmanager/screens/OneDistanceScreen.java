@@ -65,6 +65,7 @@ public class OneDistanceScreen extends JPanel {
         JList<Noeud> jList = new JList<>(displayNeighbours);
         jList.setAlignmentX(CENTER_ALIGNMENT);
         jList.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        displayNeighbours.addNode(new Noeud("Aucun", null));
         add(jList);
 
         add(ComponentsGenerator.verticalGlue(100));

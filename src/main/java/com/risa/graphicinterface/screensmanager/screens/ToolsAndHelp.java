@@ -31,22 +31,9 @@ public class ToolsAndHelp extends JPanel {
         add(ComponentsGenerator.jLabel("- Aide -", true, true, true));
         add(ComponentsGenerator.verticalGlue(20));
         add(ComponentsGenerator.jLabel("Utilisation de la vue du graphe pour l'exploration uniquement", true, true));
-        add(ComponentsGenerator.jTextArea("""
-                ---   Zoomer et de-zoomer avec 'FN + Page(Up/Down)'
-                ---   Deplacer la vue avec les fleches
-                ---   Reinitialiser la vue avec 'Shift + R'
-                ---   Diverses interactions avec la souris comme glisser-deplacer un noeud.
-                """, true));
+        add(ComponentsGenerator.jTextArea("---   Zoomer et de-zoomer avec 'FN + Page(Up/Down)'\n---   Deplacer la vue avec les fleches\n---   Reinitialiser la vue avec 'Shift + R'\n---   Diverses interactions avec la souris comme glisser-deplacer un noeud. ", true));
         add(ComponentsGenerator.jLabel("Legende", true, true));
-        add(ComponentsGenerator.jTextArea("""
-                ---   Carre Vert : Une ville
-                ---   Rond Orange : Un restaurant
-                ---   Losange jaune : Un centre de loisir
-                
-                ---   "N" signifie Nationale
-                ---   "A" signifie Autoroute
-                ---   "D" signifie Departementale 
-                """, true));
+        add(ComponentsGenerator.jTextArea("---   Carre Vert : Une ville\n ---   Rond Orange : Un restaurant\n---   Losange jaune : Un centre de loisir\n\n---   \"N\" signifie Nationale\n---   \"A\" signifie Autoroute\n---   \"D\" signifie Departementale", true));
 
 
         add(ComponentsGenerator.jLabel("- A propos -", true, true, true));

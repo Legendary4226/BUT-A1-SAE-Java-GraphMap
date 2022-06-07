@@ -14,6 +14,7 @@ public class NodesListModel extends AbstractListModel<Noeud> implements ComboBox
 
     public NodesListModel() {
         super();
+        addNode(new Noeud("Aucun", null));
     }
 
     /**

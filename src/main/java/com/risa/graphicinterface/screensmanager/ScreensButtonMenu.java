@@ -10,13 +10,13 @@ public class ScreensButtonMenu extends JMenuBar {
     public ScreensButtonMenu() {
         screenButtons = new HashMap<>() {
             {
-                put("1", new JButton("Accueil"));
+                put("1", new JButton("Charger"));
                 put("2", new JButton("0-distance"));
                 put("3", new JButton("1-distance"));
                 put("4", new JButton("2-distance"));
-                put("5", new JButton("Comparaisons"));
+                put("5", new JButton("Comparer"));
                 put("6", new JButton("Bonus"));
-                put("7", new JButton("Outils et Aide"));
+                put("7", new JButton("Outil / Aide"));
             }
         };
 

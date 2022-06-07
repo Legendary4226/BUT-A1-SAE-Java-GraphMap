@@ -19,13 +19,16 @@ public class ActionRemoveIntermediarySiteSelector extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (bonusScreen.getIntermediarySites().size() > 0) {
-            bonusScreen.remove(
+            bonusScreen.getContainSelectors().remove(
                     bonusScreen.getIntermediarySites().get(bonusScreen.getIntermediarySites().size() - 1)
             );
             bonusScreen.getIntermediarySites().remove(bonusScreen.getIntermediarySites().size() - 1);
 
             bonusScreen.revalidate();
             bonusScreen.repaint();
+        }
+        if (bonusScreen.getIntermediarySites().size() == 0) {
+            JOptionPane.showMessageDialog(bonusScreen.getContainSelectors(), "Vous ne pouvez rien supprimer.");
         }
     }
 }

@@ -44,7 +44,7 @@ public class ActionCompareTwoCities extends AbstractAction {
             if (resultOpened == 1) {
                 comparisonsScreen.getAnswerOppened().setText(node1.getNom() + " est plus ouvert que " + node2.getNom());
             } else if (resultOpened == 0) {
-                comparisonsScreen.getAnswerOppened().setText(node1.getNom() + " est egalement ouvert avec " + node2.getNom());
+                comparisonsScreen.getAnswerOppened().setText(node1.getNom() + " est tout aussi ouvert avec " + node2.getNom());
             } else if (resultOpened == -1) {
                 comparisonsScreen.getAnswerOppened().setText(node1.getNom() + " est moins ouvert que " + node2.getNom());
             } else if (resultOpened == Float.POSITIVE_INFINITY) {
@@ -55,7 +55,7 @@ public class ActionCompareTwoCities extends AbstractAction {
             if (resultGastronomic == 1) {
                 comparisonsScreen.getAnswerGastronomic().setText(node1.getNom() + " est plus gastronomique que " + node2.getNom());
             } else if (resultGastronomic == 0) {
-                comparisonsScreen.getAnswerGastronomic().setText(node1.getNom() + " est egalement gastronomique avec " + node2.getNom());
+                comparisonsScreen.getAnswerGastronomic().setText(node1.getNom() + " est tout aussi gastronomique avec " + node2.getNom());
             } else if (resultGastronomic == -1) {
                 comparisonsScreen.getAnswerGastronomic().setText(node1.getNom() + " est moins gastronomique que " + node2.getNom());
             } else if (resultGastronomic == Float.POSITIVE_INFINITY) {

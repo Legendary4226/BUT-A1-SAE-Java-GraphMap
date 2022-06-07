@@ -39,7 +39,7 @@ public class OneDistanceScreen extends JPanel {
     private void buildScreen() {
         add(ComponentsGenerator.verticalGlue(50));
 
-        add(ComponentsGenerator.jLabel("Selectonnez un noeud pour aficher ses voisins : ", true, true));
+        add(ComponentsGenerator.jLabel("Selectonnez un noeud pour aficher ses voisins : ", true, true, true));
 
         add(ComponentsGenerator.verticalGlue(20));
 
@@ -69,7 +69,7 @@ public class OneDistanceScreen extends JPanel {
 
         add(ComponentsGenerator.verticalGlue(100));
 
-        add(ComponentsGenerator.jLabel("Selectionnez une arete pour voir les noeuds qu'il relie :", true, true));
+        add(ComponentsGenerator.jLabel("Selectionnez une arete pour voir les noeuds qu'il relie :", true, true, true));
 
         add(ComponentsGenerator.verticalGlue(20));
 

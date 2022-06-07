@@ -33,14 +33,24 @@ public class ComparisonsScreen extends JPanel {
     private void buildPanel() {
         add(ComponentsGenerator.verticalGlue(50));
 
+        add(ComponentsGenerator.jLabel("Explications", true, true, true));
+
+        add(ComponentsGenerator.verticalGlue(20));
+
+        add(ComponentsGenerator.jLabel("L'ouverture signifie que un site a plus de villes a deux-distance qu'un autre.", true));
+        add(ComponentsGenerator.jLabel("La gastronomie signifie que un site a plus de restaurants a deux-distance qu'un autre.", true));
+        add(ComponentsGenerator.jLabel("La curlture signifie que un site a plus de centres de loisir a deux-distance qu'un autre.", true));
+
+        add(ComponentsGenerator.verticalGlue(20));
+
         NodeFilters filter = new NodeFilters();
 
-        add(ComponentsGenerator.jLabel("Ville 1", true));
+        add(ComponentsGenerator.jLabel("Ville 1", true, true));
         add(ComponentsGenerator.customNodesComboBox(true, citySelectorOne));
         citySelectorOne.fill(
                 filter.filterCustomized(screensManager.getGraphSAE().getNoeuds().values(), TypeLieu.VILLE)
         );
-        add(ComponentsGenerator.jLabel("Ville 2", true));
+        add(ComponentsGenerator.jLabel("Ville 2", true, true));
         add(ComponentsGenerator.customNodesComboBox(true, citySelectorTwo));
         citySelectorTwo.fill(
                 filter.filterCustomized(screensManager.getGraphSAE().getNoeuds().values(), TypeLieu.VILLE)

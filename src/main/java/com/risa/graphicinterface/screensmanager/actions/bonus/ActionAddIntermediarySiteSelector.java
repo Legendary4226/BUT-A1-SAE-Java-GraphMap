@@ -27,11 +27,16 @@ public class ActionAddIntermediarySiteSelector extends AbstractAction {
         NodesListModel selector = new NodesListModel();
         JComboBox<Noeud> comboBox = ComponentsGenerator.customNodesComboBox(true, selector);
 
-        selector.fill(bonusScreen.getScreensManager().getGraphSAE().getNoeuds().values());
-        bonusScreen.add(comboBox);
-        bonusScreen.getIntermediarySites().add(comboBox);
+        if (bonusScreen.getIntermediarySites().size() == 6) {
+            JOptionPane.showMessageDialog(bonusScreen.getContainSelectors(), "Nombre maximum de sites intermediaires atteint.");
+        }
+        if (bonusScreen.getIntermediarySites().size() < 6) {
+            selector.fill(bonusScreen.getScreensManager().getGraphSAE().getNoeuds().values());
+            bonusScreen.getContainSelectors().add(comboBox);
+            bonusScreen.getIntermediarySites().add(comboBox);
 
-        bonusScreen.revalidate();
-        bonusScreen.repaint();
+            bonusScreen.revalidate();
+            bonusScreen.repaint();
+        }
     }
 }

@@ -20,6 +20,7 @@ public class BonusScreen extends JPanel {
     private final JTextArea answerShortestWay;
     private final ArrayList<JComboBox<Noeud>> intermediarySites;
     private final JTextArea answerWayWithIntermediaries;
+    private final JPanel containSelectors;
 
     public BonusScreen(ScreensManager screensManager) {
         this.screensManager = screensManager;
@@ -28,6 +29,7 @@ public class BonusScreen extends JPanel {
         answerShortestWay = ComponentsGenerator.jTextArea("", true);
         intermediarySites = new ArrayList<>();
         answerWayWithIntermediaries = ComponentsGenerator.jTextArea("", true);
+        containSelectors = new JPanel();
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -36,6 +38,10 @@ public class BonusScreen extends JPanel {
 
     private void buildPanel() {
         add(ComponentsGenerator.verticalGlue(50));
+
+        add(ComponentsGenerator.jLabel("Chercher un plus court chemin entre deux sites", true, true, true));
+
+        add(ComponentsGenerator.verticalGlue(20));
 
         add(ComponentsGenerator.jLabel("Site quelconque 1", true));
         add(ComponentsGenerator.customNodesComboBox(true, selectorOne));
@@ -59,6 +65,12 @@ public class BonusScreen extends JPanel {
         );
         add(ComponentsGenerator.verticalGlue(5));
         add(buildSubPanel());
+
+        containSelectors.setLayout(new BoxLayout(containSelectors, BoxLayout.Y_AXIS));
+        containSelectors.setPreferredSize(new Dimension(10000,  200));
+        containSelectors.setMaximumSize(containSelectors.getPreferredSize());
+        add(containSelectors);
+
         add(ComponentsGenerator.jButton("Chercher un chemin passant par la selection", true,
                 new ActionFindWayWithIntermediaries(this))
         );
@@ -105,5 +117,9 @@ public class BonusScreen extends JPanel {
 
     public JTextArea getAnswerWayWithIntermediaries() {
         return answerWayWithIntermediaries;
+    }
+
+    public JPanel getContainSelectors() {
+        return containSelectors;
     }
 }

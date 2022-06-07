@@ -59,7 +59,7 @@ public class GraphSynced {
         for (Noeud noeud : graphSAE.getNoeuds().values()) {
             graph.addNode(noeud.getNom())
                     .setAttributes(
-                    new HashMap<>() {
+                    new HashMap<String, Object>() {
                         {
                             if(noeud.getTypeLieu() == TypeLieu.VILLE) {
                                 put("ui.class", "city");
@@ -86,7 +86,7 @@ public class GraphSynced {
                             noeud.getNom(),
                             arete.getDestination().getNom()
                     ).setAttributes(
-                            new HashMap<>() {
+                            new HashMap<String, Object>() {
                                 {
                                     put("typeroute", arete.getTypeRoute());
                                     put("distance", arete.getDistance());

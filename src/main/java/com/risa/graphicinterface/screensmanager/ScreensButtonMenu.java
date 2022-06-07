@@ -8,7 +8,7 @@ public class ScreensButtonMenu extends JMenuBar {
     private String disabledButton;
 
     public ScreensButtonMenu() {
-        screenButtons = new HashMap<>() {
+        screenButtons = new HashMap<String, JButton>() {
             {
                 put("1", new JButton("Accueil"));
                 put("2", new JButton("0-distance"));
